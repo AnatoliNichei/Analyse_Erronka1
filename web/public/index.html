@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<%db = connector.connect(host="127.0.0.1", user="root", password="Admin123", database="Python")
+cursor = db.cursor()
+a = 7+5%>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        <%
+        echo(a)
+        %>
+    </title>
+</head>
+<body>
+    <h3>Ongi etorri nire web orrira!</h3>
+    <p>
+        <%cursor.execute("SELECT izena FROM ikasleak WHERE 1=1")
+        for izena, in cursor:
+            echo(izena + "<br>")
+        %>
+    </p>
+</body>
+</html>
