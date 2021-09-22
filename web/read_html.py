@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import cgitb
+import multiprocessing
+
 import mysql.connector as connector
 import os
 import sys
@@ -22,14 +24,18 @@ def create_reader():
     return echo, get_echoed
 
 
-def get_get_post():
+def get_get_post(q):
     get = {}
-    args = os.getenv("QUERY_STRING").split('&')
-    for arg in args:
-        t = arg.split('=')
-        if len(t) > 1:
-            k, v = arg.split('=')
-            get[k] = v
+    try:
+        args = os.getenv("QUERY_STRING").split('&')
+        for arg in args:
+            t = arg.split('=')
+            if len(t) > 1:
+                k, v = arg.split('=')
+                get[k] = v
+    except AttributeError:
+        pass
+    q.put(get)
 
     post = {}
     args = sys.stdin.read().split('&')
@@ -39,21 +45,32 @@ def get_get_post():
             k, v = arg.split('=')
             post[k] = v
 
-    return get, post
+    q.put(post)
 
 
 def read_template(path: str) -> str:
-    get, post = get_get_post()
+    q = multiprocessing.Queue()
+    p1 = multiprocessing.Process(target=get_get_post, args=(q,))
+    p1.start()
+    get = {}
+    post = {}
+    p1.join(timeout=0.05)
+    p1.terminate()
+    if not q.empty():
+        get = q.get()
+    if not q.empty():
+        post = q.post()
 
-    echo, get_echoed = create_reader()
     file = open(path)
     web_code = file.read()
-    start = 0
+    current = 0
     while True:
         spaces = ''
-        start = web_code.find('<%', start)
+        start = web_code.find('<%', current)
         if start == -1:
+            print(web_code[current:])
             break
+        print(web_code[current:start])
         i = 1
         if web_code[start + 2] != ';':
             while i <= start and web_code[start - i] != '\n':
@@ -64,16 +81,12 @@ def read_template(path: str) -> str:
             python_code = web_code[start + 2:]
             python_code.replace('\n' + spaces, '\n')
             exec(python_code)
-            web_code = web_code[:start] + get_echoed()
             break
         python_code = web_code[start + 2: end]
         python_code = '\n'.join(python_code.split('\n' + spaces))
         exec(python_code)
-        web_code = web_code[:start] + get_echoed() + web_code[end + 2:]
+        current = end + 2
     file.close()
     print()
     print(web_code)
 
-
-if __name__ == "__main__":
-    read_template("index.html")
