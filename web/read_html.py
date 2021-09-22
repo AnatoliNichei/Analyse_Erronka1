@@ -1,27 +1,10 @@
-#!/usr/bin/env python3
+import sys
 import cgitb
 import multiprocessing
 
 import mysql.connector as connector
 import os
 import sys
-
-cgitb.enable(display=0, logdir="logs")
-print("Content-Type: text/html;charset=utf-8")
-
-ret = ""
-
-def create_reader():
-    def echo(x):
-        global ret
-        ret += str(x)
-
-    def get_echoed():
-        global ret
-        true_ret = ret
-        ret = ""
-        return true_ret
-    return echo, get_echoed
 
 
 def get_get_post(q):
@@ -49,8 +32,10 @@ def get_get_post(q):
 
 
 def read_template(path: str) -> str:
+    cgitb.enable()
+    print("Content-Type: text/html;charset=utf-8\n\n", end='')
     q = multiprocessing.Queue()
-    p1 = multiprocessing.Process(target=get_get_post, args=(q,))
+    p1 = multiprocessing.Process(name="get_post", target=get_get_post, args=(q,))
     p1.start()
     get = {}
     post = {}
@@ -68,11 +53,11 @@ def read_template(path: str) -> str:
         spaces = ''
         start = web_code.find('<%', current)
         if start == -1:
-            print(web_code[current:])
+            print(web_code[current:], end='')
             break
-        print(web_code[current:start])
+        print(web_code[current:start], end='')
         i = 1
-        if web_code[start + 2] != ';':
+        if web_code[start + 2:start + 7] != 'pass;':
             while i <= start and web_code[start - i] != '\n':
                 spaces += ' '
                 i += 1
@@ -87,6 +72,4 @@ def read_template(path: str) -> str:
         exec(python_code)
         current = end + 2
     file.close()
-    print()
-    print(web_code)
 
