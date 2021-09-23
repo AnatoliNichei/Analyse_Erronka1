@@ -1,6 +1,4 @@
 <!DOCTYPE html><%pass;
-db = connector.connect(host="127.0.0.1", user="root", password="root", database="Python")
-cursor = db.cursor()
 a = 7+5%>
 <html lang="en">
 <head>
@@ -14,11 +12,7 @@ a = 7+5%>
 <body>
     <h3>Ongi etorri nire web orrira!</h3>
     <p>
-        <%
-        cursor.execute("SELECT izena FROM ikasleak WHERE 1=1")
-        for izena, in cursor:
-            print(izena + "<br>")
-        %>
+        Hola!
     </p>
 </body>
 </html>
