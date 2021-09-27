@@ -1,10 +1,11 @@
 import sys
 import cgitb
 import multiprocessing
-
+import CRUD
 import mysql.connector as connector
 import os
 import sys
+import session
 
 
 def get_get_post(q):
@@ -31,9 +32,9 @@ def get_get_post(q):
     q.put(post)
 
 
-def read_template(path: str) -> str:
+def read_template(path: str, header: str = "Content-Type: text/html;charset=utf-8") -> str:
     cgitb.enable()
-    print("Content-Type: text/html;charset=utf-8\n\n", end='')
+    print(header + "\n\n", end='')
     q = multiprocessing.Queue()
     p1 = multiprocessing.Process(name="get_post", target=get_get_post, args=(q,))
     p1.start()
