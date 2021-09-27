@@ -15,13 +15,13 @@ def taulak_sortu():
 
     cursor.execute("CREATE TABLE  bezeroa(Erabiltzailea varchar(255) PRIMARY KEY , Izena VARCHAR(255),Abizena VARCHAR(255),Nan varchar(255), Helbidea varchar(255), Telefono INT, Pasahitza varchar(255), Emaila varchar(255))");
     cursor.execute("CREATE TABLE  produktua(ProduktuKodea varchar(255) PRIMARY KEY , Izena VARCHAR(255),Prezioa DOUBLE , Irudia varchar(255))");
-    cursor.execute("CREATE TABLE  saskia(SaskiKodea varchar(255) PRIMARY KEY , EskaeraData date, EntregaData date)");
-    cursor.execute("CREATE TABLE  eskaera(Erabiltazilea varchar(255), ProduktuKodea varchar(255), SaskiKodea varchar(255), Kantitatea int, FOREIGN KEY (Erabiltazilea) REFERENCES bezeroa(Erabiltzailea) ON UPDATE CASCADE,FOREIGN KEY (ProduktuKodea) REFERENCES produktua(ProduktuKodea) ON UPDATE CASCADE, FOREIGN KEY (SaskiKodea) REFERENCES saskia(SaskiKodea) ON UPDATE CASCADE )");
+    cursor.execute("CREATE TABLE  saskia(SaskiKodea varchar(255) PRIMARY KEY , EskaeraData date, EntregaData date,Erabiltzailea varchar(255),FOREIGN KEY (Erabiltzailea) REFERENCES bezeroa(Erabiltzailea) ON UPDATE CASCADE)");
+    cursor.execute("CREATE TABLE  eskaera(ProduktuKodea varchar(255), SaskiKodea varchar(255), Kantitatea int,FOREIGN KEY (ProduktuKodea) REFERENCES produktua(ProduktuKodea) ON UPDATE CASCADE, FOREIGN KEY (SaskiKodea) REFERENCES saskia(SaskiKodea) ON UPDATE CASCADE )");
 
 
 def gehitu_bezeroa(erabiltzailea, izena, abizena, nan, helbidea, telefono, pasahitza, emaila):
     cursor.execute("INSERT INTO bezeroa(Erabiltzailea,Izena,Abizena,Nan,Helbidea,Telefono,Pasahitza,Emaila) "
-                   "VALUES (%s, %s, %s, %s, %s, %d, %s, %s)",
+                   "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
                    (erabiltzailea, izena, abizena, nan, helbidea, telefono, pasahitza, emaila))
     conexion.commit()
 
@@ -56,7 +56,7 @@ def bezeroa_eguneratu(erabiltzailea, **zelaiak):
 
 def gehitu_produktua(produktukodea, izena, prezioa, irudia):
     cursor.execute("INSERT INTO produktua(ProduktuKodea,Izena,Prezioa,Irudia) "
-                       "VALUES (%s, %s, %f, %s)",
+                       "VALUES (%s, %s, %s, %s)",
                        (produktukodea, izena, prezioa, irudia))
     conexion.commit()
 
@@ -78,10 +78,10 @@ def produktua_eguneratu(produktu_kodea, **zelaiak):
     conexion.commit()
 
 
-def gehitu_saskia(saskikodea, eskaeradata, entregadata):
-    cursor.execute("INSERT INTO Saskia(SaskiKodea,EskaeraData,EntregaData) "
-                   "VALUES (%s, %s, %s)",
-                   (saskikodea, eskaeradata, entregadata))
+def gehitu_saskia(saskikodea, eskaeradata, entregadata,erabiltzailea):
+    cursor.execute("INSERT INTO Saskia(SaskiKodea,EskaeraData,EntregaData,Erabiltzailea) "
+                   "VALUES (%s, %s, %s,%s)",
+                   (saskikodea, eskaeradata, entregadata,erabiltzailea))
     conexion.commit()
 
 
@@ -95,17 +95,17 @@ def saskia_ekarri():
     return cursor.fetchall()
 
 
-def saskia_eguneratu(erabiltzailea, **zelaiak):
+def saskia_eguneratu(saski_kodea, **zelaiak):
     """ zelaiak hiztegi bat da non giltzak aldatu behar diren zelaiak diren, eta balioak, zelaiaren balio berria. """
     cursor.execute("UPDATE Saskia SET " + ','.join(k + " = %s" for k in zelaiak) + " WHERE SaskiKodea = %s",
-                   tuple(v for _, v in zelaiak.items()) + (erabiltzailea,))
+                   tuple(v for _, v in zelaiak.items()) + (saski_kodea,))
     conexion.commit()
 
 
-def gehitu_eskaera(erabiltzailea, produktu_kodea, saski_kodea, kantitatea):
-    cursor.execute("INSERT INTO Eskaera(Erabiltzailea,ProduktuKodea,SaskiKodea,Kantitatea) "
-                   "VALUES (%s, %s, %s, %d)",
-                   (erabiltzailea, produktu_kodea, saski_kodea, kantitatea))
+def gehitu_eskaera(produktu_kodea, saski_kodea, kantitatea):
+    cursor.execute("INSERT INTO Eskaera(ProduktuKodea,SaskiKodea,Kantitatea) "
+                   "VALUES ( %s, %s, %s)",
+                   (produktu_kodea, saski_kodea, kantitatea))
     conexion.commit()
 
 
@@ -119,13 +119,19 @@ def eskaera_ekarri():
     return cursor.fetchall()
 
 
-def eskaera_eguneratu(erabiltzailea, produktu_kodea, saski_kodea, kantitate_berria):
-    cursor.execute("UPDATE eskaera SET kantitatea = %d WHERE erabiltzailea=%s AND ProduktuKodea=%s AND SaskiKodea = %s",
-                   (kantitate_berria, erabiltzailea, produktu_kodea, saski_kodea))
+def eskaera_eguneratu(produktu_kodea, saski_kodea, kantitate_berria):
+    cursor.execute("UPDATE eskaera SET kantitatea = %s WHERE ProduktuKodea=%s AND SaskiKodea = %s",
+                   (kantitate_berria, produktu_kodea, saski_kodea))
     conexion.commit()
 
+def datuak_inizializatu():
+    gehitu_bezeroa("AlvaroCazador", "Alvaro", "Viguera", "34567823D", "Legaño 6 3D Berriz", 456789221, "1234","viguera.alvaro@uni.eus")
+    gehitu_produktua("GA01","Galleta1",1.3,"galletafea")
+    gehitu_saskia("001",None,None,"AlvaroCazador")
+    gehitu_eskaera("GA01","001",4)
 
 if __name__ == "__main__":
-    taulak_sortu()
+    datuak_inizializatu()
+
 
 
