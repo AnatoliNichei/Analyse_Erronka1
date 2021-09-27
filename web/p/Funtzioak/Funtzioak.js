@@ -41,15 +41,15 @@ class Erosketa {
 var saskia = new Array();
 
 function erosi(){
-    var erabiltzailea = prompt("Zein da zure izena?");
-    var produktua = prompt("Zein da erosi nahi duzun produktua?");
-    var saskiKodea = saskia.length + 1;
-    var kantitatea = parseInt(prompt("Zenbat erosi nahi duzu?"))
+    let erabiltzailea = prompt("Zein da zure izena?");
+    let produktua = prompt("Zein da erosi nahi duzun produktua?");
+    let saskiKodea = saskia.length + 1;
+    let kantitatea = parseInt(prompt("Zenbat erosi nahi duzu?"))
 
-    var erosketa = new Erosketa(erabiltzailea, produktua, saskiKodea, kantitatea)
+    let erosketa = new Erosketa(erabiltzailea, produktua, saskiKodea, kantitatea)
     saskia.push(erosketa);
 
-    var ticket = "Saski Kodea: " + saskiKodea + "\n\n" + erabiltzailea + ", hau da zure saskia: \n"
+    let ticket = "Saski Kodea: " + saskiKodea + "\n\n" + erabiltzailea + ", hau da zure saskia: \n"
     for (var i = 0; i < saskia.length; i++){
         ticket = ticket + "     - " + saskia[i].produktua + "   x" + saskia[i].kantitatea + "\n"
     }
