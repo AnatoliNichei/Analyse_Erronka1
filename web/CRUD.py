@@ -36,8 +36,15 @@ def bezeroa_ekarri():
 
 
 def bezero_erabiltzaileak_ekarri():
-    cursor.execute("SELECT Erabiltzailea FROM bezeroa")
+    cursor.execute("SELECT Erabiltzailea, Pasahitza FROM bezeroa")
     return cursor.fetchall()
+
+
+def bezero_pasahitza_konprobatu(erabiltzailea, pasahitza):
+    cursor.execute("SELECT Pasahitza FROM bezeroa WHERE Erabiltzailea = %s", (erabiltzailea,))
+    if cursor.fetchone() == pasahitza:
+        return True
+    return False
 
 
 def bezeroa_eguneratu(erabiltzailea, **zelaiak):

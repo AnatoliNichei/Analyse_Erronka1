@@ -1,15 +1,19 @@
 function pasahitzaBaieztatu() {
-    var kontuak = new Array({Erabiltzailea: "AlvaroCazador", Pasahitza: "1234"}, {
-        Erabiltzailea: "Tokpary",
-        Pasahitza: "Admin123"
-    });
-    var erabiltzailea, pasahitza
-    var buklea = true
+    let kontuak;
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+        kontuak = JSON.parse(xhttp.responseText)
+    }
+
+    xhttp.open("GET", "../users.py");
+    xhttp.send();
+    let erabiltzailea, pasahitza;
+    let buklea = true
     erabiltzailea = prompt("Sartu erabiltzailea:")
     pasahitza = prompt("Sartu pasahitza:")
 
-    for (i = 0; i < kontuak.length && buklea; i++) {
-        if (kontuak[i].Erabiltzailea == erabiltzailea && kontuak[i].Pasahitza == pasahitza) {
+    for (let i = 0; i < kontuak.length && buklea; i++) {
+        if (kontuak[i]["Erabiltzailea"] === erabiltzailea && kontuak[i]["Pasahitza"] === pasahitza) {
             alert("Logeatu egin zara,Oso ondo!")
             buklea = false
         }
