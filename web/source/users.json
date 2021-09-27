@@ -1,2 +1,2 @@
 <%import json
-print(json.dumps([{"Erabiltzailea" : x[0], "Pasahitza" : x[1]} for x in CRUD.bezero_erabiltzaileak_ekarri()]))
+print(json.dumps([x[0] for x in CRUD.bezero_erabiltzaileak_ekarri()]))

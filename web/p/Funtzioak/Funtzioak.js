@@ -1,60 +1,60 @@
-function pasahitzaBaieztatu() {
+function erabiltzaileaBaieztatu(erabiltzailea) {
     let kontuak;
-    const xhttp = new XMLHttpRequest();
+    let xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
         kontuak = JSON.parse(xhttp.responseText)
     }
-
-    xhttp.open("GET", "../users.py");
+    xhttp.open("GET", "../users.py", false);
     xhttp.send();
-    let erabiltzailea, pasahitza;
-    let buklea = true
-    erabiltzailea = prompt("Sartu erabiltzailea:")
-    pasahitza = prompt("Sartu pasahitza:")
-
-    for (let i = 0; i < kontuak.length && buklea; i++) {
-        if (kontuak[i]["Erabiltzailea"] === erabiltzailea && kontuak[i]["Pasahitza"] === pasahitza) {
-            alert("Logeatu egin zara,Oso ondo!")
-            buklea = false
+    for (let i = 0; i < kontuak.length; i++) {
+        if (kontuak[i] === erabiltzailea) {
+            return true
         }
     }
-    if (buklea) {
-        alert("Erabiltzailea eta pasahitza ez dira zuzena")
-
-    }
+    return false
 }
 
 function isValidDate(s) {
     return /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/.test(s)
 }
 
+class Identifikazioa {
+    constructor(erabiltzailea, pasahitza) {
+        this.erabiltzailea = erabiltzailea
+        this.pasahitza = pasahitza
+    }
+}
 
 class Erosketa {
-    constructor(erabiltzailea, produktua, saskiKodea, kantitatea) {
-        this.erabiltzailea = erabiltzailea;
-        this.produktua = produktua;
-        this.saskiKodea = saskiKodea;
+    constructor(produktuKodea, kantitatea) {
+        this.produktua = produktuKodea;
         this.kantitatea = kantitatea;
     }
 }
 
-let saskia = new Array();
-
-function erosi(){
-    let erabiltzailea = prompt("Zein da zure izena?");
-    let produktua = prompt("Zein da erosi nahi duzun produktua?");
-    let saskiKodea = saskia.length + 1;
-    let kantitatea = parseInt(prompt("Zenbat erosi nahi duzu?"))
-
-    let erosketa = new Erosketa(erabiltzailea, produktua, saskiKodea, kantitatea)
-    saskia.push(erosketa);
-
-    let ticket = "Saski Kodea: " + saskiKodea + "\n\n" + erabiltzailea + ", hau da zure saskia: \n"
-    for (let i = 0; i < saskia.length; i++){
-        ticket = ticket + "     - " + saskia[i].produktua + "   x" + saskia[i].kantitatea + "\n"
+class Saskia {
+    constructor(erosketak) {
+        this.erosketak = erosketak
     }
-
-    alert(ticket)
+    igo() {
+        let erabiltzailea = prompt("Sartu erabiltzailea:")
+        if (!erabiltzaileaBaieztatu(erabiltzailea)) {
+            alert("Erabiltzailea ez da existitzen. Abortatzen!")
+            return
+        }
+        let id = new Identifikazioa(erabiltzailea, prompt("Sartu pasahitza:"))
+        let xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            if (!JSON.parse(xhttp.responseText)[0]) {
+                alert("Pasahitza okerra. Abortatzen!")
+            } else {
+                alert("Zure saski kodea: " + JSON.parse(xhttp.responseText)[1])
+            }
+        }
+        xhttp.open("POST", "../saskia_gehitu.py");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("u=" + JSON.stringify(id) + "&s=" + JSON.stringify(this));
+    }
 }
 
 
@@ -65,29 +65,16 @@ class Bezeroa {
         this.abizena = abizena;
         this.helbidea = helbidea;
         this.telefono = telefono;
-        this.NAN = NAN;
+        this.nan = NAN;
         this.pasahitza = pasahitza;
         this.emaila = emaila;
     }
+    igo() {
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "../erabiltzailea_gehitu.py");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("s=" + JSON.stringify(this));
+    }
 }
-
-let erabiltzaileak = new Array();
-
-function registratu(){
-
-    let erabiltzailea = prompt("Ezarri zure erabiltzailea");
-    let izena = prompt("Zein da zure Izena?");
-    let abizena = prompt("Zein da zure Abizena?");
-    let helbidea = prompt("Zein da zure Helbidea?");
-    let telefono = prompt("Zein da zure Telefonoa?");
-    let NAN = prompt("Zein da zure NANa?");
-    let pasahitza = prompt("Ezarri pasahitz bat");
-    let emaila = prompt("Zein da zure Emaila?");
-
-    let bezeroa = new Bezeroa(erabiltzailea, izena, abizena, helbidea, telefono, NAN, pasahitza, emaila)
-    erabiltzaileak.push(bezeroa);
-
-    let stringEreg = "Kaixo " + erabiltzailea + ", Ondo erregistratu egin zara."
-
-    alert(stringEreg)
-}
+let saski = new Saskia([new Erosketa("GA01", 10)])
+saski.igo()
