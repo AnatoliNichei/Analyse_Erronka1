@@ -1,5 +1,4 @@
 import mysql.connector
-from sys import exit
 
 dbConnect = {
     'host':'localhost',
@@ -33,6 +32,11 @@ def ezabatu_bezeroa(erabiltzailea):
 
 def bezeroa_ekarri():
     cursor.execute("SELECT * FROM bezeroa")
+    return cursor.fetchall()
+
+
+def bezero_erabiltzaileak_ekarri():
+    cursor.execute("SELECT Erabiltzailea FROM bezeroa")
     return cursor.fetchall()
 
 
@@ -115,6 +119,6 @@ def eskaera_eguneratu(erabiltzailea, produktu_kodea, saski_kodea, kantitate_berr
 
 
 if __name__ == "__main__":
-    print(eskaera_ekarri())
+    taulak_sortu()
 
 

@@ -1,0 +1,2 @@
+<%import json
+print(json.dumps([x[0] for x in CRUD.bezero_erabiltzaileak_ekarri()]))
