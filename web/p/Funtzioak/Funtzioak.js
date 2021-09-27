@@ -38,7 +38,7 @@ class Erosketa {
     }
 }
 
-var saskia = new Array();
+let saskia = new Array();
 
 function erosi(){
     let erabiltzailea = prompt("Zein da zure izena?");
@@ -50,7 +50,7 @@ function erosi(){
     saskia.push(erosketa);
 
     let ticket = "Saski Kodea: " + saskiKodea + "\n\n" + erabiltzailea + ", hau da zure saskia: \n"
-    for (var i = 0; i < saskia.length; i++){
+    for (let i = 0; i < saskia.length; i++){
         ticket = ticket + "     - " + saskia[i].produktua + "   x" + saskia[i].kantitatea + "\n"
     }
 
@@ -71,23 +71,23 @@ class Bezeroa {
     }
 }
 
-var erabiltzaileak = new Array();
+let erabiltzaileak = new Array();
 
 function registratu(){
 
-    var erabiltzailea = prompt("Ezarri zure erabiltzailea");
-    var izena = prompt("Zein da zure Izena?");
-    var abizena = prompt("Zein da zure Abizena?");
-    var helbidea = prompt("Zein da zure Helbidea?");
-    var telefono = prompt("Zein da zure Telefonoa?");
-    var NAN = prompt("Zein da zure NANa?");
-    var pasahitza = prompt("Ezarri pasahitz bat");
-    var emaila = prompt("Zein da zure Emaila?");
+    let erabiltzailea = prompt("Ezarri zure erabiltzailea");
+    let izena = prompt("Zein da zure Izena?");
+    let abizena = prompt("Zein da zure Abizena?");
+    let helbidea = prompt("Zein da zure Helbidea?");
+    let telefono = prompt("Zein da zure Telefonoa?");
+    let NAN = prompt("Zein da zure NANa?");
+    let pasahitza = prompt("Ezarri pasahitz bat");
+    let emaila = prompt("Zein da zure Emaila?");
 
-    var bezeroa = new Bezeroa(erabiltzailea, izena, abizena, helbidea, telefono, NAN, pasahitza, emaila)
+    let bezeroa = new Bezeroa(erabiltzailea, izena, abizena, helbidea, telefono, NAN, pasahitza, emaila)
     erabiltzaileak.push(bezeroa);
 
-    var stringEreg = "Kaixo " + erabiltzailea + ", Ondo erregistratu egin zara."
+    let stringEreg = "Kaixo " + erabiltzailea + ", Ondo erregistratu egin zara."
 
     alert(stringEreg)
 }
