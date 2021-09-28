@@ -86,10 +86,11 @@ function loadXMLDoc(filename)
 }
 
 function sartuTaula(taulaId) {
-    let xml = loadXMLDoc("cdcatalog.xml");
-    let xsl = loadXMLDoc("cdcatalog.xsl");
+    let xml = loadXMLDoc("../xml/produktuak.py");
+    let xsl = loadXMLDoc("../xml/produktuak.xsl");
     let xsltProcessor = new XSLTProcessor();
     xsltProcessor.importStylesheet(xsl);
     let resultDocument = xsltProcessor.transformToFragment(xml, document);
+    alert(resultDocument)
     document.getElementById(taulaId).appendChild(resultDocument);
 }
