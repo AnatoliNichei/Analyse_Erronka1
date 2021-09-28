@@ -2,28 +2,37 @@
 
 <xsl:stylesheet version="1.0"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
     <xsl:template match="/produktuak">
-        <tr bgcolor="#9acd32">
-            <th style="text-align:left">Kodea</th>
-            <th style="text-align:left">Izena</th>
-            <th style="text-align:left">Prezioa</th>
-            <th style="text-align:left">Irudia</th>
-        </tr>
-        <xsl:for-each select="produktua">
-            <tr>
-                <td><xsl:value-of select="produktu-kodea" /></td>
-                <td><xsl:value-of select="izena" /></td>
-                <td><xsl:value-of select="prezioa" /></td>
-                <td>
-                    <img>
-                    <xsl:attribute name="src">
-                        <xsl:value-of select="irudia" />
-                    </xsl:attribute>
-                    </img>
-                </td>
-            </tr>
-        </xsl:for-each>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" />
+        <link rel="stylesheet" href="assets/css/styles.min.css" />
+        <section class="article-list">
+            <div class="container">
+                <div class="row articles">
+                    <xsl:for-each select="produktua">
+                        <div class="col-sm-6 col-md-4 item">
+                            <a>
+                                <xsl:attribute name="href">
+
+                                </xsl:attribute>
+                                <img class="img-fluid">
+                                    <xsl:attribute name="src">
+                                        ../images/<xsl:value-of select="irudia" />
+                                    </xsl:attribute>
+                                </img>
+                            </a>
+                            <h3 class="name"><xsl:value-of select="izena" /></h3>
+                            <p class="description">
+                                <xsl:value-of select="iruzkina" />
+                            </p>
+                            <a class="action" href="#">
+                                <i class="fa fa-arrow-circle-right" />
+                            </a>
+                        </div>
+                    </xsl:for-each>
+                </div>
+            </div>
+        </section>
     </xsl:template>
 
 </xsl:stylesheet> 

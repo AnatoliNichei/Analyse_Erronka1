@@ -11,6 +11,10 @@ function setUser(uname) {
         }
 }
 
+function setBasket(saski) {
+    setCookie("saskia", JSON.stringify(saski), 1)
+}
+
 function logoff() {
     setCookie("username", "", 365)
 }
@@ -28,6 +32,14 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+
+function getBasket() {
+    return JSON.parse(getCookie("saskia"))
+}
+
+function existsBasket() {
+    return getCookie("saskia") !== ""
 }
 
 function checkUser() {
@@ -95,6 +107,20 @@ class Saskia {
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("u=" + JSON.stringify(id) + "&s=" + JSON.stringify(this));
     }
+    save() {
+        setBasket(this)
+    }
+    static from(json){
+        return Object.assign(new Saskia([]), json);
+    }
+    static retrieve() {
+        if (existsBasket()) {
+            return Saskia.from(getBasket());
+        } else {
+            return new Saskia([])
+        }
+    }
+
 }
 
 
@@ -137,5 +163,3 @@ function sartuTaula(taulaId) {
     let resultDocument = xsltProcessor.transformToFragment(xml, document);
     document.getElementById(taulaId).appendChild(resultDocument);
 }
-let s = new Saskia([new Erosketa("GA01", 20)])
-s.igo()

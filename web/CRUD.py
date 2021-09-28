@@ -15,7 +15,7 @@ def taulak_sortu():
     cursor.execute(
         "CREATE TABLE  bezeroa(Erabiltzailea varchar(255) PRIMARY KEY , Izena VARCHAR(255),Abizena VARCHAR(255),Nan varchar(255), Helbidea varchar(255), Telefono INT, Pasahitza varchar(255), Emaila varchar(255))");
     cursor.execute(
-        "CREATE TABLE  produktua(ProduktuKodea varchar(255) PRIMARY KEY , Izena VARCHAR(255),Prezioa DOUBLE , Irudia varchar(255))");
+        "CREATE TABLE  produktua(ProduktuKodea varchar(255) PRIMARY KEY , Izena VARCHAR(255),Prezioa DOUBLE , Irudia varchar(255), Iruzkina varchar(255))");
     cursor.execute(
         "CREATE TABLE  saskia(SaskiKodea varchar(255) PRIMARY KEY,Erabiltzailea varchar(255),FOREIGN KEY (Erabiltzailea) REFERENCES bezeroa(Erabiltzailea) ON UPDATE CASCADE)");
     cursor.execute(
@@ -57,10 +57,10 @@ def bezeroa_eguneratu(erabiltzailea, **zelaiak):
     conexion.commit()
 
 
-def gehitu_produktua(produktukodea, izena, prezioa, irudia):
-    cursor.execute("INSERT INTO produktua(ProduktuKodea,Izena,Prezioa,Irudia) "
-                   "VALUES (%s, %s, %s, %s)",
-                   (produktukodea, izena, prezioa, irudia))
+def gehitu_produktua(produktukodea, izena, prezioa, irudia, iruzkina):
+    cursor.execute("INSERT INTO produktua(ProduktuKodea,Izena,Prezioa,Irudia,iruzkina) "
+                   "VALUES (%s, %s, %s, %s, %s)",
+                   (produktukodea, izena, prezioa, irudia, iruzkina))
     conexion.commit()
 
 
@@ -132,10 +132,12 @@ def eskaera_eguneratu(produktu_kodea, saski_kodea, kantitate_berria):
 def datuak_inizializatu():
     gehitu_bezeroa("AlvaroCazador", "Alvaro", "Viguera", "34567823D", "Legaño 6 3D Berriz", 456789221, "1234",
                    "viguera.alvaro@uni.eus")
-    gehitu_produktua("GA01", "Galleta1", 1.3, "galletafea")
+    gehitu_produktua("GA01", "Galleta1", 1.3, "blog-img-01.jpg", "Una galleta fea, pero el sabor y la textura son los mejores.")
+    gehitu_produktua("GA02", "Galleta2", 3, "blog-img-02.jpg", "Una galleta bonita, una experiencia exquisita.")
     gehitu_saskia("001", "AlvaroCazador")
     gehitu_eskaera("GA01", "001", 4)
 
 
 if __name__ == "__main__":
-    pass
+    taulak_sortu()
+    datuak_inizializatu()
