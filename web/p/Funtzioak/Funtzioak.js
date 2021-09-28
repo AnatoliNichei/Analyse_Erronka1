@@ -94,18 +94,17 @@ class Saskia {
             logoff()
             return
         }
-        let id = new Identifikazioa(erabiltzailea, prompt("Sartu pasahitza:"))
-        let xhttp = new XMLHttpRequest();
-        xhttp.onload = function () {
-            if (!JSON.parse(xhttp.responseText)[0]) {
-                alert("Pasahitza okerra. Abortatzen!")
-            } else {
-                alert("Zure saski kodea: " + JSON.parse(xhttp.responseText)[1])
-            }
-        }
-        xhttp.open("POST", "../saskia_gehitu.py");
+        let id = new Identifikazioa(erabiltzailea, prompt("Sartu " + erabiltzailea + " erabiltzailearen pasahitza:"))
+        let xhttp = new XMLHttpRequest()
+        xhttp.open("POST", "../saskia_gehitu.py", false);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("u=" + JSON.stringify(id) + "&s=" + JSON.stringify(this));
+        if (!JSON.parse(xhttp.responseText)[0]) {
+            alert("Pasahitza okerra!")
+            logoff()
+            return null
+        }
+        return JSON.parse(xhttp.responseText)[1]
     }
     save() {
         setBasket(this)
@@ -162,4 +161,41 @@ function sartuTaula(taulaId) {
     xsltProcessor.importStylesheet(xsl);
     let resultDocument = xsltProcessor.transformToFragment(xml, document);
     document.getElementById(taulaId).appendChild(resultDocument);
+}
+
+function erosketa(){
+    let produktuak = new Array()
+    let zenbat = prompt("Zenbat produktu erosi nahi dituzu?")
+
+    for(x = 0; x<zenbat;x++){
+        let produktua = prompt("Zein da erosi nahi duzun produktua?");
+        let kantitatea = parseInt(prompt("Zenbat erosi nahi duzu?"))
+        let erosketa = new Erosketa(produktua, kantitatea)
+        produktuak.push(erosketa);
+    }
+    let saskia = new Saskia(produktuak)
+
+    let xml = loadXMLDoc("../xml/produktuak.py")
+    produktuak = xml.getElementsByTagName("produktua")
+    for (let i = 0; i < saskia.erosketak.length; ++i) {
+        for (let i = 0, produktu = produktuak[i]; i < produktuak.length; produktu = produktuak[++i]) {
+            if (produktu.getElementsByTagName("produktu-kodea")[0].textContent === saskia.erosketak[i].produktua) {
+                saskia.erosketak[i].prezioa = parseFloat(produktu.getElementsByTagName("prezioa")[0].textContent) * saskia.erosketak[i].kantitatea
+                break
+            }
+        }
+    }
+
+
+
+    let ticket = "Saski Kodea: " + saskia.igo() + "\n\n" + getCookie("username") + ", hau da zure saskia: \n"
+    let prezioa = 0
+    for (let i = 0; i < saskia.erosketak.length; ++i) {
+        prezioa += saskia.erosketak[i].prezioa
+        ticket = ticket + "     - " + saskia.erosketak[i].produktua + "   x" + saskia.erosketak[i].kantitatea + "   =" + saskia.erosketak[i].prezioa + "\n"
+    }
+    ticket += "Totala:  " + prezioa
+
+    alert(ticket)
+
 }
