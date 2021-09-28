@@ -33,7 +33,8 @@ function getCookie(cname) {
 function checkUser() {
     let user = getCookie("username");
     if (user === "") {
-        setUser(prompt("Erabiltzailea sartu:", ""))
+        user = prompt("Erabiltzailea sartu:", "")
+        setUser(user)
     }
     return user
 }
@@ -41,11 +42,9 @@ function checkUser() {
 function erabiltzaileaBaieztatu(erabiltzailea) {
     let kontuak;
     let xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-        kontuak = JSON.parse(xhttp.responseText)
-    }
     xhttp.open("GET", "../users.py", false);
     xhttp.send();
+    kontuak = JSON.parse(xhttp.responseText)
     for (let i = 0; i < kontuak.length; i++) {
         if (kontuak[i] === erabiltzailea) {
             return true
