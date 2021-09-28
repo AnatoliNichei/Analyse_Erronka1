@@ -10,4 +10,4 @@ if __name__ == '__main__':
         import read_html
     else:
         from .. import read_html
-    read_html.read_template('index.html')
+    read_html.read_template('../source/saskia-gehitu.json', "Content-Type: application/json;charset=utf-8")

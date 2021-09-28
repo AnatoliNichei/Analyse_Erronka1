@@ -1,0 +1,2 @@
+<%
+CRUD.gehitu_bezeroa(**json.loads(get_and_post["s"].value))

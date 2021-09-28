@@ -6,8 +6,8 @@ if __name__ == '__main__':
     if __package__ is None:
         from os import path
 
-        sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+        sys.path.append(path.dirname(path.dirname((path.dirname(path.abspath(__file__))))))
         import read_html
     else:
         from .. import read_html
-    read_html.read_template('index.html')
+    read_html.read_template('../../source/xml/produktuak.xml', "Content-Type: text/xml;charset=utf-8")

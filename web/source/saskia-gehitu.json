@@ -1,0 +1,11 @@
+<%
+identifikazioa = json.loads(get_and_post["u"].value)
+if CRUD.bezero_pasahitza_konprobatu(identifikazioa["erabiltzailea"], identifikazioa["pasahitza"]):
+    erosketak = json.loads(get_and_post["s"].value)["erosketak"]
+    saski_kodea = random.randint(0, 2**20)
+    CRUD.gehitu_saskia(saski_kodea, identifikazioa["erabiltzailea"])
+    for erosketa in erosketak:
+        CRUD.gehitu_eskaera(erosketa["produktua"], saski_kodea, erosketa["kantitatea"])
+    print(json.dumps([True, saski_kodea]))
+else:
+    print(json.dumps([False]))

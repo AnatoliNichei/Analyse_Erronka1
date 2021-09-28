@@ -1,51 +1,18 @@
-import sys
+import cgi
 import cgitb
 import multiprocessing
 import CRUD
 import mysql.connector as connector
 import os
 import sys
-import session
-
-
-def get_get_post(q):
-    get = {}
-    try:
-        args = os.getenv("QUERY_STRING").split('&')
-        for arg in args:
-            t = arg.split('=')
-            if len(t) > 1:
-                k, v = arg.split('=')
-                get[k] = v
-    except AttributeError:
-        pass
-    q.put(get)
-
-    post = {}
-    args = sys.stdin.read().split('&')
-    for arg in args:
-        t = arg.split('=')
-        if len(t) > 1:
-            k, v = arg.split('=')
-            post[k] = v
-
-    q.put(post)
+import json
+import random
 
 
 def read_template(path: str, header: str = "Content-Type: text/html;charset=utf-8") -> str:
     cgitb.enable()
     print(header + "\n\n", end='')
-    q = multiprocessing.Queue()
-    p1 = multiprocessing.Process(name="get_post", target=get_get_post, args=(q,))
-    p1.start()
-    get = {}
-    post = {}
-    p1.join(timeout=0.05)
-    p1.terminate()
-    if not q.empty():
-        get = q.get()
-    if not q.empty():
-        post = q.post()
+    get_and_post = cgi.FieldStorage()
 
     file = open(path)
     web_code = file.read()
@@ -73,4 +40,5 @@ def read_template(path: str, header: str = "Content-Type: text/html;charset=utf-
         exec(python_code)
         current = end + 2
     file.close()
+
 
