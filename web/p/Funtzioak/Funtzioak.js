@@ -76,5 +76,20 @@ class Bezeroa {
         xhttp.send("s=" + JSON.stringify(this));
     }
 }
-let saski = new Saskia([new Erosketa("GA01", 10)])
-saski.igo()
+
+function loadXMLDoc(filename)
+{
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET", filename, false);
+    xhttp.send("");
+    return xhttp.responseXML;
+}
+
+function sartuTaula(taulaId) {
+    let xml = loadXMLDoc("cdcatalog.xml");
+    let xsl = loadXMLDoc("cdcatalog.xsl");
+    let xsltProcessor = new XSLTProcessor();
+    xsltProcessor.importStylesheet(xsl);
+    let resultDocument = xsltProcessor.transformToFragment(xml, document);
+    document.getElementById(taulaId).appendChild(resultDocument);
+}
