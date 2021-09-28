@@ -1,0 +1,4 @@
+<%
+kwargs = json.loads(get_and_post["s"].value)
+CRUD.gehitu_bezeroa(**kwargs)
+print(JSON.dumps([kwargs["erabiltzailea"]]))

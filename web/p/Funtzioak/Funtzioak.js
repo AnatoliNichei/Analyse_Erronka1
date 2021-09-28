@@ -1,3 +1,43 @@
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function setUser(uname) {
+    if (uname != "" && uname != null) {
+            setCookie("username", uname, 365)
+        }
+}
+
+function logoff() {
+    setCookie("username", "", 365)
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkUser() {
+    let user = getCookie("username");
+    if (user === "") {
+        setUser(prompt("Erabiltzailea sartu:", ""))
+    }
+    return user
+}
+
 function erabiltzaileaBaieztatu(erabiltzailea) {
     let kontuak;
     let xhttp = new XMLHttpRequest();
@@ -37,9 +77,10 @@ class Saskia {
         this.erosketak = erosketak
     }
     igo() {
-        let erabiltzailea = prompt("Sartu erabiltzailea:")
+        let erabiltzailea = checkUser()
         if (!erabiltzaileaBaieztatu(erabiltzailea)) {
             alert("Erabiltzailea ez da existitzen. Abortatzen!")
+            logoff()
             return
         }
         let id = new Identifikazioa(erabiltzailea, prompt("Sartu pasahitza:"))
@@ -71,6 +112,10 @@ class Bezeroa {
     }
     igo() {
         let xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            let response = JSON.parse(xhttp.responseText)
+            setUser(response[0])
+        }
         xhttp.open("POST", "../erabiltzailea_gehitu.py");
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("s=" + JSON.stringify(this));
@@ -91,6 +136,7 @@ function sartuTaula(taulaId) {
     let xsltProcessor = new XSLTProcessor();
     xsltProcessor.importStylesheet(xsl);
     let resultDocument = xsltProcessor.transformToFragment(xml, document);
-    alert(resultDocument)
     document.getElementById(taulaId).appendChild(resultDocument);
 }
+let s = new Saskia([new Erosketa("GA01", 20)])
+s.igo()

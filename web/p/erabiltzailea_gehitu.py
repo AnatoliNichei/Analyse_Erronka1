@@ -10,4 +10,4 @@ if __name__ == '__main__':
         import read_html
     else:
         from .. import read_html
-    read_html.read_template('../source/erabiltzailea-gehitu.txt', "Content-Type: text/plain;charset=utf-8")
+    read_html.read_template('../source/erabiltzailea-gehitu.json', "Content-Type: application/json;charset=utf-8")
