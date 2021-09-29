@@ -133,8 +133,8 @@ def datuak_inizializatu():
     gehitu_bezeroa("AlvaroCazador", "Alvaro", "Viguera", "34567823D", "Legaño 6 3D Berriz", 456789221, "1234",
                    "viguera.alvaro@uni.eus")
     gehitu_produktua("GA01", "Apple Cookie", 0.75, "images/Cookie/appleCookie.png", "Sagarraz eginezko gaileta gozoak.", "Fruta")
-    gehitu_produktua("GA02", "Banana Cookie", 7.50, "images/Cookie/bananaCookie.png", "Canarias-eko platanoekin eginezko gaileta gozoak. La Palman labetuta.", "Simple")
-    gehitu_produktua("GA03", "Cashew Cookie", 1.49, "images/Cookie/cashewCookie.png", "Anakardoz eginezko gaileta gozoak.", "Fruta")
+    gehitu_produktua("GA02", "Banana Cookie", 7.50, "images/Cookie/bananaCookie.png", "Canarias-eko platanoekin eginezko gaileta gozoak. La Palman labetuta.", "Fruta")
+    gehitu_produktua("GA03", "Cashew Cookie", 1.49, "images/Cookie/cashewCookie.png", "Anakardoz eginezko gaileta gozoak.", "Simple")
     gehitu_produktua("GA04", "Eclipse Cookie", 0.39, "images/Cookie/eclipseCookie.png", "Gaileta hauek erdi sinpleak eta erdi txokolatezkoak dira.", "Chocolate")
     gehitu_produktua("GA05", "Gingerbread Cookie", 5.39, "images/Cookie/gingerbreadCookie.png", "Gabonetara arte itxaron nahi ez baduzu, erosi orain jengibre-gailetak.", "Simple")
     gehitu_produktua("GA06", "Ladyfinger Cookie", 0.20, "images/Cookie/ladyfingerCookie.png", "Txokolatean bustitzeko gaileta ederra.", "Simple")
