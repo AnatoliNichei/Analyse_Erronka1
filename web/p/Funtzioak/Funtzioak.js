@@ -1,11 +1,62 @@
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function setUser(uname) {
+    if (uname !== "" && uname !== null) {
+            setCookie("username", uname, 365)
+        }
+}
+
+function setBasket(saski) {
+    setCookie("saskia", JSON.stringify(saski), 1)
+}
+
+function logoff() {
+    setCookie("username", "", 365)
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function getBasket() {
+    return existsBasket() ? JSON.parse(getCookie("saskia")) : {"erosketak": []}
+}
+
+function existsBasket() {
+    return getCookie("saskia") !== ""
+}
+
+function checkUser() {
+    let user = getCookie("username");
+    if (user === "") {
+        user = prompt("Erabiltzailea sartu:", "")
+        setUser(user)
+    }
+    return user
+}
+
 function erabiltzaileaBaieztatu(erabiltzailea) {
     let kontuak;
     let xhttp = new XMLHttpRequest();
-    xhttp.onload = function() {
-        kontuak = JSON.parse(xhttp.responseText)
-    }
     xhttp.open("GET", "../users.py", false);
     xhttp.send();
+    kontuak = JSON.parse(xhttp.responseText)
     for (let i = 0; i < kontuak.length; i++) {
         if (kontuak[i] === erabiltzailea) {
             return true
@@ -37,24 +88,48 @@ class Saskia {
         this.erosketak = erosketak
     }
     igo() {
-        let erabiltzailea = prompt("Sartu erabiltzailea:")
+        let erabiltzailea = checkUser()
         if (!erabiltzaileaBaieztatu(erabiltzailea)) {
             alert("Erabiltzailea ez da existitzen. Abortatzen!")
-            return
+            logoff()
+            return null
         }
-        let id = new Identifikazioa(erabiltzailea, prompt("Sartu pasahitza:"))
-        let xhttp = new XMLHttpRequest();
-        xhttp.onload = function () {
-            if (!JSON.parse(xhttp.responseText)[0]) {
-                alert("Pasahitza okerra. Abortatzen!")
-            } else {
-                alert("Zure saski kodea: " + JSON.parse(xhttp.responseText)[1])
-            }
-        }
-        xhttp.open("POST", "../saskia_gehitu.py");
+        let id = new Identifikazioa(erabiltzailea, prompt("Sartu " + erabiltzailea + " erabiltzailearen pasahitza:"))
+        let xhttp = new XMLHttpRequest()
+        xhttp.open("POST", "../saskia_gehitu.py", false);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("u=" + JSON.stringify(id) + "&s=" + JSON.stringify(this));
+        if (!JSON.parse(xhttp.responseText)[0]) {
+            alert("Pasahitza okerra!")
+            logoff()
+            return null
+        }
+        return JSON.parse(xhttp.responseText)[1]
     }
+    save() {
+        setBasket(this)
+    }
+    static from(json){
+        return Object.assign(new Saskia([]), json);
+    }
+    static retrieve() {
+        if (existsBasket()) {
+            return Saskia.from(getBasket());
+        } else {
+            return new Saskia([])
+        }
+    }
+
+    addProduktua(produktuId, kantitatea) {
+        for (let i = 0; i < this.erosketak.length; ++i) {
+            if (this.erosketak[i].produktua == produktuId) {
+                this.erosketak[i].kantitatea += kantitatea
+                return
+            }
+        }
+        this.erosketak.push(new Erosketa(produktuId, kantitatea))
+    }
+
 }
 
 
@@ -71,6 +146,10 @@ class Bezeroa {
     }
     igo() {
         let xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            let response = JSON.parse(xhttp.responseText)
+            setUser(response[0])
+        }
         xhttp.open("POST", "../erabiltzailea_gehitu.py");
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("s=" + JSON.stringify(this));
@@ -86,10 +165,71 @@ function loadXMLDoc(filename)
 }
 
 function sartuTaula(taulaId) {
-    let xml = loadXMLDoc("cdcatalog.xml");
-    let xsl = loadXMLDoc("cdcatalog.xsl");
+    let xml = loadXMLDoc("../xml/produktuak.py");
+    let xsl = loadXMLDoc("../xml/produktuak.xsl");
     let xsltProcessor = new XSLTProcessor();
     xsltProcessor.importStylesheet(xsl);
     let resultDocument = xsltProcessor.transformToFragment(xml, document);
     document.getElementById(taulaId).appendChild(resultDocument);
 }
+
+function erosketa(deskontua){
+    let produktuak = new Array()
+    let zenbat = prompt("Zenbat produktu erosi nahi dituzu?")
+
+    for(x = 0; x<zenbat;x++){
+        let produktua = prompt("Zein da erosi nahi duzun produktua?");
+        let kantitatea = parseInt(prompt("Zenbat erosi nahi duzu?"))
+        let erosketa = new Erosketa(produktua, kantitatea)
+        produktuak.push(erosketa);
+    }
+    let saskia = new Saskia(produktuak)
+
+   return erosi(saskia, deskontua)
+}
+
+function erosi(saskia, deskontua){
+
+    let xml = loadXMLDoc("../xml/produktuak.py")
+    let produktuak = xml.getElementsByTagName("produktua")
+    for (let i = 0; i < saskia.erosketak.length; ++i) {
+        for (let j = 0, produktu = produktuak[j]; j < produktuak.length; produktu = produktuak[++j]) {
+            if (produktu.getElementsByTagName("produktu-kodea")[0].textContent === saskia.erosketak[i].produktua) {
+                saskia.erosketak[i].prezioa = parseFloat(produktu.getElementsByTagName("prezioa")[0].textContent)
+                saskia.erosketak[i].izena = produktu.getElementsByTagName("izena")[0].textContent
+                break
+            }
+        }
+    }
+    alert(JSON.stringify(saskia))
+    let kodea = saskia.igo()
+    if (kodea === null) {
+        saskia = new Saskia()
+        saskia.save()
+        return "Karritoa husten..."
+    }
+    let ticket = "Saski Kodea: " + kodea + "\n\n" + getCookie("username") + ", hau da zure saskia: \n"
+    let prezio_final =0
+    for (let i = 0; i < saskia.erosketak.length; i++){
+        ticket = ticket + "     - " + saskia.erosketak[i].produktua + "    " + saskia.erosketak[i].prezioa + "€ x " + saskia.erosketak[i].kantitatea + " = " + (saskia.erosketak[i].prezioa * saskia.erosketak[i].kantitatea).toFixed(2) + "€ \n"
+        prezio_final += saskia.erosketak[i].prezioa * saskia.erosketak[i].kantitatea
+    }
+    let descuento
+    prezio_final = prezio_final.toFixed(2)
+    if (deskontua && prezio_final >= 50){
+        ticket += "Prezioa deskontu gabe " + prezio_final + " € da.\n"
+        prezio_final= (prezio_final * 0.9).toFixed(2)
+        ticket += "%10 Deskontua egingo dizugu guztira 50€ edo gehiago gastatu dituzulako \n"
+    }else {
+        descuento = ""
+    }
+
+    ticket += "\nPrezio totala " + prezio_final + " € da"
+    saskia = new Saskia()
+    saskia.save()
+    return ticket
+
+}
+
+
+
