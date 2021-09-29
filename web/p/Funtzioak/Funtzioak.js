@@ -199,3 +199,60 @@ function erosketa(){
     alert(ticket)
 
 }
+var saskia = new Array();
+function Erosketa_guztira(){
+
+    var erosketa = new Array()
+    var erabiltzailea = prompt("Zein da zure izena?");
+    var zenbat = prompt("Zenbat produktu erosi nahi dituzu?")
+    var saskiKodea = saskia.length + 1;
+    for(x=0;x<zenbat;x++){
+        var produktua = prompt("Zein da erosi nahi duzun "+ (x+1) +" produktua?");
+        var kantitatea = parseInt(prompt("Zenbat "+ produktua +" erosi nahi duzu?"))
+        var prezioa = parseFloat(prompt("Zenbat balio du?"))
+        erosketa.push({produktua:produktua,saskiKodea:saskiKodea,kantitatea:kantitatea,prezioa:prezioa})
+    }
+
+
+    var ticket = "Saski Kodea: " + saskiKodea + "\n\n" + erabiltzailea + ", hau da zure saskia: \n"
+    var prezio_final =0
+    for (var i = 0; i < erosketa.length; i++){
+        ticket = ticket + "     - " + erosketa[i].produktua +"    "+parseFloat(erosketa[i].prezioa)+"€ x " + erosketa[i].kantitatea + " = " + parseFloat(erosketa[i].prezioa)*erosketa[i].kantitatea +"€ \n"
+        prezio_final+=parseFloat(erosketa[i].prezioa)*erosketa[i].kantitatea
+    }
+    var final_de_ticket = "Prezio totala " + prezio_final + " € da"
+    alert(ticket+ "\n" +final_de_ticket)
+}
+
+function Erosketa_deskontuarekin(){
+    var erosketa = new Array()
+    var erabiltzailea = prompt("Zein da zure izena?");
+    var zenbat = prompt("Zenbat produktu erosi nahi dituzu?")
+    var saskiKodea = saskia.length + 1;
+    for(x=0;x<zenbat;x++){
+        var produktua = prompt("Zein da erosi nahi duzun "+ (x+1) +" produktua?");
+        var kantitatea = parseInt(prompt("Zenbat "+ produktua +" erosi nahi duzu?"))
+        var prezioa = parseFloat(prompt("Zenbat balio du?"))
+        erosketa.push({produktua:produktua,saskiKodea:saskiKodea,kantitatea:kantitatea,prezioa:prezioa,prezio_linea:prezioa*kantitatea})
+    }
+
+
+    var ticket = "Saski Kodea: " + saskiKodea + "\n\n" + erabiltzailea + ", hau da zure saskia: \n"
+    var prezio_final =0
+    for (var i = 0; i < erosketa.length; i++){
+        ticket = ticket + "     - " + erosketa[i].produktua +"    "+parseFloat(erosketa[i].prezioa)+"€ x " + erosketa[i].kantitatea + " = " + parseFloat(erosketa[i].prezio_linea) +"€ \n"
+        prezio_final+=parseFloat(erosketa[i].prezio_linea)
+    }
+    if (prezio_final >= 50){
+        prezio_final= prezio_final * 0.9
+        var descuento = "%10 Deskontua egingo dizugu guztira 50€ edo gehiago gastatu dituzulako \n \n"
+    }else {
+        descuento = ""
+    }
+
+
+    var final_de_ticket = "Prezio totala " + prezio_final + " € da "
+    alert(ticket+"\n"+ descuento +final_de_ticket)
+}
+
+
