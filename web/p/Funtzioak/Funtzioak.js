@@ -201,14 +201,8 @@ function erosi(saskia, deskontua){
             }
         }
     }
-    alert(JSON.stringify(saskia))
-    let kodea = saskia.igo()
-    if (kodea === null) {
-        saskia = new Saskia()
-        saskia.save()
-        return "Karritoa husten..."
-    }
-    let ticket = "Saski Kodea: " + kodea + "\n\n" + getCookie("username") + ", hau da zure saskia: \n"
+
+    let ticket = "\n\n" + getCookie("username") + " Hau da zure saskia: \n"
     let prezio_final =0
     for (let i = 0; i < saskia.erosketak.length; i++){
         ticket = ticket + "     - " + saskia.erosketak[i].produktua + "    " + saskia.erosketak[i].prezioa + "€ x " + saskia.erosketak[i].kantitatea + " = " + (saskia.erosketak[i].prezioa * saskia.erosketak[i].kantitatea).toFixed(2) + "€ \n"
@@ -224,10 +218,22 @@ function erosi(saskia, deskontua){
         descuento = ""
     }
 
+
     ticket += "\nPrezio totala " + prezio_final + " € da"
+
+    confirm("Onartu erosketa?" + ticket)
+
+    let kodea = saskia.igo()
+    if (kodea === null) {
+        saskia = new Saskia()
+        saskia.save()
+        return "Karritoa husten..."
+    }
+
     saskia = new Saskia()
     saskia.save()
-    return ticket
+
+    return "Zure saski kodea " + kodea + " da."
 
 }
 
