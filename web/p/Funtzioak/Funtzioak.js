@@ -6,7 +6,7 @@ function setCookie(cname, cvalue, exdays) {
 }
 
 function setUser(uname) {
-    if (uname != "" && uname != null) {
+    if (uname !== "" && uname !== null) {
             setCookie("username", uname, 365)
         }
 }
@@ -24,10 +24,10 @@ function getCookie(cname) {
     let ca = document.cookie.split(';');
     for(let i = 0; i < ca.length; i++) {
         let c = ca[i];
-        while (c.charAt(0) == ' ') {
+        while (c.charAt(0) === ' ') {
             c = c.substring(1);
         }
-        if (c.indexOf(name) == 0) {
+        if (c.indexOf(name) === 0) {
             return c.substring(name.length, c.length);
         }
     }
@@ -35,7 +35,7 @@ function getCookie(cname) {
 }
 
 function getBasket() {
-    return JSON.parse(getCookie("saskia"))
+    return existsBasket() ? JSON.parse(getCookie("saskia")) : {"erosketak": []}
 }
 
 function existsBasket() {
@@ -92,7 +92,7 @@ class Saskia {
         if (!erabiltzaileaBaieztatu(erabiltzailea)) {
             alert("Erabiltzailea ez da existitzen. Abortatzen!")
             logoff()
-            return
+            return null
         }
         let id = new Identifikazioa(erabiltzailea, prompt("Sartu " + erabiltzailea + " erabiltzailearen pasahitza:"))
         let xhttp = new XMLHttpRequest()
@@ -118,6 +118,16 @@ class Saskia {
         } else {
             return new Saskia([])
         }
+    }
+
+    addProduktua(produktuId, kantitatea) {
+        for (let i = 0; i < this.erosketak.length; ++i) {
+            if (this.erosketak[i].produktua == produktuId) {
+                this.erosketak[i].kantitatea += kantitatea
+                return
+            }
+        }
+        this.erosketak.push(new Erosketa(produktuId, kantitatea))
     }
 
 }
@@ -163,7 +173,7 @@ function sartuTaula(taulaId) {
     document.getElementById(taulaId).appendChild(resultDocument);
 }
 
-function erosketa(){
+function erosketa(deskontua){
     let produktuak = new Array()
     let zenbat = prompt("Zenbat produktu erosi nahi dituzu?")
 
@@ -175,84 +185,51 @@ function erosketa(){
     }
     let saskia = new Saskia(produktuak)
 
+   return erosi(saskia, deskontua)
+}
+
+function erosi(saskia, deskontua){
+
     let xml = loadXMLDoc("../xml/produktuak.py")
-    produktuak = xml.getElementsByTagName("produktua")
+    let produktuak = xml.getElementsByTagName("produktua")
     for (let i = 0; i < saskia.erosketak.length; ++i) {
-        for (let i = 0, produktu = produktuak[i]; i < produktuak.length; produktu = produktuak[++i]) {
+        for (let j = 0, produktu = produktuak[j]; j < produktuak.length; produktu = produktuak[++j]) {
             if (produktu.getElementsByTagName("produktu-kodea")[0].textContent === saskia.erosketak[i].produktua) {
-                saskia.erosketak[i].prezioa = parseFloat(produktu.getElementsByTagName("prezioa")[0].textContent) * saskia.erosketak[i].kantitatea
+                saskia.erosketak[i].prezioa = parseFloat(produktu.getElementsByTagName("prezioa")[0].textContent)
+                saskia.erosketak[i].izena = produktu.getElementsByTagName("izena")[0].textContent
                 break
             }
         }
     }
-
-
-
-    let ticket = "Saski Kodea: " + saskia.igo() + "\n\n" + getCookie("username") + ", hau da zure saskia: \n"
-    let prezioa = 0
-    for (let i = 0; i < saskia.erosketak.length; ++i) {
-        prezioa += saskia.erosketak[i].prezioa
-        ticket = ticket + "     - " + saskia.erosketak[i].produktua + "   x" + saskia.erosketak[i].kantitatea + "   =" + saskia.erosketak[i].prezioa + "\n"
+    alert(JSON.stringify(saskia))
+    let kodea = saskia.igo()
+    if (kodea === null) {
+        saskia = new Saskia()
+        saskia.save()
+        return "Karritoa husten..."
     }
-    ticket += "Totala:  " + prezioa
-
-    alert(ticket)
-
-}
-var saskia = new Array();
-function Erosketa_guztira(){
-
-    var erosketa = new Array()
-    var erabiltzailea = prompt("Zein da zure izena?");
-    var zenbat = prompt("Zenbat produktu erosi nahi dituzu?")
-    var saskiKodea = saskia.length + 1;
-    for(x=0;x<zenbat;x++){
-        var produktua = prompt("Zein da erosi nahi duzun "+ (x+1) +" produktua?");
-        var kantitatea = parseInt(prompt("Zenbat "+ produktua +" erosi nahi duzu?"))
-        var prezioa = parseFloat(prompt("Zenbat balio du?"))
-        erosketa.push({produktua:produktua,saskiKodea:saskiKodea,kantitatea:kantitatea,prezioa:prezioa})
+    let ticket = "Saski Kodea: " + kodea + "\n\n" + getCookie("username") + ", hau da zure saskia: \n"
+    let prezio_final =0
+    for (let i = 0; i < saskia.erosketak.length; i++){
+        ticket = ticket + "     - " + saskia.erosketak[i].produktua + "    " + saskia.erosketak[i].prezioa + "€ x " + saskia.erosketak[i].kantitatea + " = " + (saskia.erosketak[i].prezioa * saskia.erosketak[i].kantitatea).toFixed(2) + "€ \n"
+        prezio_final += saskia.erosketak[i].prezioa * saskia.erosketak[i].kantitatea
     }
-
-
-    var ticket = "Saski Kodea: " + saskiKodea + "\n\n" + erabiltzailea + ", hau da zure saskia: \n"
-    var prezio_final =0
-    for (var i = 0; i < erosketa.length; i++){
-        ticket = ticket + "     - " + erosketa[i].produktua +"    "+parseFloat(erosketa[i].prezioa)+"€ x " + erosketa[i].kantitatea + " = " + parseFloat(erosketa[i].prezioa)*erosketa[i].kantitatea +"€ \n"
-        prezio_final+=parseFloat(erosketa[i].prezioa)*erosketa[i].kantitatea
-    }
-    var final_de_ticket = "Prezio totala " + prezio_final + " € da"
-    alert(ticket+ "\n" +final_de_ticket)
-}
-
-function Erosketa_deskontuarekin(){
-    var erosketa = new Array()
-    var erabiltzailea = prompt("Zein da zure izena?");
-    var zenbat = prompt("Zenbat produktu erosi nahi dituzu?")
-    var saskiKodea = saskia.length + 1;
-    for(x=0;x<zenbat;x++){
-        var produktua = prompt("Zein da erosi nahi duzun "+ (x+1) +" produktua?");
-        var kantitatea = parseInt(prompt("Zenbat "+ produktua +" erosi nahi duzu?"))
-        var prezioa = parseFloat(prompt("Zenbat balio du?"))
-        erosketa.push({produktua:produktua,saskiKodea:saskiKodea,kantitatea:kantitatea,prezioa:prezioa,prezio_linea:prezioa*kantitatea})
-    }
-
-
-    var ticket = "Saski Kodea: " + saskiKodea + "\n\n" + erabiltzailea + ", hau da zure saskia: \n"
-    var prezio_final =0
-    for (var i = 0; i < erosketa.length; i++){
-        ticket = ticket + "     - " + erosketa[i].produktua +"    "+parseFloat(erosketa[i].prezioa)+"€ x " + erosketa[i].kantitatea + " = " + parseFloat(erosketa[i].prezio_linea) +"€ \n"
-        prezio_final+=parseFloat(erosketa[i].prezio_linea)
-    }
-    if (prezio_final >= 50){
-        prezio_final= prezio_final * 0.9
-        var descuento = "%10 Deskontua egingo dizugu guztira 50€ edo gehiago gastatu dituzulako \n \n"
+    let descuento
+    prezio_final = prezio_final.toFixed(2)
+    if (deskontua && prezio_final >= 50){
+        ticket += "Prezioa deskontu gabe " + prezio_final + " € da.\n"
+        prezio_final= (prezio_final * 0.9).toFixed(2)
+        ticket += "%10 Deskontua egingo dizugu guztira 50€ edo gehiago gastatu dituzulako \n"
     }else {
         descuento = ""
     }
 
+    ticket += "\nPrezio totala " + prezio_final + " € da"
+    saskia = new Saskia()
+    saskia.save()
+    return ticket
 
-    var final_de_ticket = "Prezio totala " + prezio_final + " € da "
-    alert(ticket+"\n"+ descuento +final_de_ticket)
 }
+
 
 
