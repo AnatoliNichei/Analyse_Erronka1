@@ -295,6 +295,11 @@ button:focus{
 	opacity: 0.5;
 }
 
+.navbar-brand{
+	height: 130px;
+	width: 200px;
+}
+
 .cover-slides h1{
 	font-family: 'Rubik', sans-serif;
 	font-weight: 500;
