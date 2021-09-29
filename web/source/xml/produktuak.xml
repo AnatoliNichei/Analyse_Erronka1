@@ -3,13 +3,14 @@
     <%
     from CRUD import cursor
     cursor.execute("SELECT * FROM produktua")
-    for pk, iz, prez, irud, iruzk in cursor:
+    for pk, iz, prez, irud, iruzk, mota in cursor:
         print("<produktua>")
         print("<produktu-kodea>" + pk + "</produktu-kodea>")
         print("<izena>" + iz + "</izena>")
         print("<prezioa>" + str(prez) + "</prezioa>")
         print("<irudia>" + irud + "</irudia>")
         print("<iruzkina>" + iruzk + "</iruzkina>")
+        print("<mota>" + mota + "</mota>")
         print("</produktua>")
     %>
 </produktuak>
