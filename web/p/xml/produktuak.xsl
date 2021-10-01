@@ -123,7 +123,7 @@
                         </div>
                     </xsl:for-each>
                 </div>
-            </div>-->
+            </div>
         </div>
     </xsl:template>
 

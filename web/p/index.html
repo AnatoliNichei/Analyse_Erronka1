@@ -30,7 +30,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	<script src="Funtzioak.js"></script>
 </head>
 
 <body>
@@ -39,7 +39,7 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
 				<a class="navbar-brand" href="index.html">
-					<img src="images/logo.png" alt=""/>
+					<img src="images/logo.png" alt="" style="width: 120px;"/>
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
@@ -49,8 +49,9 @@
 						<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="menu.html">Katalogoa</a></li>
 						<li class="nav-item"><a class="nav-link" href="about.html">About Gu</a></li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Hasi Saioa</a></li>
+						<li class="nav-item"><a class="nav-link" href="contact.html">Kontaktua</a></li>
+						<li class="nav-item" id="loginVisible"><a class="nav-link" href="login.html">Hasi Saioa</a></li>
+						<li class="nav-item" id="logoff"><a class="nav-link" href="#" onclick="logoff()">Log Off</a></li>
 					</ul>
 				</div>
 			</div>
@@ -162,7 +163,7 @@
 						</a>
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-4">
-						<a class="lightbox" href="images/gallery-img-02.jpg">
+						<a class="lightbox" href="http://192.168.73.17/erronka/inicio.html">
 							<img class="img-fluid" src="images/gallery-img-02.jpg" alt="Gallery Images">
 						</a>
 					</div>
@@ -194,7 +195,7 @@
 						<div class="carousel-inner mt-4">
 							<div class="carousel-item text-center active">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/quotations-button.png" alt="">
+									<img class="d-block w-100 rounded-circle" src="images/goros.png" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Jose Antonio Gorostiza</strong></h5>
 								<h6 class="text-dark m-0">Fisiko teorikoa</h6>
@@ -202,7 +203,7 @@
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/quotations-button.png" alt="">
+									<img class="d-block w-100 rounded-circle" src="images/sinosuke.png" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Shinnosuke Nohara</strong></h5>
 								<h6 class="text-dark m-0">Cartoon</h6>
@@ -210,7 +211,7 @@
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/quotations-button.png" alt="">
+									<img class="d-block w-100 rounded-circle" src="images/monster.png" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Cookie Monster</strong></h5>
 								<h6 class="text-dark m-0">Actor</h6>

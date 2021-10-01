@@ -56,7 +56,7 @@ function checkUser() {
 function erabiltzaileaBaieztatu(erabiltzailea) {
     let kontuak;
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "../users.py", false);
+    xhttp.open("GET", "users.py", false);
     xhttp.send();
     kontuak = JSON.parse(xhttp.responseText)
     for (let i = 0; i < kontuak.length; i++) {
@@ -96,9 +96,9 @@ class Saskia {
             logoff()
             return null
         }
-        let id = new Identifikazioa(erabiltzailea, getElementById("pasahitza").value());
+        let id = new Identifikazioa(erabiltzailea, document.getElementById("pasahitza").value);
         let xhttp = new XMLHttpRequest()
-        xhttp.open("POST", "../saskia_gehitu.py", false);
+        xhttp.open("POST", "saskia_gehitu.py", false);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("u=" + JSON.stringify(id) + "&s=" + JSON.stringify(this));
         if (!JSON.parse(xhttp.responseText)[0]) {
@@ -152,7 +152,7 @@ class Bezeroa {
             let response = JSON.parse(xhttp.responseText)
             setUser(response[0])
         }
-        xhttp.open("POST", "../erabiltzailea_gehitu.py");
+        xhttp.open("POST", "erabiltzailea_gehitu.py");
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("s=" + JSON.stringify(this));
     }
@@ -167,8 +167,8 @@ function loadXMLDoc(filename)
 }
 
 function sartuTaula(taulaId) {
-    let xml = loadXMLDoc("../xml/produktuak.py");
-    let xsl = loadXMLDoc("../xml/produktuak.xsl");
+    let xml = loadXMLDoc("xml/produktuak.py");
+    let xsl = loadXMLDoc("xml/produktuak.xsl");
     let xsltProcessor = new XSLTProcessor();
     xsltProcessor.importStylesheet(xsl);
     let resultDocument = xsltProcessor.transformToFragment(xml, document);
@@ -192,7 +192,7 @@ function erosketa(deskontua){
 
 function erosi(saskia, deskontua){
 
-    let xml = loadXMLDoc("../xml/produktuak.py")
+    let xml = loadXMLDoc("xml/produktuak.py")
     let produktuak = xml.getElementsByTagName("produktua")
     for (let i = 0; i < saskia.erosketak.length; ++i) {
         for (let j = 0, produktu = produktuak[j]; j < produktuak.length; produktu = produktuak[++j]) {
@@ -229,21 +229,20 @@ function erosi(saskia, deskontua){
     if (kodea === null) {
         saskia = new Saskia()
         saskia.save()
-        alert("Karritoa husten...")
-        return
+        return "Karritoa husten..."
     }
 
     saskia = new Saskia()
     saskia.save()
-    alert("Zure saski kodea " + kodea + " da.")
-    return
+
+    return "Zure saski kodea " + kodea + " da."
 
 }
 
 function logeatu(){
     let kontuak;
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "../users.py", false);
+    xhttp.open("GET", "users.py", false);
     xhttp.send();
     kontuak = JSON.parse(xhttp.responseText)
     for (let i = 0; i < kontuak.length; i++) {
@@ -251,7 +250,7 @@ function logeatu(){
         if (kontuak[i] === erabiltzaile) {
             let id = new Identifikazioa(erabiltzaile, document.getElementById("pasahitza").value);
             xhttp = new XMLHttpRequest()
-            xhttp.open("POST", "../erabiltzaileaKonprobatu.py", false);
+            xhttp.open("POST", "erabiltzaileaKonprobatu.py", false);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("u=" + JSON.stringify(id));
             if (!JSON.parse(xhttp.responseText)[0]) {

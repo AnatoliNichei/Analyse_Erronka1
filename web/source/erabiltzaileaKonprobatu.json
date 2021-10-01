@@ -1,0 +1,7 @@
+<%
+identifikazioa = json.loads(get_and_post["u"].value)
+if CRUD.bezero_pasahitza_konprobatu(identifikazioa["erabiltzailea"], identifikazioa["pasahitza"]):
+
+    print(json.dumps([True]))
+else:
+    print(json.dumps([False]))
