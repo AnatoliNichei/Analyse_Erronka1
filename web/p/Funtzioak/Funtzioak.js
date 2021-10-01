@@ -17,6 +17,7 @@ function setBasket(saski) {
 
 function logoff() {
     setCookie("username", "", 365)
+    setCookie("saskia", "", 365)
 	location.replace("index.html")
 }
 
@@ -47,7 +48,12 @@ function existsBasket() {
 function checkUser() {
     let user = getCookie("username");
     if (user === "") {
-        user = document.getElementById("erabiltzailea").value;
+        user = document.getElementById("erabiltzailea");
+        if (user === null) {
+            user = prompt("Sartu erabiltzailea:")
+        } else {
+            user = user.value
+        }
         setUser(user);
     }
     return user
@@ -96,7 +102,13 @@ class Saskia {
             logoff()
             return null
         }
-        let id = new Identifikazioa(erabiltzailea, getElementById("pasahitza").value());
+        let pasahitza = document.getElementById("pasahitza")
+        if (pasahitza === null) {
+            pasahitza = prompt("Sartu pasahitza:")
+        } else {
+            pasahitza = pasahitza.value
+        }
+        let id = new Identifikazioa(erabiltzailea, pasahitza);
         let xhttp = new XMLHttpRequest()
         xhttp.open("POST", "../saskia_gehitu.py", false);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -223,7 +235,12 @@ function erosi(saskia, deskontua){
 
     ticket += "\nPrezio totala " + prezio_final + " € da"
 
-    confirm("Onartu erosketa?" + ticket)
+    if (!confirm("Onartu erosketa?" + ticket)) {
+        saskia = new Saskia()
+        saskia.save()
+        alert("Karritoa husten...")
+        return
+    }
 
     let kodea = saskia.igo()
     if (kodea === null) {
