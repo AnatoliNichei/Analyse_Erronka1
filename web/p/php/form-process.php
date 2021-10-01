@@ -40,8 +40,8 @@ if (empty($_POST["message"])) {
 }
 
 
-$EmailTo = "armanmia7@gmail.com";
-$Subject = "New Message Received";
+$EmailTo = "nichei.anatoli@uni.eus";
+$Subject = "Prueba123";
 
 // prepare email body text
 $Body = "";
@@ -62,6 +62,7 @@ $Body .= $message;
 $Body .= "\n";
 
 // send email
+ini_set('sendmail_from', 'me@domain.com');
 $success = mail($EmailTo, $Subject, $Body, "From:".$email);
 
 // redirect to success page
