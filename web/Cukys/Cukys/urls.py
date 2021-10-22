@@ -20,5 +20,6 @@ from django.conf.urls import url,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('', include('cukysapp.urls')),
+    url('apis/', include('apiapp.urls'))
 
 ]
