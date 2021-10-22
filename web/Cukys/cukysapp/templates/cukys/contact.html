@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>Cuky's - About Gu</title>
+    <title>Cuky's - Kontaktua</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/style.css">    
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
 
@@ -35,7 +36,7 @@
 </head>
 
 <body>
-		<!-- Start header -->
+<!-- Start header -->
 	<header class="top-navbar">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
@@ -49,8 +50,8 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item "><a class="nav-link" href="index.html">Home</a></li>
 						<li class="nav-item"><a class="nav-link" href="menu.html">Katalogoa</a></li>
-						<li class="nav-item active"><a class="nav-link" href="about.html">About Gu</a></li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Kontaktua</a></li>
+						<li class="nav-item"><a class="nav-link" href="about.html">About Gu</a></li>
+						<li class="nav-item active"><a class="nav-link" href="contact.html">Kontaktua</a></li>
 						<li class="nav-item" id="loginVisible"><a class="nav-link" href="login.html">Hasi Saioa</a></li>
 						<!--<li class="nav-item" id="karritoa"><a class="nav-link" href="login.html">Karritoa</a></li>
 						-->
@@ -61,47 +62,65 @@
 		</nav>
 	</header>
 	<!-- End header -->
-
 	
-	<!-- Start header -->
+	<!-- Start All Pages -->
 	<div class="all-page-title page-breadcrumb">
 		<div class="container text-center">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1>About Gu</h1>
+					<h1>Kontaktua</h1>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- End header -->
-	
-	<!-- Start About -->
-	<div class="about-section-box">
+	<!-- End All Pages -->
+
+	<!-- Start Contact 
+	<div class="map-full"></div> -->
+	<div class="contact-box">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-12 text-center">
-					<div class="inner-column">
-						<h1>Ongi etorri <span>Cuky Online Dendara</span></h1>
-						<h4>Sorrera</h4>
-						<p>Denok dakigun moduan, gaur egungo era digitalean gero eta astunagoa egiten zaigu lan fisikoa egitea hala nola erosketak egitera joateko, edota sukaldatzeko ere. </p>
-						<p>Hori dela eta, informatika ikasten ari garela aprobetxatu egin dugu eta denda online bat sortu dugu, gailetak saltzeko, zeren, nori ez zaio gustatzen gaileta gozo batzuk?</p>
-						<a class="btn btn-lg btn-circle btn-outline-new-white" href="../cukysapp/templates/cukys/menu.html">Katalogoa</a>
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>Kontaktua</h2>
+						<p>Orrialde honetan eskatzeko kontaktuak errazten dizkizuegu</p>
 					</div>
 				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<img src="images/about-img.jpg" alt="" class="img-fluid">
-				</div>
-				<div class="col-md-12">
-					<div class="inner-pt">
-						<p>Hiru taldekidez osatutako denda bat da, honetan bakoitza bere rola dauka. Hasteko Alvaro Viguera taldeko bozeramailea da, bera taldeare bihotza da. Honi esker taldearen progresua komunikatu dezake eta klienteak aurkitzeko baliabide eta kapazidade asko ditu. </p>
-						<p>Bestalde taldearen idazkaria, Sebastian Zevallos, bera taldearen burmuina da. Berari esker proiektua azaldu dezakegu, arazoak konpontzeko, informazio baliagarria batzeko, eta dokumentazioa ondo azaltzeko gaitasun handiak dituen lankidea. </p>
-						<p>Azkenik taldearen koordinatzailea, Anatoli Nichei, bera taldearen gorputza da. Bere funtzio nagusia proiektua aurrera eramatea da, hala nola, zer da gorputz bat burmuin eta bihotz barik?  </p>
-					</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<form id="contactForm">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" class="form-control" id="name" name="izena" placeholder="Izena" required data-error="Izena sartu Mesedez">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" placeholder="Emaila" id="email" class="form-control" name="emaila" required data-error="Emaila sartu Mesedez">
+									<div class="help-block with-errors"></div>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<textarea class="form-control" id="message" placeholder="Mezua" rows="4" data-error="Mezua sartu Mesedez" required></textarea>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="submit-button text-center">
+									<button class="btn btn-common" id="submit" type="submit">Mezua bidali</button>
+									<div id="msgSubmit" class="h3 text-center hidden"></div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- End About -->
+	<!-- End Contact -->
 
 	<!-- Start Contact info -->
 	<div class="contact-imfo-box">
@@ -185,6 +204,7 @@
 	</footer>
 	<!-- End Footer -->
 
+	
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
 
 	<!-- ALL JS FILES -->
@@ -193,12 +213,15 @@
 	<script src="js/popper.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
+	
 	<script src="js/jquery.superslides.min.js"></script>
 	<script src="js/images-loded.min.js"></script>
 	<script src="js/isotope.min.js"></script>
 	<script src="js/baguetteBox.min.js"></script>
+	<script src="js/jquery.mapify.js"></script>
 	<script src="js/form-validator.min.js"></script>
     <script src="js/contact-form-script.js"></script>
     <script src="js/custom.js"></script>
+
 </body>
 </html>
