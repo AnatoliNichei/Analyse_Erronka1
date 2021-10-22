@@ -2,34 +2,36 @@
 <html lang="en"><!-- Basic -->
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
      <!-- Site Metas -->
-    <title>Cuky's</title>  
+    <title>Cuky's - Katalogoa</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../../../../static/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">    
+    <link rel="stylesheet" href="../../../../static/css/bootstrap.min.css">
 	<!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="../../../../static/css/style.css">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../../../../static/css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../../../../static/css/custom.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+
 </head>
 
 <body>
@@ -38,147 +40,84 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
 				<a class="navbar-brand" href="index.html">
-					<img src="images/logo.png" alt="" style="width: 120px;"/>
+					<img src="../../../../static/images/logo.png" alt="" style="width: 120px;"/>
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 				  <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
-						<li class="nav-item"><a class="nav-link" href="menu.html">Katalogoa</a></li>
-						<li class="nav-item"><a class="nav-link" href="about.html">About Gu</a></li>
-						<li class="nav-item"><a class="nav-link" href="contact.html">Kontaktua</a></li>
-						<li class="nav-item" id="loginVisible"><a class="nav-link" href="login.html">Hasi Saioa</a></li>
-						<!--<li class="nav-item" id="karritoa"><a class="nav-link" href="login.html">Karritoa</a></li>
-						-->
-						<li class="nav-item" id="logoff"><a class="nav-link" href="#" onclick="logoff()">Log Off</a></li>
+						<li class="nav-item"><a class="nav-link" href="../../../../static/index.html">Home</a></li>
+						<li class="nav-item active"><a class="nav-link" href="">Katalogoa</a></li>
+						<li class="nav-item"><a class="nav-link" href="../../../../static/about.html">About Gu</a></li>
+						<li class="nav-item"><a class="nav-link" href="../../../../static/contact.html">Kontaktua</a></li>
+						<li class="nav-item" id="loginVisible" style="display: none;"><a class="nav-link" href="../../../../static/login.html">Hasi Saioa</a></li>
+						<button style="padding: 0;border: none;background: transparent;" onclick="erosi(Saskia.retrieve(), true)">
+							<li class="nav-item" id="karritoa" style="display: none;"><a class="nav-link" href="#">Erosi</a></li>
+						</button>
+						<li class="nav-item" id="logoff" style="display: none;"><a class="nav-link" href="#" onclick="logoff()">Log Off</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
 	</header>
 	<!-- End header -->
-	
-	<!-- Start slides -->
-	<div id="slides" class="cover-slides">
-		<ul class="slides-container">
-			<li class="text-left">
-				<img src="images/slider-01.jpg" alt="">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<h1 class="m-b-20"><strong>Ongi etorri <br> Cuky's Denda Onlinera</strong> </h1>
-							<p class="m-b-40">Denda online honetan era askotako gailetak saltzen ditugu  <br> 
-							hala nola, txokolatezko gailetak, gurinezko gailetak, kremazko gailetak...</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="../cukysapp/templates/cukys/menu.html">Ikusi katalogoa</a></p>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li class="text-left">
-				<img src="images/slider-02.jpg" alt="">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<h1 class="m-b-20"><strong>Abisu Garrantzitsua</strong></h1>
-							<p class="m-b-40">Web orrialdean nabigatu hasi aurretik,<br> kontziente izan orrialde honek cookie-ak erabiltzen dituela.</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="../cukysapp/templates/cukys/menu.html">Katalogoa</a></p>
-						</div>
-					</div>
-				</div>
-			</li>
-			<li class="text-left">
-				<img src="images/slider-03.jpg" alt="">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<h1 class="m-b-20"><strong>Etxez etxeko banaketak</strong></h1>
-							<p class="m-b-40">Denok dakigun moduan gaur egungo era digitalean, jendea gero eta alferragoa da,<br> horregaitik zerbitzu honen bidez zuen gustokoen gailetak etxera banatzen dizkizuegu.</p>
-							<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="contact.html">Kontaktatu</a></p>
-						</div>
-					</div>
-				</div>
-			</li>
-		</ul>
-		<div class="slides-navigation">
-			<a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-			<a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-		</div>
-	</div>
-	<!-- End slides -->
-	
-	<!-- Start About -->
-	<div class="about-section-box">
-		<div class="container">
+
+	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
 			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-12 text-center">
-					<div class="inner-column">
-						<h1>Ongi etorri <span>Cuky Online Dendara</span></h1>
-						<h4>Sorrera</h4>
-						<p>Denok dakigun moduan, gaur egungo era digitalean gero eta astunagoa egiten zaigu lan fisikoa egitea hala nola erosketak egitera joateko, edota sukaldatzeko ere. </p>
-						<p>Hori dela eta, informatika ikasten ari garela aprobetxatu egin dugu eta denda online bat sortu dugu, gailetak saltzeko, zeren, nori ez zaio gustatzen gaileta gozo batzuk?</p>
-						<a class="btn btn-lg btn-circle btn-outline-new-white" href="../cukysapp/templates/cukys/menu.html">Katalogoa</a>
-					</div>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<img src="images/about-img.jpg" alt="" class="img-fluid">
+				<div class="col-lg-12">
+					<h1>Gaileta Katalogoa</h1>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- End About -->
-	
+	<!-- End All Pages -->
+
+	<!-- Start Menu -->
+	<div class="menu-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>Gaileta Katalogoa</h2>
+						<p>Munduko gailetarik onenak eta merkeenak.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="row inner-menu-box">
+				<div class="col-3">
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Guztiak</a>
+						<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Txokolate</a>
+						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Sinple</a>
+						<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Fruta</a>
+					</div>
+				</div>
+
+				<div class="col-9" id="datuak" />
+			</div>
+		</div>
+	</div>
+	<!-- End Menu -->
+
 	<!-- Start QT -->
 	<div class="qt-box qt-background">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 ml-auto mr-auto text-center">
 					<p class="lead ">
-						" Tripa hutsa, triste bihotza. "
+						" Sukaldaria ez bazara, urrun mantendu eta zoriondu sukaldariari. "
 					</p>
-					<span class="lead">Joseba Sarrionandia</span>
+					<span class="lead">Benito Lertxundi</span>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- End QT -->
 
-	
-	<!-- Start Gallery -->
-	<div class="gallery-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="heading-title text-center">
-						<h2>Beste Denda Batzuk</h2>
-						<p>Gure beste lankideen web dendak oso gomendatuak.</p>
-					</div>
-				</div>
-			</div>
-			<div class="tz-gallery">
-				<div class="row">
-					<div class="col-sm-12 col-md-4 col-lg-4">
-						<a class="lightbox" href="http://192.168.73.13:8080">
-							<img class="img-fluid" src="images/gallery-img-01.jpg" alt="Gallery Images">
-						</a>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-4">
-						<a class="lightbox" href="http://192.168.73.17/erronka/inicio.html">
-							<img class="img-fluid" src="images/gallery-img-02.jpg" alt="Gallery Images">
-						</a>
-					</div>
-					<div class="col-sm-6 col-md-4 col-lg-4">
-						<a class="lightbox" href="http://192.168.73.56:8080/Okindegia/">
-							<img class="img-fluid" src="images/gallery-img-03.jpg" alt="Gallery Images">
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Gallery -->
-	
 	<!-- Start Customer Reviews -->
 	<div class="customer-reviews-box">
 		<div class="container">
@@ -196,7 +135,7 @@
 						<div class="carousel-inner mt-4">
 							<div class="carousel-item text-center active">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/goros.png" alt="">
+									<img class="d-block w-100 rounded-circle" src="../../../../static/images/goros.png" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Jose Antonio Gorostiza</strong></h5>
 								<h6 class="text-dark m-0">Fisiko teorikoa</h6>
@@ -204,7 +143,7 @@
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/sinosuke.png" alt="">
+									<img class="d-block w-100 rounded-circle" src="../../../../static/images/sinosuke.png" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Shinnosuke Nohara</strong></h5>
 								<h6 class="text-dark m-0">Cartoon</h6>
@@ -212,7 +151,7 @@
 							</div>
 							<div class="carousel-item text-center">
 								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="images/monster.png" alt="">
+									<img class="d-block w-100 rounded-circle" src="../../../../static/images/monster.png" alt="">
 								</div>
 								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Cookie Monster</strong></h5>
 								<h6 class="text-dark m-0">Actor</h6>
@@ -233,7 +172,7 @@
 		</div>
 	</div>
 	<!-- End Customer Reviews -->
-	
+
 	<!-- Start Contact info -->
 	<div class="contact-imfo-box">
 		<div class="container">
@@ -269,7 +208,7 @@
 		</div>
 	</div>
 	<!-- End Contact info -->
-	
+
 	<!-- Start Footer -->
 	<footer class="footer-area bg-f">
 		<div class="container">
@@ -302,7 +241,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="copyright">
 			<div class="container">
 				<div class="row">
@@ -312,24 +251,26 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</footer>
 	<!-- End Footer -->
-	
+
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
 
 	<!-- ALL JS FILES -->
-	<script src="Funtzioak.js"></script>
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/popper.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+    <script src="../../../../static/Funtzioak/Funtzioak.js"></script>
+	<script src="main.js"></script>
+    <script> sartuTaula("datuak") </script>
+	<script src="../../../../static/js/jquery-3.2.1.min.js"></script>
+	<script src="../../../../static/js/popper.min.js"></script>
+	<script src="../../../../static/js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
-	<script src="js/jquery.superslides.min.js"></script>
-	<script src="js/images-loded.min.js"></script>
-	<script src="js/isotope.min.js"></script>
-	<script src="js/baguetteBox.min.js"></script>
-	<script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+	<script src="../../../../static/js/jquery.superslides.min.js"></script>
+	<script src="../../../../static/js/images-loded.min.js"></script>
+	<script src="../../../../static/js/isotope.min.js"></script>
+	<script src="../../../../static/js/baguetteBox.min.js"></script>
+	<script src="../../../../static/js/form-validator.min.js"></script>
+    <script src="../../../../static/js/contact-form-script.js"></script>
+    <script src="../../../../static/js/custom.js"></script>
 </body>
 </html>
