@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% load static %}
+<datuak>
+    {% for taula, edukia in data.items %}
+        <{{ taula }}>
+            {% for id, eremuak in edukia.items %}
+                <item id="{{ id }}">
+                    {% for eremua, balioa in eremuak.items %}
+                    <{{ eremua }}{% if eremua in data %} refs="{{ balioa|join:" " }}">
+                        
+                    </{{ eremua }}>
+                    {% endfor %}
+                </item>
+            {% endfor %}
+        </{{ taula }}>
+    {% endfor %}
+</motak>
