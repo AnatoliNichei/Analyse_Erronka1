@@ -47,11 +47,11 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbars-rs-food">
 					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" href="../../../../static/index.html">Home</a></li>
-						<li class="nav-item active"><a class="nav-link" href="">Katalogoa</a></li>
-						<li class="nav-item"><a class="nav-link" href="../../../../static/about.html">About Gu</a></li>
-						<li class="nav-item"><a class="nav-link" href="../../../../static/contact.html">Kontaktua</a></li>
-						<li class="nav-item" id="loginVisible" style="display: none;"><a class="nav-link" href="../../../../static/login.html">Hasi Saioa</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'Index' %}">Home</a></li>
+						<li class="nav-item active"><a class="nav-link" href="/menu/">Katalogoa</a></li>
+						<li class="nav-item"><a class="nav-link" href="/about/">About Gu</a></li>
+						<li class="nav-item"><a class="nav-link" href="/contact/">Kontaktua</a></li>
+						<li class="nav-item" id="loginVisible" style="display: none;"><a class="nav-link" href="/login/">Hasi Saioa</a></li>
 						<button style="padding: 0;border: none;background: transparent;" onclick="erosi(Saskia.retrieve(), true)">
 							<li class="nav-item" id="karritoa" style="display: none;"><a class="nav-link" href="#">Erosi</a></li>
 						</button>
