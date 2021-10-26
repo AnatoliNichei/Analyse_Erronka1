@@ -2,9 +2,9 @@
 {% load static %}
 <xml>
     {% for taula, edukia in data.items %}
-        <{{ taula }}>
+        <taula id="{{ taula }}">
             {% for id, eremuak in edukia.items %}
-                <{{ id }}>
+                <errenkada kodea="{{ id }}">
                     {% for eremua, balioa in eremuak.items %}
                         {% if eremua in data %}
                             <{{ eremua }} refs="{{ balioa|join:" " }}"/>
@@ -14,8 +14,8 @@
                             </{{ eremua }}>
                         {% endif %}
                     {% endfor %}
-                </{{>
+                </errenkada>
             {% endfor %}
-        </{{ taula }}>
+        </taula>
     {% endfor %}
 </xml>
