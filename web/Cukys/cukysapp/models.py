@@ -12,7 +12,10 @@ class Bezeroa (models.Model):
     telefonoa = models.IntegerField()
     nan = models.CharField(max_length=9)
     pasahitza = models.CharField(max_length=255)
-    emaila = models.EmailField
+    emaila = models.EmailField()
+
+    def __str__(self):
+        return self.izena
 
     class Meta:
         verbose_name_plural = "Bezeroak"
@@ -20,9 +23,12 @@ class Bezeroa (models.Model):
 
 class Saskia (models.Model):
     saski_kodea = models.CharField(max_length=255)
-    eskaera_data = models.DateTimeField
+    eskaera_data = models.DateTimeField()
     entrega_data = models.DateTimeField()
     erabiltzailea = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.saski_kodea
 
     class Meta:
         verbose_name_plural = "Saskiak"
@@ -31,6 +37,9 @@ class Saskia (models.Model):
 class Mota (models.Model):
     mota_kodea = models.IntegerField()
     izena = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.izena
 
     class Meta:
         verbose_name_plural = "Motak"
@@ -44,6 +53,9 @@ class Produktua (models.Model):
     iruzkina = models.CharField(max_length=255)
     mota = models.ManyToManyField(Mota)
 
+    def __str__(self):
+        return self.izena
+
     class Meta:
         verbose_name_plural = "Produktuak"
 
@@ -51,6 +63,9 @@ class Eskaera (models.Model):
     produktu_kodea = models.ForeignKey(Produktua,on_delete=models.CASCADE)
     saski_kodea = models.ForeignKey(Saskia,on_delete=models.CASCADE)
     kantitatea = models.IntegerField
+
+    def __str__(self):
+        return self.produktu_kodea
 
     class Meta:
         verbose_name_plural = "Eskaerak"
