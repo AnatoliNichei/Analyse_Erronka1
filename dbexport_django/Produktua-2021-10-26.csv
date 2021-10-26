@@ -1,0 +1,13 @@
+id,produktu_kodea,izena,prezioa,irudia,iruzkina,mota
+12,GA12,White Chocolate Cookie,0.59,images/Cookie/whiteChocoCookie.png,Lidl-etik lapurtutako gaileta zakarrak.,3
+11,GA11,Walnut Cookie,1.0,images/Cookie/walnutCookie.png,Intxaurrez eginezko gaileta gozoak.,2
+10,GA10,Raspberry Cookie,2.95,images/Cookie/raspberryCookie.png,Mugurdiz eginezko gaileta gozoak.,1
+9,GA09,Pinwheel Cookie,0.8,images/Cookie/pinwheelCookie.png,Kiribil itxura duten gaileta gozoak.,3
+8,GA08,Pear Cookie,1.15,images/Cookie/pearCookie.png,Madariz eginezko gaileta gozoak.,1
+7,GA07,Madaleines,3.9,images/Cookie/madaleinesCookie.png,"Eclipse bezalako gailetak, baina politagoak eta gareztiagoak.",3
+6,GA06,Ladyfinger Cookie,0.2,images/Cookie/ladyfingerCookie.png,Txokolatean bustitzeko gaileta ederra.,2
+5,GA05,Gingerbread Cookie,5.39,images/Cookie/gingerbreadCookie.png,"Gabonetara arte itxaron nahi ez baduzu, erosi orain jengibre-gailetak.",2
+4,GA04,Eclipse Cookie,0.39,images/Cookie/eclipseCookie.png,Gaileta hauek erdi sinpleak eta erdi txokolatezkoak dira.,3
+3,GA03,Cashew Cookie,1.49,images/Cookie/cashewCookie.png,Anakardoz eginezko gaileta gozoak.,2
+2,GA02,Banana Cookie,7.5,images/Cookie/bananaCookie.png,Canarias-eko platanoekin eginezko gaileta gozoak. La Palman labetuta.,1
+1,GA01,Apple Cookie,0.75,images/Cookie/appleCookie.png,Sagarraz eginezko gaileta gozoak.,1
