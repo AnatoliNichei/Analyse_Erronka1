@@ -4,13 +4,17 @@
     {% for taula, edukia in data.items %}
         <{{ taula }}>
             {% for id, eremuak in edukia.items %}
-                <item id="{{ id }}">
+                <{{ id }}>
                     {% for eremua, balioa in eremuak.items %}
-                    <{{ eremua }}{% if eremua in data %} refs="{{ balioa|join:" " }}">
-                        
-                    </{{ eremua }}>
+                        {% if eremua in data %}
+                            <{{ eremua }} refs="{{ balioa|join:" " }}"/>
+                        {% else %}
+                            <{{ eremua }}>
+                                {{ balioa }}
+                            </{{ eremua }}>
+                        {% endif %}
                     {% endfor %}
-                </item>
+                </{{>
             {% endfor %}
         </{{ taula }}>
     {% endfor %}
