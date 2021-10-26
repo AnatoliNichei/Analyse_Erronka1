@@ -21,7 +21,8 @@ def kontaktua_list(request):
 
 
 def menu_list(request):
-    return render(request, 'cukys/menu.html/index.html')
+    products = Produktua.objects.all()
+    return render(request, 'cukys/menu.html/index.html',{'products': products})
 
 def login_list(request):
     return render(request, 'cukys/login.html')
