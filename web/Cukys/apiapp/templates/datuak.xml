@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 {% load static %}
-<datuak>
+<xml>
     {% for taula, edukia in data.items %}
         <{{ taula }}>
             {% for id, eremuak in edukia.items %}
@@ -18,4 +18,4 @@
             {% endfor %}
         </{{ taula }}>
     {% endfor %}
-</motak>
+</xml>

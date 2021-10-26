@@ -21,7 +21,7 @@ class Bezeroa (models.Model):
 class Saskia (models.Model):
     saski_kodea = models.CharField(max_length=255)
     eskaera_data = models.DateTimeField
-    entrega_data = models.DateTimeField
+    entrega_data = models.DateTimeField()
     erabiltzailea = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
 
     class Meta:

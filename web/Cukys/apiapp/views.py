@@ -28,6 +28,7 @@ def get_table(request, formato):
     if formato == 'json':
         return JsonResponse(d)
     elif formato == 'xml':
-        return render(request, 'templates/datuak.xml', {'data': d})
+        return render(request, 'datuak.xml', {'data': d},
+                content_type='text/xml')
     else:
         raise Http404
