@@ -1,8 +1,6 @@
-from django.shortcuts import render,get_object_or_404
-from django.utils import timezone
-
+from django.shortcuts import render,get_object_or_404,redirect
 from cukysapp.models import *
-from django.shortcuts import redirect
+from .forms import FormRegisterForm
 
 
 def index_list(request):
@@ -21,10 +19,18 @@ def kontaktua_list(request):
 
 
 def menu_list(request):
-    return render(request, 'cukys/menu.html/index.html')
+    products = Produktua.objects.all()
+    return render(request, 'cukys/menu.html/index.html',{'products': products})
 
 def login_list(request):
     return render(request, 'cukys/login.html')
 
 def register_list(request):
-    return render(request, 'cukys/register.html')
+    form = FormRegisterForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect(index_list)
+
+    context = {'form': form}
+
+    return render(request, 'cukys/register.html', context)
