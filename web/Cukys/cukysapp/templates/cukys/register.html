@@ -34,17 +34,18 @@
                 <div class="card-body">
                     <h2 class="title">Cuky`s Registration</h2>
                     <form method="POST">
+                        {% csrf_token %}
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Izena</label>
-                                    <input class="input--style-4" type="text" name="izena">
+                                    <input class="input--style-4" type="text" name="izena" required pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$">
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Abizena</label>
-                                    <input class="input--style-4" type="text" name="abizena">
+                                    <input class="input--style-4" type="text" name="abizena" required pattern="^([A-Za-z]+[,.]?[ ]?|[A-Za-z]+['-]?)+$">
                                 </div>
                             </div>
                         </div>

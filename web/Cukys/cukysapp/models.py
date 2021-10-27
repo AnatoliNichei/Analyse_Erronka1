@@ -5,14 +5,15 @@ from django.contrib.auth.models import User
 
 
 class Bezeroa (models.Model):
-    erabiltzailea = models.CharField(max_length=255)
+    erabiltzailea = models.OneToOneField(User, on_delete=models.CASCADE)
+    #erabiltzailea = models.CharField(max_length=255)
     izena = models.CharField(max_length=255)
     abizena = models.CharField(max_length=255)
     helbidea = models.CharField(max_length=255)
     telefonoa = models.IntegerField()
     nan = models.CharField(max_length=9)
-    pasahitza = models.CharField(max_length=255)
-    emaila = models.EmailField()
+    #pasahitza = models.CharField(max_length=255)
+    #emaila = models.EmailField()
 
     def __str__(self):
         return self.izena
@@ -25,7 +26,7 @@ class Saskia (models.Model):
     saski_kodea = models.CharField(max_length=255)
     eskaera_data = models.DateTimeField()
     entrega_data = models.DateTimeField()
-    erabiltzailea = models.ForeignKey(Bezeroa,on_delete=models.CASCADE)
+    erabiltzailea = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.saski_kodea
