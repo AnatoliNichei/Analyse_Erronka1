@@ -15,19 +15,22 @@ def get_table(request, formato):
             'iruzkina': produktua.iruzkina,
             'irudia': produktua.irudia,
             'prezioa': produktua.prezioa,
-            'motak': produktua.mota.all().values_list('mota_kodea', flat=True),
+            'motak': list(
+                produktua.mota.all().values_list('mota_kodea', flat=True)
+            ),
         }
     for mota in motak:
         d['motak'][mota.mota_kodea] = {
             'izena': mota.izena,
-            'produktuak': mota.produktua_set.all().values_list(
+            'produktuak': list(mota.produktua_set.all().values_list(
                     'produktu_kodea',
                     flat=True
-            ),
+            )),
         }
     if formato == 'json':
         return JsonResponse(d)
     elif formato == 'xml':
-        return render(request, 'templates/datuak.xml', {'data': d})
+        return render(request, 'datuak.xml', {'data': d},
+                    content_type='text/xml')
     else:
         raise Http404

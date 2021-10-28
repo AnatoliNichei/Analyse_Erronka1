@@ -1,8 +1,7 @@
-from django.shortcuts import render,get_object_or_404
-from django.utils import timezone
-
+from django.shortcuts import render,get_object_or_404, redirect
 from cukysapp.models import *
-from django.shortcuts import redirect
+from .forms import FormRegisterForm
+from django.core.mail import send_mail
 
 
 def index_list(request):
@@ -21,10 +20,35 @@ def kontaktua_list(request):
 
 
 def menu_list(request):
-    return render(request, 'cukys/menu.html/index.html')
+    products = Produktua.objects.all()
+    return render(request, 'cukys/menu.html/index.html', {'products': products})
+
 
 def login_list(request):
     return render(request, 'cukys/login.html')
 
+
 def register_list(request):
-    return render(request, 'cukys/register.html')
+    form = FormRegisterForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        send_mail(
+            'Ongi Etorri',
+            '''Eskerrik asko Cukys kontu bat sortzeagatik. Hau bezero berriei
+            bidalitako mezua da, esateko gure web orriaren kodigoa hurrengo
+            helbidean dagoela: \n
+            https://github.com/AnatoliNichei/Analyse_Erronka1 \n
+            Geure kodigoa ireki dugu edonork hobekuntzak proposatu eta
+            implementatu dezan. \n
+            Lagundu nahi badiguzu, etorri zaitez eta hobekuntzak proposatu.
+            Onartu ezkero, guk implementatu ditzakegu aldaketak, eta zure
+            hatza egongo da gure web orrian!''',
+            'noreply@erronka21.com',
+            [form.data['emaila']],
+            fail_silently=False
+        )
+        return redirect(index_list)
+
+    context = {'form': form}
+
+    return render(request, 'cukys/register.html', context)

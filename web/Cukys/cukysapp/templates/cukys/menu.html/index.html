@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"><!-- Basic -->
 <head>
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-     <!-- Site Metas -->
+    <!-- Site Metas -->
     <title>Cuky's - Katalogoa</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
@@ -21,7 +21,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../../../static/css/bootstrap.min.css">
-	<!-- Site CSS -->
+    <!-- Site CSS -->
     <link rel="stylesheet" href="../../../../static/css/style.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="../../../../static/css/responsive.css">
@@ -38,8 +38,8 @@
 
 
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 
@@ -76,151 +76,168 @@
 	</header>
 	<!-- End header -->
 
-	<!-- Start All Pages -->
-	<div class="all-page-title page-breadcrumb">
-		<div class="container text-center">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1>Gaileta Katalogoa</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End All Pages -->
+<!-- Start All Pages -->
+<div class="all-page-title page-breadcrumb">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Gaileta Katalogoa</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Pages -->
 
-	<!-- Start Menu -->
-	<div class="menu-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="heading-title text-center">
-						<h2>Gaileta Katalogoa</h2>
-						<p>Munduko gailetarik onenak eta merkeenak.</p>
-					</div>
-				</div>
-			</div>
+<!-- Start Menu -->
+<div class="menu-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading-title text-center">
+                    <h2>Gaileta Katalogoa</h2>
+                    <p>Munduko gailetarik onenak eta merkeenak.</p>
+                </div>
+            </div>
+        </div>
 
-			<div class="row inner-menu-box">
-				<div class="col-3">
-					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Guztiak</a>
-						<a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Txokolate</a>
-						<a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Sinple</a>
-						<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Fruta</a>
-					</div>
-				</div>
+        <div class="row inner-menu-box">
+            <div class="col-3">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                       aria-controls="v-pills-home" aria-selected="true">Guztiak</a>
+                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+                       aria-controls="v-pills-profile" aria-selected="false">Txokolate</a>
+                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
+                       aria-controls="v-pills-messages" aria-selected="false">Sinple</a>
+                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+                       aria-controls="v-pills-settings" aria-selected="false">Fruta</a>
+                </div>
+            </div>
 
-				<div class="col-9" id="datuak" />
-			</div>
-		</div>
-	</div>
-	<!-- End Menu -->
+            <div class="col-9" id="datuak"/>
+            {% for product in products %}
+                <p>{{ product.izena }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- End Menu -->
 
-	<!-- Start QT -->
-	<div class="qt-box qt-background">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 ml-auto mr-auto text-center">
-					<p class="lead ">
-						" Sukaldaria ez bazara, urrun mantendu eta zoriondu sukaldariari. "
-					</p>
-					<span class="lead">Benito Lertxundi</span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End QT -->
+<!-- Start QT -->
+<div class="qt-box qt-background">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <p class="lead ">
+                    " Sukaldaria ez bazara, urrun mantendu eta zoriondu sukaldariari. "
+                </p>
+                <span class="lead">Benito Lertxundi</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End QT -->
 
-	<!-- Start Customer Reviews -->
-	<div class="customer-reviews-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="heading-title text-center">
-						<h2>Bezeroen eranskina</h2>
-						<p>Mundu osoko bezeroen eranskinak.</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-8 mr-auto ml-auto text-center">
-					<div id="reviews" class="carousel slide" data-ride="carousel">
-						<div class="carousel-inner mt-4">
-							<div class="carousel-item text-center active">
-								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="../../../../static/images/goros.png" alt="">
-								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Jose Antonio Gorostiza</strong></h5>
-								<h6 class="text-dark m-0">Fisiko teorikoa</h6>
-								<p class="m-0 pt-3">Una oportunidad increible de comprar galletas, todo el mundo deberia probarlas por que en esta epoca de pandemia, se acercan las oscuras golondrinas. 	</p>
-							</div>
-							<div class="carousel-item text-center">
-								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="../../../../static/images/sinosuke.png" alt="">
-								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Shinnosuke Nohara</strong></h5>
-								<h6 class="text-dark m-0">Cartoon</h6>
-								<p class="m-0 pt-3">クレヨンしんちゃんのキャラクターに愛されている、トハトの星型ふくらんでいるとうもろこしスナック！北海道産のミルク風味で、歯ごたえがあります。</p>
-							</div>
-							<div class="carousel-item text-center">
-								<div class="img-box p-1 border rounded-circle m-auto">
-									<img class="d-block w-100 rounded-circle" src="../../../../static/images/monster.png" alt="">
-								</div>
-								<h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Cookie Monster</strong></h5>
-								<h6 class="text-dark m-0">Actor</h6>
-								<p class="m-0 pt-3">Sometimes me think, what is friend? And then me say: a friend is someone to share last cookie with. <br> Home is where heart is. Heart where cookie is. Math clear: home is cookie.</p>
-							</div>
-						</div>
-						<a class="carousel-control-prev" href="#reviews" role="button" data-slide="prev">
-							<i class="fa fa-angle-left" aria-hidden="true"></i>
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="carousel-control-next" href="#reviews" role="button" data-slide="next">
-							<i class="fa fa-angle-right" aria-hidden="true"></i>
-							<span class="sr-only">Next</span>
-						</a>
+<!-- Start Customer Reviews -->
+<div class="customer-reviews-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading-title text-center">
+                    <h2>Bezeroen eranskina</h2>
+                    <p>Mundu osoko bezeroen eranskinak.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 mr-auto ml-auto text-center">
+                <div id="reviews" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner mt-4">
+                        <div class="carousel-item text-center active">
+                            <div class="img-box p-1 border rounded-circle m-auto">
+                                <img class="d-block w-100 rounded-circle" src="../../../../static/images/goros.png"
+                                     alt="">
+                            </div>
+                            <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Jose Antonio
+                                Gorostiza</strong></h5>
+                            <h6 class="text-dark m-0">Fisiko teorikoa</h6>
+                            <p class="m-0 pt-3">Una oportunidad increible de comprar galletas, todo el mundo deberia
+                                probarlas por que en esta epoca de pandemia, se acercan las oscuras golondrinas. </p>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <div class="img-box p-1 border rounded-circle m-auto">
+                                <img class="d-block w-100 rounded-circle" src="../../../../static/images/sinosuke.png"
+                                     alt="">
+                            </div>
+                            <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Shinnosuke Nohara</strong>
+                            </h5>
+                            <h6 class="text-dark m-0">Cartoon</h6>
+                            <p class="m-0 pt-3">
+                                クレヨンしんちゃんのキャラクターに愛されている、トハトの星型ふくらんでいるとうもろこしスナック！北海道産のミルク風味で、歯ごたえがあります。</p>
+                        </div>
+                        <div class="carousel-item text-center">
+                            <div class="img-box p-1 border rounded-circle m-auto">
+                                <img class="d-block w-100 rounded-circle" src="../../../../static/images/monster.png"
+                                     alt="">
+                            </div>
+                            <h5 class="mt-4 mb-0"><strong class="text-warning text-uppercase">Cookie Monster</strong>
+                            </h5>
+                            <h6 class="text-dark m-0">Actor</h6>
+                            <p class="m-0 pt-3">Sometimes me think, what is friend? And then me say: a friend is someone
+                                to share last cookie with. <br> Home is where heart is. Heart where cookie is. Math
+                                clear: home is cookie.</p>
+                        </div>
                     </div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Customer Reviews -->
+                    <a class="carousel-control-prev" href="#reviews" role="button" data-slide="prev">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#reviews" role="button" data-slide="next">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Customer Reviews -->
 
-	<!-- Start Contact info -->
-	<div class="contact-imfo-box">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 arrow-right">
-					<i class="fa fa-volume-control-phone"></i>
-					<div class="overflow-hidden">
-						<h4>Telefonoa</h4>
-						<p class="lead">
-							+34 943 89 92 11
-						</p>
-					</div>
-				</div>
-				<div class="col-md-4 arrow-right">
-					<i class="fa fa-envelope"></i>
-					<div class="overflow-hidden">
-						<h4>Emaila</h4>
-						<p class="lead">
-							idazkaritza@uni.eus
-						</p>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<i class="fa fa-map-marker"></i>
-					<div class="overflow-hidden">
-						<h4>Kokapena</h4>
-						<p class="lead">
-							Otaola Hiribidea, 29, 20600 Eibar
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Contact info -->
+<!-- Start Contact info -->
+<div class="contact-imfo-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 arrow-right">
+                <i class="fa fa-volume-control-phone"></i>
+                <div class="overflow-hidden">
+                    <h4>Telefonoa</h4>
+                    <p class="lead">
+                        +34 943 89 92 11
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 arrow-right">
+                <i class="fa fa-envelope"></i>
+                <div class="overflow-hidden">
+                    <h4>Emaila</h4>
+                    <p class="lead">
+                        idazkaritza@uni.eus
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-map-marker"></i>
+                <div class="overflow-hidden">
+                    <h4>Kokapena</h4>
+                    <p class="lead">
+                        Otaola Hiribidea, 29, 20600 Eibar
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Contact info -->
 
     <!-- Karritoa -->
 
@@ -543,35 +560,37 @@
 			</div>
 		</div>
 
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<p class="company-name">All Rights Reserved. &copy; 2021 <a href="#">Cuky's</a>
-					</div>
-				</div>
-			</div>
-		</div>
 
-	</footer>
-	<!-- End Footer -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="company-name">All Rights Reserved. &copy; 2021 <a href="#">Cuky's</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+</footer>
+<!-- End Footer -->
 
-	<!-- ALL JS FILES -->
-    <script src="../../../../static/Funtzioak/Funtzioak.js"></script>
-	<script src="main.js"></script>
-    <script> sartuTaula("datuak") </script>
-	<script src="../../../../static/js/jquery-3.2.1.min.js"></script>
-	<script src="../../../../static/js/popper.min.js"></script>
-	<script src="../../../../static/js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-	<script src="../../../../static/js/jquery.superslides.min.js"></script>
-	<script src="../../../../static/js/images-loded.min.js"></script>
-	<script src="../../../../static/js/isotope.min.js"></script>
-	<script src="../../../../static/js/baguetteBox.min.js"></script>
-	<script src="../../../../static/js/form-validator.min.js"></script>
-    <script src="../../../../static/js/contact-form-script.js"></script>
-    <script src="../../../../static/js/custom.js"></script>
+<a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o"
+                                                                           aria-hidden="true"></i></a>
+
+<!-- ALL JS FILES -->
+<script src="../../../../static/Funtzioak/Funtzioak.js"></script>
+<script src="main.js"></script>
+<script> sartuTaula("datuak") </script>
+<script src="../../../../static/js/jquery-3.2.1.min.js"></script>
+<script src="../../../../static/js/popper.min.js"></script>
+<script src="../../../../static/js/bootstrap.min.js"></script>
+<!-- ALL PLUGINS -->
+<script src="../../../../static/js/jquery.superslides.min.js"></script>
+<script src="../../../../static/js/images-loded.min.js"></script>
+<script src="../../../../static/js/isotope.min.js"></script>
+<script src="../../../../static/js/baguetteBox.min.js"></script>
+<script src="../../../../static/js/form-validator.min.js"></script>
+<script src="../../../../static/js/contact-form-script.js"></script>
+<script src="../../../../static/js/custom.js"></script>
 </body>
 </html>
