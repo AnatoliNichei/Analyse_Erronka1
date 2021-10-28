@@ -32,16 +32,16 @@ def register_list(request):
         form.save()
         send_mail(
             'Ongi Etorri',
-            'Eskerrik asko Cukys kontu bat sortzeagatik. Hau bezero berriei '
-            'bidalitako mezua da, esateko gure web orriaren kodigoa hurrengo '
-            'helbidean dagoela: \n'
-            'https://github.com/AnatoliNichei/Analyse_Erronka1 \n'
-            'Geure kodigoa ireki dugu edonork hobekuntzak proposatu eta '
-            'implementatu dezan. \n'
-            'Lagundu nahi badiguzu, etorri zaitez eta hobekuntzak proposatu. '
-            'Onartu ezkero, guk implementatu ditzakegu aldaketak, eta zure '
-            'hatza egongo da gure web orrian!',
-            'noreply@erronka21.com',
+            '''Eskerrik asko Cukys kontu bat sortzeagatik. Hau bezero berriei
+            bidalitako mezua da, esateko gure web orriaren kodigoa hurrengo
+            helbidean dagoela: \n
+            https://github.com/AnatoliNichei/Analyse_Erronka1 \n
+            Geure kodigoa ireki dugu edonork hobekuntzak proposatu eta
+            implementatu dezan. \n
+            Lagundu nahi badiguzu, etorri zaitez eta hobekuntzak proposatu.
+            Onartu ezkero, guk implementatu ditzakegu aldaketak, eta zure
+            hatza egongo da gure web orrian!''',
+            noreply@erronka21.com',
             [form.data['emaila']],
             fail_silently = False
         )
