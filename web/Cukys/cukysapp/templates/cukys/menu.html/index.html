@@ -13,6 +13,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+
+
     <!-- Site Icons -->
     <link rel="shortcut icon" href="../../../../static/images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
@@ -26,6 +28,15 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../../../../static/css/custom.css">
 
+    <script src="jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/>
+    <script src="jquery.datetimepicker.full.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -35,38 +46,35 @@
 </head>
 
 <body>
-<!-- Start header -->
-<header class="top-navbar">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="../../../../static/images/logo.png" alt="" style="width: 120px;"/>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food"
-                    aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbars-rs-food">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'Index' %}">Home</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="/menu/">Katalogoa</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/about/">About Gu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact/">Kontaktua</a></li>
-                    <li class="nav-item" id="loginVisible" style="display: none;"><a class="nav-link" href="/login/">Hasi
-                        Saioa</a></li>
-                    <button style="padding: 0;border: none;background: transparent;"
-                            onclick="erosi(Saskia.retrieve(), true)">
-                        <li class="nav-item" id="karritoa" style="display: none;"><a class="nav-link" href="#">Erosi</a>
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="index.html">
+					<img src="../../../../static/images/logo.png" alt="" style="width: 120px;"/>
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto align-items-center">
+						<li class="nav-item"><a class="nav-link" href="{% url 'Index' %}">Home</a></li>
+						<li class="nav-item active"><a class="nav-link" href="/menu/">Katalogoa</a></li>
+						<li class="nav-item"><a class="nav-link" href="/about/">About Gu</a></li>
+						<li class="nav-item"><a class="nav-link" href="/contact/">Kontaktua</a></li>
+						<li class="nav-item" id="loginVisible" style="display: none;"><a class="nav-link" href="/login/">Hasi Saioa</a></li>
+						<li class="nav-item" id="logoff" style="display: none;"><a class="nav-link" href="#" onclick="logoff()">Log Off</a></li>
+                        <li class="nav-item" id="karritoa" onclick="erosi(Saskia.retrieve(), true)">
+                                <img src="../../../../static/images/cart-icon-cookie-hover.png"  class="nav-link cookie-image-hover" height="80" width="100" alt="Card Back">
+                                <img src="../../../../static/images/cart-icon-cookie.png"  class="nav-link cookie-image" height="80" width="100" alt="Card Front">
                         </li>
-                    </button>
-                    <li class="nav-item" id="logoff" style="display: none;"><a class="nav-link" href="#"
-                                                                               onclick="logoff()">Log Off</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-<!-- End header -->
+					</ul>
+				</div>
+			</div>
+
+		</nav>
+	</header>
+	<!-- End header -->
 
 <!-- Start All Pages -->
 <div class="all-page-title page-breadcrumb">
@@ -231,45 +239,327 @@
 </div>
 <!-- End Contact info -->
 
-<!-- Start Footer -->
-<footer class="footer-area bg-f">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <h3>Guri buruz</h3>
-                <p>DAW2-ko 4 taldea gara. Erronka moduan sortu dugu web orrialde hau. Erronkaren helburua janari denda
-                    online bat prestatzea da.</p>
+    <!-- Karritoa -->
+
+    <div id="cartContainer" class="karritoa-container">
+        <h1 style="float: left;">Karritoa</h1>
+        <img id="btnCloseCart" style="float:right; width: 24px; height: 24px;" src="../../../../static/images/x.png">
+        <br>
+        <br>
+        <div id="style-10" class="produktuak-container">
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <h3>Sare Sozialak</h3>
-                <ul class="list-inline f-social">
-                    <li class="list-inline-item"><a href="https://www.facebook.com/"><i class="fa fa-facebook"
-                                                                                        aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="https://twitter.com/"><i class="fa fa-twitter"
-                                                                                   aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"
-                                                                                        aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="https://www.google.es/"><i class="fa fa-google-plus"
-                                                                                     aria-hidden="true"></i></a></li>
-                    <li class="list-inline-item"><a href="https://www.instagram.com/"><i class="fa fa-instagram"
-                                                                                         aria-hidden="true"></i></a>
-                    </li>
-                </ul>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <h3>Kontaktu informazioa</h3>
-                <p class="lead">Otaola Hiribidea, 29, 20600 Eibar, Gipuzkoa</p>
-                <p class="lead"><a href="tel:+34 943 89 92 11">+34 943 89 92 11</a></p>
-                <p><a href="#"> idazkaritza@uni.eus</a></p>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <h3>Ordutegia</h3>
-                <p><span class="text-color">Astelehenetik-Ostiralera: </span>9:00 - 22:00 </p>
-                <p><span class="text-color">Larunbata:</span> 9:00 - 00:00</p>
-                <p><span class="text-color">Igandea:</span> Itxita</p>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div><div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div><div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
+                    <p class="produktu-prezioa">9,99€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
             </div>
         </div>
+        <br>
+        <div id="cartTotal" class="cartTotal">
+            <h2 style="float:left;">Total</h2>
+            <p style="float:right; font-size: 16px;" class="produktu-prezioa">19,98€</p>
+        </div>
+        <br>
+        <br>
+         <form>
+            <label for="party">Zehaztu ezazu entregatze data:</label>
+            <input id="datefield" type="datetime-local" name="datefield" min="2017-06-01T08:30" class="datetimepicker">
+          </form>
+        <br>
+        <button type="submit" name="btnSendCart" class="btnSendCart">EROSI</button>
     </div>
+
+    <!-- End Karritoa -->
+
+	<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<h3>Guri buruz</h3>
+					<p>DAW2-ko 4 taldea gara. Erronka moduan sortu dugu web orrialde hau. Erronkaren helburua janari denda online bat prestatzea da.</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Sare Sozialak</h3>
+					<ul class="list-inline f-social">
+						<li class="list-inline-item"><a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.linkedin.com/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.google.es/"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="https://www.instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Kontaktu informazioa</h3>
+					<p class="lead">Otaola Hiribidea, 29, 20600 Eibar, Gipuzkoa</p>
+					<p class="lead"><a href="tel:+34 943 89 92 11">+34 943 89 92 11</a></p>
+					<p><a href="#"> idazkaritza@uni.eus</a></p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>Ordutegia</h3>
+					<p><span class="text-color">Astelehenetik-Ostiralera: </span>9:00 - 22:00	</p>
+					<p><span class="text-color">Larunbata:</span> 9:00 - 00:00</p>
+					<p><span class="text-color">Igandea:</span> Itxita</p>
+				</div>
+			</div>
+		</div>
+
 
     <div class="copyright">
         <div class="container">
