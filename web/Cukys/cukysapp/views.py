@@ -42,7 +42,7 @@ def register_list(request):
             'Onartu ezkero, guk implementatu ditzakegu aldaketak, eta zure '
             'hatza egongo da gure web orrian!',
             'noreply@erronka21.com',
-            (form.data['emaila'], ),
+            [form.data['emaila']],
             fail_silently = True
         )
         return redirect(index_list)
