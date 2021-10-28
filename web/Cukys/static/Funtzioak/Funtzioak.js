@@ -1,3 +1,32 @@
+const targetDiv = document.getElementById("cartContainer");
+const btn = document.getElementById("karritoa");
+const image = document.getElementById("btnCloseCart");
+image.addEventListener("click", animate, false);
+
+$( btn ).click(function() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+    if(dd<10){
+      dd='0'+dd
+    }
+    if(mm<10){
+      mm='0'+mm
+    }
+
+    today = yyyy+'-'+mm+'-'+dd+'T00:00';
+    document.getElementById("datefield").setAttribute("min", today);
+    $(targetDiv).animate({right: '0px'});
+});
+
+function animate() {
+  $(targetDiv).animate({right: '-30%'});
+}
+
+
+
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -303,4 +332,5 @@ window.addEventListener("DOMContentLoaded", function() {
             karrito.style.display = "block"
         }
     }});
+
 
