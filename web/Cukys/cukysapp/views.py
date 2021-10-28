@@ -43,7 +43,7 @@ def register_list(request):
             'hatza egongo da gure web orrian!',
             'noreply@erronka21.com',
             [form.data['emaila']],
-            fail_silently = True
+            fail_silently = False
         )
         return redirect(index_list)
 
