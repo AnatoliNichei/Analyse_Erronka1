@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import importlib
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,10 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'import_export',
     'cukysapp',
     'apiapp',
 ]
+if importlib.find_loader('import_export') is not None:
+    INSTALLED_APPS.append('import_export')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

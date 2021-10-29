@@ -32,6 +32,6 @@ try:
     admin.site.register(Mota, MotaAdmin)
     admin.site.register(Produktua, ProduktuaAdmin)
     admin.site.register(Eskaera, EskaeraAdmin)
-except:
+except ModuleNotFoundError:
     pass
 
