@@ -1,13 +1,9 @@
 from django.contrib import admin
 from .models import *
-found = True
 try:
     from import_export.admin import ImportExportModelAdmin
-except ImportError:
-    found = False
 
 # Register your models here.
-if found:
 
     class BezeroaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         ...
@@ -35,4 +31,5 @@ if found:
     admin.site.register(Mota, MotaAdmin)
     admin.site.register(Produktua, ProduktuaAdmin)
     admin.site.register(Eskaera, EskaeraAdmin)
-
+except ModuleNotFoundError:
+    pass
