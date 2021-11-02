@@ -5,9 +5,6 @@ from django.core.mail import send_mail
 
 
 def index_list(request):
-    #posts=Post.objects.filter(slug="ez")
-    # posts = Post.objects.all()
-   # return render(request,'../templates/blog/post_list.html',{'posts':posts})
     return render(request, 'cukys/index.html')
 
 
@@ -19,8 +16,17 @@ def kontaktua_list(request):
     return render(request, 'cukys/contact.html')
 
 
+def menu_list_parametro(request,motaid=None):
+    if motaid == None:
+        products = Produktua.objects.all()
+        return render(request, 'cukys/menu.html/index.html', {'products': products})
+    else:
+        products = Produktua.objects.filter(mota=motaid)
+        return render(request,'cukys/menu.html/index.html', {'products': products})
+
+
 def menu_list(request):
-    products = Produktua.objects.filter(mota=1)
+    products = Produktua.objects.all()
     return render(request, 'cukys/menu.html/index.html', {'products': products})
 
 

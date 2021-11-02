@@ -103,21 +103,21 @@
         <div class="row inner-menu-box">
             <div class="col-3">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
+                    <a class="nav-link" id="menu" href="/menu/"
                        aria-controls="v-pills-home" aria-selected="true">Guztiak</a>
-                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
-                       aria-controls="v-pills-profile" aria-selected="false">Txokolate</a>
-                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
-                       aria-controls="v-pills-messages" aria-selected="false">Sinple</a>
-                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
-                       aria-controls="v-pills-settings" aria-selected="false">Fruta</a>
+                    <a class="nav-link" id="v-pills-profile-tab" href="/menu/3"
+                       aria-controls="v-pills-profile">Txokolate</a>
+                    <a class="nav-link" id="v-pills-messages-tab" href="/menu/2"
+                       aria-controls="v-pills-messages">Sinple</a>
+                    <a class="nav-link" id="v-pills-settings-tab" href="/menu/1"
+                       aria-controls="v-pills-settings">Fruta</a>
                 </div>
             </div>
 
             <div class="col-9" id="datuak"/>
             {% for product in products %}
                 <p>{{ product.izena }}</p>
-                <img src="{{ product.irudia }}">
+                <img src="{{ product.irudia}}">
             {% endfor %}
         </div>
     </div>
