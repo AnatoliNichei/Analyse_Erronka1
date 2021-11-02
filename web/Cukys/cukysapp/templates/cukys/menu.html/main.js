@@ -1,4 +1,4 @@
-window.addEventListener("load", () => {
+/* window.addEventListener("load", () => {
     document.querySelectorAll(".erosi").forEach((botoi) => {
         botoi.addEventListener("click", (evt) => {
             if (confirm("Gehitu karritora?")) {
@@ -11,3 +11,4 @@ window.addEventListener("load", () => {
         }, false)
     })
 }, false)
+*/
