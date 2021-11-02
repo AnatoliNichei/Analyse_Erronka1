@@ -20,7 +20,7 @@ def kontaktua_list(request):
 
 
 def menu_list(request):
-    products = Produktua.objects.all()
+    products = Produktua.objects.filter(mota=1)
     return render(request, 'cukys/menu.html/index.html', {'products': products})
 
 
