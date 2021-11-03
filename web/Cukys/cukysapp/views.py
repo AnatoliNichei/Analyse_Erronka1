@@ -23,7 +23,7 @@ def menu_list_parametro(request,motaid=None):
     user = request.user if request.user.is_authenticated else None
     if motaid == None:
         products = Produktua.objects.all()
-        return render(request, 'cukys/menu.html/index.html', {'products': products})
+        return render(request, 'cukys/menu.html/index.html', {"user": user, 'products': products})
     else:
         products = Produktua.objects.filter(mota=motaid)
         return render(request,'cukys/menu.html/index.html', {"user": user, 'products': products})
