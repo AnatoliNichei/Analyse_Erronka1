@@ -1489,6 +1489,30 @@ blockquote {
 	border-bottom: 2px solid #966431;
 }
 
+.prezioaLbl{
+	background-color: #D3A16B;
+	color:white;
+	width: 100%;
+}
+
+.prezioaLbl:hover{
+	background-color: #966431;
+	border: 2px solid #966431;
+	color:white;
+}
+
+
+.btnGehituKarritora{
+	background-color: #4F2F01;
+	color:white;
+	width: 100%;
+}
+
+.btnGehituKarritora:hover{
+	background-color: #351F01;
+	border: 2px solid #351F01;
+	color:white;
+}
 
 
 

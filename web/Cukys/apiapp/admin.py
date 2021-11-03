@@ -27,11 +27,11 @@ try:
 
 
 
-    admin.site.register(Bezeroa, BezeroaAdmin)
-    admin.site.register(Saskia, SaskiaAdmin)
-    admin.site.register(Mota, MotaAdmin)
-    admin.site.register(Produktua, ProduktuaAdmin)
-    admin.site.register(Eskaera, EskaeraAdmin)
+    #admin.site.register(Bezeroa, BezeroaAdmin)
+    #admin.site.register(Saskia, SaskiaAdmin)
+    #admin.site.register(Mota, MotaAdmin)
+    #admin.site.register(Produktua, ProduktuaAdmin)
+    #admin.site.register(Eskaera, EskaeraAdmin)
 except ModuleNotFoundError:
     pass
 
