@@ -21,4 +21,5 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url('', include('cukysapp.urls')),
     url('', include('django.contrib.auth.urls')),
+    url('apis/', include('apiapp.urls'))
 ]
