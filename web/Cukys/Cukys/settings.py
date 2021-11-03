@@ -146,3 +146,4 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'NoReply <noreply@erronka21.com>'
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
