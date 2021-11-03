@@ -314,23 +314,3 @@ function logeatu(){
     return false
 }
 
-
-window.addEventListener("DOMContentLoaded", function() {
-
-    if(getCookie('username') !== ""){
-        document.querySelector("#loginVisible").style.display = "none"
-        document.querySelector("#logoff").style.display = "block"
-        let karrito = document.querySelector("#karritoa")
-        if (karrito !== null) {
-            karrito.style.display = "block"
-        }
-    }else{
-        document.querySelector("#loginVisible").style.display = "block"
-        document.querySelector("#logoff").style.display = "none"
-        let karrito = document.querySelector("#karritoa")
-        if (karrito !== null) {
-            karrito.style.display = "block"
-        }
-    }});
-
-

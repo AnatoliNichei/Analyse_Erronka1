@@ -46,23 +46,3 @@ class Saskia {
 
 }
 
-$(document).ready(function() {
-
-    if($.cookie("username") === null){
-        $("#loginVisible").css("display", "none")
-        $("#logoff").css("display", "block")
-        let karrito = $("#karritoa")
-        if (karrito !== null) {
-            karrito.css("display", "block")
-        }
-    }else{
-        $("#loginVisible").css("display", "block")
-        $("#logoff").css("display", "none")
-        let karrito = $("#karritoa")
-        if (karrito !== null) {
-            karrito.css("display", "block")
-        }
-    }});
-
-
-
