@@ -38,7 +38,7 @@ def register_list(request):
     form = FormRegisterForm(request.POST or None)
     if form.is_valid():
         form.save()
-        send_mail(
+        """send_mail(
             'Ongi Etorri',
             '''Eskerrik asko Cukys kontu bat sortzeagatik. Hau bezero berriei
             bidalitako mezua da, esateko gure web orriaren kodigoa hurrengo
@@ -52,7 +52,7 @@ def register_list(request):
             'noreply@erronka21.com',
             [form.data['emaila']],
             fail_silently=False
-        )
+        )"""
         return redirect(index_list)
 
     context = {'form': form}
