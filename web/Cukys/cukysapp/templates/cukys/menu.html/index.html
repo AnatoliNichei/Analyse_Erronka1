@@ -115,10 +115,35 @@
             </div>
 
             <div class="col-9" id="datuak"/>
-            {% for product in products %}
-                <p>{{ product.izena }}</p>
-                <img src="{{ product.irudia}}">
-            {% endfor %}
+
+
+
+            <div class="d-flex align-content-around flex-wrap">
+
+                {% for product in products %}
+
+                     <div class="col-lg-4 mb-3 d-flex align-items-stretch ">
+                        <div class="card">
+                            <img class="card-img-top" src="{{ product.irudia}}" alt="Card image cap">
+                            <div class="card-body align-items-end flex-column">
+                                <h4 class="card-title"><a href="product.html" title="View Product">{{ product.izena }}</a></h4>
+                                <p class="card-text mb-4">{{ product.iruzkina }}</p>
+
+                            </div>
+                            <div class="row align-self-end p-2 mt-auto">
+                                    <div class="col">
+                                        <p class="btn mt-auto prezioaLbl">{{ product.prezioa }}€</p>
+                                    </div>
+                                    <div class="col align-self-end">
+                                        <a href="#" class="btn mt-auto btnGehituKarritora">Add to cart</a>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                <br/>
+                {% endfor %}
+
+            </div>
         </div>
     </div>
 </div>
