@@ -62,10 +62,10 @@
 						<li class="nav-item active"><a class="nav-link" href="/menu/">Katalogoa</a></li>
 						<li class="nav-item"><a class="nav-link" href="/about/">About Gu</a></li>
 						<li class="nav-item"><a class="nav-link" href="/contact/">Kontaktua</a></li>
-						<li class="nav-item"{% if user is None %} style="display:none;"{% endif %} id="loginVisible"><a class="nav-link" href="/login/">Hasi Saioa</a></li>
+						<li class="nav-item"{% if user is not None %} style="display:none;"{% endif %} id="loginVisible"><a class="nav-link" href="/login/">Hasi Saioa</a></li>
 						<!--<li class="nav-item" id="karritoa"><a class="nav-link" href="login.html">Karritoa</a></li>
 						-->
-						<li class="nav-item"{% if user is not None %} style="display:none;"{% endif %} id="logoff"><a class="nav-link" href="/logout/">Log Off</a></li>
+						<li class="nav-item"{% if user is None %} style="display:none;"{% endif %} id="logoff"><a class="nav-link" href="/logout/">Log Off</a></li>
                         <li class="nav-item" id="karritoa" onclick="erosi(Saskia.retrieve(), true)">
                                 <img src="../../../../static/images/cart-icon-cookie-hover.png"  class="nav-link cookie-image-hover" height="80" width="100" alt="Card Back">
                                 <img src="../../../../static/images/cart-icon-cookie.png"  class="nav-link cookie-image" height="80" width="100" alt="Card Front">

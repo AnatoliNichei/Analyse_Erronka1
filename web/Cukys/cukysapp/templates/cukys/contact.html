@@ -53,10 +53,10 @@
 						<li class="nav-item"><a class="nav-link" href="/about/">About Gu</a></li>
 						<li class="nav-item active"><a class="nav-link" href="/contact/">Kontaktua</a></li>
 						<li class="nav-item" id="loginVisible"><a class="nav-link" href="/login/">Hasi Saioa</a></li>
-						<li class="nav-item"{% if user is None %} style="display:none;"{% endif %} id="loginVisible"><a class="nav-link" href="/login/">Hasi Saioa</a></li>
+						<li class="nav-item"{% if user is not None %} style="display:none;"{% endif %} id="loginVisible"><a class="nav-link" href="/login/">Hasi Saioa</a></li>
 						<!--<li class="nav-item" id="karritoa"><a class="nav-link" href="login.html">Karritoa</a></li>
 						-->
-						<li class="nav-item"{% if user is not None %} style="display:none;"{% endif %} id="logoff"><a class="nav-link" href="/logout/">Log Off</a></li>
+						<li class="nav-item"{% if user is None %} style="display:none;"{% endif %} id="logoff"><a class="nav-link" href="/logout/">Log Off</a></li>
 					</ul>
 				</div>
 			</div>
