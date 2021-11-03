@@ -1,32 +1,3 @@
-const targetDiv = document.getElementById("cartContainer");
-const btn = document.getElementById("karritoa");
-const image = document.getElementById("btnCloseCart");
-image.addEventListener("click", animate, false);
-
-$( btn ).click(function() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1;
-    var yyyy = today.getFullYear();
-    if(dd<10){
-      dd='0'+dd
-    }
-    if(mm<10){
-      mm='0'+mm
-    }
-
-    today = yyyy+'-'+mm+'-'+dd+'T00:00';
-    document.getElementById("datefield").setAttribute("min", today);
-    $(targetDiv).animate({right: '0px'});
-});
-
-function animate() {
-  $(targetDiv).animate({right: '-30%'});
-}
-
-
-
-
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -77,12 +48,7 @@ function existsBasket() {
 function checkUser() {
     let user = getCookie("username");
     if (user === "") {
-        user = document.getElementById("erabiltzailea");
-        if (user === null) {
-            user = prompt("Sartu erabiltzailea:")
-        } else {
-            user = user.value
-        }
+        user = document.getElementById("erabiltzailea").value;
         setUser(user);
     }
     return user
@@ -91,7 +57,7 @@ function checkUser() {
 function erabiltzaileaBaieztatu(erabiltzailea) {
     let kontuak;
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "../users.py", false);
+    xhttp.open("GET", "users.py", false);
     xhttp.send();
     kontuak = JSON.parse(xhttp.responseText)
     for (let i = 0; i < kontuak.length; i++) {
@@ -131,15 +97,9 @@ class Saskia {
             logoff()
             return null
         }
-        let pasahitza = document.getElementById("pasahitza")
-        if (pasahitza === null) {
-            pasahitza = prompt("Sartu pasahitza:")
-        } else {
-            pasahitza = pasahitza.value
-        }
-        let id = new Identifikazioa(erabiltzailea, pasahitza);
+        let id = new Identifikazioa(erabiltzailea, document.getElementById("pasahitza").value);
         let xhttp = new XMLHttpRequest()
-        xhttp.open("POST", "../saskia_gehitu.py", false);
+        xhttp.open("POST", "saskia_gehitu.py", false);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("u=" + JSON.stringify(id) + "&s=" + JSON.stringify(this));
         if (!JSON.parse(xhttp.responseText)[0]) {
@@ -193,7 +153,7 @@ class Bezeroa {
             let response = JSON.parse(xhttp.responseText)
             setUser(response[0])
         }
-        xhttp.open("POST", "../erabiltzailea_gehitu.py");
+        xhttp.open("POST", "erabiltzailea_gehitu.py");
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("s=" + JSON.stringify(this));
     }
@@ -208,8 +168,8 @@ function loadXMLDoc(filename)
 }
 
 function sartuTaula(taulaId) {
-    let xml = loadXMLDoc("../xml/produktuak.py");
-    let xsl = loadXMLDoc("../xml/produktuak.xsl");
+    let xml = loadXMLDoc("xml/produktuak.py");
+    let xsl = loadXMLDoc("xml/produktuak.xsl");
     let xsltProcessor = new XSLTProcessor();
     xsltProcessor.importStylesheet(xsl);
     let resultDocument = xsltProcessor.transformToFragment(xml, document);
@@ -233,7 +193,7 @@ function erosketa(deskontua){
 
 function erosi(saskia, deskontua){
 
-    let xml = loadXMLDoc("../xml/produktuak.py")
+    let xml = loadXMLDoc("xml/produktuak.py")
     let produktuak = xml.getElementsByTagName("produktua")
     for (let i = 0; i < saskia.erosketak.length; ++i) {
         for (let j = 0, produktu = produktuak[j]; j < produktuak.length; produktu = produktuak[++j]) {
@@ -264,32 +224,26 @@ function erosi(saskia, deskontua){
 
     ticket += "\nPrezio totala " + prezio_final + " € da"
 
-    if (!confirm("Onartu erosketa?" + ticket)) {
-        saskia = new Saskia()
-        saskia.save()
-        alert("Karritoa husten...")
-        return
-    }
+    confirm("Onartu erosketa?" + ticket)
 
     let kodea = saskia.igo()
     if (kodea === null) {
         saskia = new Saskia()
         saskia.save()
-        alert("Karritoa husten...")
-        return
+        return "Karritoa husten..."
     }
 
     saskia = new Saskia()
     saskia.save()
-    alert("Zure saski kodea " + kodea + " da.")
-    return
+
+    return "Zure saski kodea " + kodea + " da."
 
 }
 
 function logeatu(){
     let kontuak;
     let xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "../users.py", false);
+    xhttp.open("GET", "users.py", false);
     xhttp.send();
     kontuak = JSON.parse(xhttp.responseText)
     for (let i = 0; i < kontuak.length; i++) {
@@ -297,7 +251,7 @@ function logeatu(){
         if (kontuak[i] === erabiltzaile) {
             let id = new Identifikazioa(erabiltzaile, document.getElementById("pasahitza").value);
             xhttp = new XMLHttpRequest()
-            xhttp.open("POST", "../erabiltzaileaKonprobatu.py", false);
+            xhttp.open("POST", "erabiltzaileaKonprobatu.py", false);
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("u=" + JSON.stringify(id));
             if (!JSON.parse(xhttp.responseText)[0]) {
@@ -313,4 +267,24 @@ function logeatu(){
     alert("Erabiltzaile okerra!")
     return false
 }
+
+window.addEventListener("DOMContentLoaded", function() {
+
+    if(getCookie('username') !== ""){
+        document.querySelector("#loginVisible").style.display = "none"
+        document.querySelector("#logoff").style.display = "block"
+        let karrito = document.querySelector("#karritoa")
+        if (karrito !== null) {
+            karrito.style.display = "block"
+        }
+    }else{
+        document.querySelector("#loginVisible").style.display = "block"
+        document.querySelector("#logoff").style.display = "none"
+        let karrito = document.querySelector("#karritoa")
+        if (karrito !== null) {
+            karrito.style.display = "block"
+        }
+    }});
+
+
 
