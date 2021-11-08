@@ -24,6 +24,10 @@ function animate() {
   $(targetDiv).animate({right: '-30%'});
 }
 
+function showMota(motaIzena){
+    $('.galletaGuztiak').hide();
+    $('.' + motaIzena).show();
+}
 
 
 

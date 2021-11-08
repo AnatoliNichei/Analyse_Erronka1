@@ -32,7 +32,8 @@ def menu_list_parametro(request,motaid=None):
 def menu_list(request):
     user = request.user if request.user.is_authenticated else None
     products = Produktua.objects.all()
-    return render(request, 'cukys/menu.html/index.html', {"user": user, 'products': products})
+    motak = Mota.objects.all()
+    return render(request, 'cukys/menu.html/index.html', {"user": user, 'products': products, 'motak': motak})
 
 
 def login_list(request):
