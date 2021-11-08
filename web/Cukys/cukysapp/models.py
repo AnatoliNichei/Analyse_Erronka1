@@ -60,9 +60,10 @@ class Produktua (models.Model):
     class Meta:
         verbose_name_plural = "Produktuak"
 
+
 class Eskaera (models.Model):
-    produktu_kodea = models.ForeignKey(Produktua,on_delete=models.CASCADE)
-    saski_kodea = models.ForeignKey(Saskia,on_delete=models.CASCADE)
+    produktu_kodea = models.ForeignKey(Produktua, on_delete=models.CASCADE)
+    saski_kodea = models.ForeignKey(Saskia, on_delete=models.CASCADE)
     kantitatea = models.IntegerField
 
     def __str__(self):
@@ -72,4 +73,7 @@ class Eskaera (models.Model):
         verbose_name_plural = "Eskaerak"
 
 
-
+class Puntuazioa(models.Model):
+    produktu_kodea = models.ForeignKey(Produktua, on_delete=models.CASCADE)
+    erabiltzailea = models.ForeignKey(User, on_delete=models.CASCADE)
+    puntuazioa = models.PositiveSmallIntegerField(choices=[1,2,3,4,5])
