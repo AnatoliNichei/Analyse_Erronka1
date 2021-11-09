@@ -6,6 +6,6 @@ urlpatterns = [
     url('about/',views.aboutgu_list),
     url('contact/',views.kontaktua_list),
 #    url('login/',views.login_list),
-    url('register/',views.register_list),
+    url('register/',views.register_list, name="Register"),
     url('menu/',views.menu_list, name="Filter")
 ]
