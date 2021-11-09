@@ -24,6 +24,9 @@ try:
     class EskaeraAdmin(ImportExportModelAdmin, admin.ModelAdmin):
         ...
 
+    class PuntuazioaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+        ...
+
 
 
     admin.site.register(Bezeroa, BezeroaAdmin)
@@ -31,5 +34,6 @@ try:
     admin.site.register(Mota, MotaAdmin)
     admin.site.register(Produktua, ProduktuaAdmin)
     admin.site.register(Eskaera, EskaeraAdmin)
+    admin.site.register(Puntuazioa, PuntuazioaAdmin)
 except ModuleNotFoundError:
     pass
