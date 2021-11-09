@@ -50,7 +50,7 @@ def register_list(request):
             [form.data['emaila']],
             fail_silently=False
         )"""
-        return redirect(index_list)
+        return redirect("/login/")
 
     context = {'form': form}
 
