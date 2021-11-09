@@ -83,3 +83,6 @@ class Puntuazioa(models.Model):
     produktu_kodea = models.ForeignKey(Produktua, on_delete=models.CASCADE)
     erabiltzailea = models.ForeignKey(User, on_delete=models.CASCADE)
     puntuazioa = [(x, x) for x in range(6)]
+
+    class Meta:
+        verbose_name_plural = "Puntuazioak"
