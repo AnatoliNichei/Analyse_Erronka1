@@ -14,6 +14,12 @@ class Bezeroa (models.Model):
     nan = models.CharField(max_length=9)
     #pasahitza = models.CharField(max_length=255)
     #emaila = models.EmailField()
+    antzeko = models.ManyToManyField(
+            'self',
+            related_name="is_antzeko_to",
+            symmetrical=False,
+            blank=True
+    )
 
     def __str__(self):
         return self.izena
@@ -53,12 +59,6 @@ class Produktua (models.Model):
     irudia = models.CharField(max_length=255)
     iruzkina = models.CharField(max_length=255)
     mota = models.ManyToManyField(Mota)
-    antzeko = models.ManyToManyField(
-            'self',
-            related_name="is_antzeko_to",
-            symmetrical=False,
-            blank=True
-    )
 
     def __str__(self):
         return self.izena
