@@ -8,5 +8,5 @@ urlpatterns = [
 #    url('login/', views.login_list),
     url('register/', views.register_list),
     url('menu/', views.menu_list, name="Filter"),
-    url('redo-distances/', views.update_product_similarities, name="simils"),
+    url('update-similarities/', views.update_rels)
 ]
