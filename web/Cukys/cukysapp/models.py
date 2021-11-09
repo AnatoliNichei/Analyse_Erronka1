@@ -82,4 +82,4 @@ class Eskaera (models.Model):
 class Puntuazioa(models.Model):
     produktu_kodea = models.ForeignKey(Produktua, on_delete=models.CASCADE)
     erabiltzailea = models.ForeignKey(User, on_delete=models.CASCADE)
-    puntuazioa = models.PositiveSmallIntegerField(null=True)
+    puntuazioa = [(x, x) for x in range(6)]

@@ -6,8 +6,8 @@ def sparse_vector_dot(a: dict, b: dict) -> float:
 
 
 def get_vector(v: tuple) -> dict:
-    return {key: value - 3 for key, value in enumerate(v)
-            if value and value - 3}
+    return {key: value / 2.5 - 1 for key, value in enumerate(v)
+            if value and value - 2.5}
 
 
 def cosine_similarity(v1: {int: float}, v2: {int: float}) -> float:
