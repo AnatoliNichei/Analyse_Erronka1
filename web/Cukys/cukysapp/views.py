@@ -19,16 +19,6 @@ def kontaktua_list(request):
     return render(request, 'cukys/contact.html', {"user": user})
 
 
-def menu_list_parametro(request, motaid=None):
-    user = request.user if request.user.is_authenticated else None
-    if motaid is None:
-        products = Produktua.objects.all()
-        return render(request, 'cukys/menu.html/index.html', {"user": user, 'products': products})
-    else:
-        products = Produktua.objects.filter(mota=motaid)
-        return render(request,'cukys/menu.html/index.html', {"user": user, 'products': products})
-
-
 def menu_list(request):
     user = request.user if request.user.is_authenticated else None
     products = Produktua.objects.all()
@@ -64,8 +54,3 @@ def register_list(request):
     context = {'form': form}
 
     return render(request, 'cukys/register.html', context)
-
-
-def update_product_similarities():
-    """ TO DO """
-    pass
