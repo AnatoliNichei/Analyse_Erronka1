@@ -25,7 +25,12 @@ try:
         ...
 
 
+    class BalorazioaAdmin(ImportExportModelAdmin, admin.ModelAdmin):
+        ...
 
+
+
+    admin.site.register(Puntuazioa, BalorazioaAdmin)
     admin.site.register(Bezeroa, BezeroaAdmin)
     admin.site.register(Saskia, SaskiaAdmin)
     admin.site.register(Mota, MotaAdmin)
