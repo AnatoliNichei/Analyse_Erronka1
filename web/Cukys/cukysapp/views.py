@@ -1,7 +1,8 @@
-from django.shortcuts import render,get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from cukysapp.models import *
 from .forms import FormRegisterForm
 from django.core.mail import send_mail
+from cukysapp import funtzioak
 
 
 def index_list(request):
@@ -17,6 +18,7 @@ def aboutgu_list(request):
 def kontaktua_list(request):
     user = request.user if request.user.is_authenticated else None
     return render(request, 'cukys/contact.html', {"user": user})
+
 
 def menu_list(request):
     user = request.user if request.user.is_authenticated else None
@@ -53,3 +55,8 @@ def register_list(request):
     context = {'form': form}
 
     return render(request, 'cukys/register.html', context)
+
+
+def update_rels(request):
+    funtzioak.update_product_similarities()
+    return redirect(index_list)
