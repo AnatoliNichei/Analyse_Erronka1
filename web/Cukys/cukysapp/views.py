@@ -3,6 +3,7 @@ from cukysapp.models import *
 from .forms import FormRegisterForm
 from django.core.mail import send_mail
 from cukysapp import funtzioak
+from django.http import Http404
 
 
 def index_list(request):
@@ -60,3 +61,19 @@ def register_list(request):
 def update_rels(request):
     funtzioak.update_product_similarities()
     return redirect(index_list)
+
+
+def recieve_message(request):
+    try:
+        send_mail(
+            f'Message from {request.POST["izena"]}',
+            f'izena: {request.POST["izena"]}\n'
+            f'emaila: {request.POST["emaila"]}\n'
+            '\n'
+            f'{request.POST["mezua"]}',
+            'kontaktua@erronka21.com',
+            'admin@erronka21.com',
+            fail_silently=False,
+        )
+    except:
+        raise Http404
