@@ -64,16 +64,17 @@ def update_rels(request):
 
 
 def recieve_message(request):
-    try:
-        send_mail(
-            f'Message from {request.POST["izena"]}',
-            f'izena: {request.POST["izena"]}\n'
-            f'emaila: {request.POST["emaila"]}\n'
-            '\n'
-            f'{request.POST["mezua"]}',
-            'kontaktua@erronka21.com',
-            'admin@erronka21.com',
-            fail_silently=False,
-        )
-    except:
-        raise Http404
+#    try:
+    send_mail(
+        f'Message from {request.POST["izena"]}',
+        f'izena: {request.POST["izena"]}\n'
+        f'emaila: {request.POST["emaila"]}\n'
+        '\n'
+        'mezua:'
+        f'{request.POST["mezua"]}',
+        'infocukys@gmail.com',
+        ('infocukys@gmail.com',),
+        fail_silently=False,
+    )
+#    except:
+#        raise Http404(f'{request.POST["izena"]};\n{request.POST["emaila"]};\n{request.POST["mezua"]}')
