@@ -138,12 +138,11 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = '127.0.0.1'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'infocukys@gmail.com'
+EMAIL_HOST_PASSWORD = 'cukys_1234'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'NoReply <noreply@erronka21.com>'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
