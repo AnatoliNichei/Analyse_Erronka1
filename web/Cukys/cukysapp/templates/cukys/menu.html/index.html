@@ -36,12 +36,14 @@
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+<!--    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>-->
+
+
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 
 </head>
 
@@ -66,7 +68,7 @@
 						<!--<li class="nav-item" id="karritoa"><a class="nav-link" href="login.html">Karritoa</a></li>
 						-->
 						<li class="nav-item"{% if user is None %} style="display:none;"{% endif %} id="logoff"><a class="nav-link" href="/logout/">Log Off</a></li>
-                        <li class="nav-item" id="karritoa" onclick="erosi(Saskia.retrieve(), true)">
+                        <li class="nav-item" id="karritoa">
                                 <img src="../../../../static/images/cart-icon-cookie-hover.png"  class="nav-link cookie-image-hover" height="80" width="100" alt="Card Back">
                                 <img src="../../../../static/images/cart-icon-cookie.png"  class="nav-link cookie-image" height="80" width="100" alt="Card Front">
                         </li>
@@ -105,11 +107,11 @@
         <div class="row inner-menu-box">
             <div class="col-3">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link" id="menu" href="/menu/"
+                    <a class="nav-link btnFilter" id="menu" href="/menu/" data-filter="all"
                        aria-controls="v-pills-home" aria-selected="true">Guztiak</a>
 
                     {% for mota in motak %}
-                    <a class="nav-link" id="v-pills-profile-tab" onclick="showMota('{{ mota.izena }}')"
+                    <a class="nav-link filtroGalletak btnFilter" id="v-pills-profile-tab" data-filter="{{ mota.izena }}"
                        aria-controls="v-pills-profile">{{ mota.izena }}</a>
                     {% endfor %}
                 </div>
@@ -122,8 +124,8 @@
             <div class="d-flex align-content-around flex-wrap">
 
                 {% for product in products %}
-                    <div class="galletaGuztiak {% for mota in product.mota.all %} {{ mota.izena }}{% endfor %}">
-                     <div class="col-lg-4 mb-3 d-flex align-items-stretch">
+
+                     <div class="col-lg-4 mb-3 d-flex galletaGuztiak align-items-stretch{% for mota in product.mota.all %} {{ mota.izena }}{% endfor %}">
                         <div class="card">
                             <img class="card-img-top" src="{{ product.irudia}}" alt="Card image cap">
                             <div class="card-body align-items-end flex-column">
@@ -136,13 +138,12 @@
                                         <p class="btn mt-auto prezioaLbl">{{ product.prezioa }}€</p>
                                     </div>
                                     <div class="col align-self-end">
-                                        <a href="#" class="btn mt-auto btnGehituKarritora">Add to cart</a>
+                                        <a href="#" onclick="addToSaskia('{{ product.produktu_kodea }}', 1, '{{ product.izena }}', '{{ product.prezioa }}', '{{ product.irudia }}')" class="btn mt-auto btnGehituKarritora">Add to cart</a>
                                     </div>
                                 </div>
                         </div>
-                    </div>
+                        </div>
                 <br/>
-                    </div>
                 {% endfor %}
 
             </div>
@@ -606,7 +607,8 @@
                                                                            aria-hidden="true"></i></a>
 
 <!-- ALL JS FILES -->
-<script src="../../../../static/Funtzioak/Funtzioak.js"></script>
+    <script src="../../../../static/Funtzioak/FuntzioakKarritoa.js"></script>
+    <script src="../../../../static/Funtzioak/FuntzioakKatalogoa.js"></script>
 <script src="main.js"></script>
 <script> sartuTaula("datuak") </script>
 <script src="../../../../static/js/jquery-3.2.1.min.js"></script>
