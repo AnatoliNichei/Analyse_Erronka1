@@ -3,6 +3,7 @@ from cukysapp.models import *
 from .forms import FormRegisterForm
 from cukysapp import funtzioak
 from pathlib import Path
+from django.http import HttpResponse
 
 
 def index_list(request):
@@ -69,3 +70,4 @@ def recieve_message(request):
                 f'email: {request.POST["emaila"]}\n'
                 'mezua:\n'
                 f'{request.POST["mezua"]}\n\n')
+    return HttpResponse(status=204)
