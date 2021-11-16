@@ -1,36 +1,3 @@
-const targetDiv = document.getElementById("cartContainer");
-const btn = document.getElementById("karritoa");
-const image = document.getElementById("btnCloseCart");
-image.addEventListener("click", animate, false);
-
-$( btn ).click(function() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1;
-    var yyyy = today.getFullYear();
-    if(dd<10){
-      dd='0'+dd
-    }
-    if(mm<10){
-      mm='0'+mm
-    }
-
-    today = yyyy+'-'+mm+'-'+dd+'T00:00';
-    document.getElementById("datefield").setAttribute("min", today);
-    $(targetDiv).animate({right: '0px'});
-});
-
-function animate() {
-  $(targetDiv).animate({right: '-30%'});
-}
-
-function showMota(motaIzena){
-    $('.galletaGuztiak').hide();
-    $('.' + motaIzena).show();
-}
-
-
-
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -118,66 +85,71 @@ class Identifikazioa {
 }
 
 class Erosketa {
-    constructor(produktuKodea, kantitatea) {
-        this.produktua = produktuKodea;
+    constructor(produktua, kantitatea) {
+        this.produktua = produktua;
         this.kantitatea = kantitatea;
     }
 }
 
+class Produktua{
+    constructor(produktuKodea, izena, prezioa, irudia) {
+        this.produktuKodea = produktuKodea;
+        this.izena = izena;
+        this.prezioa = prezioa;
+        this.irudia = irudia;
+    }
+}
 class Saskia {
     constructor(erosketak) {
         this.erosketak = erosketak
     }
-    igo() {
-        let erabiltzailea = checkUser()
-        if (!erabiltzaileaBaieztatu(erabiltzailea)) {
-            alert("Erabiltzailea ez da existitzen. Abortatzen!")
-            logoff()
-            return null
-        }
-        let pasahitza = document.getElementById("pasahitza")
-        if (pasahitza === null) {
-            pasahitza = prompt("Sartu pasahitza:")
-        } else {
-            pasahitza = pasahitza.value
-        }
-        let id = new Identifikazioa(erabiltzailea, pasahitza);
-        let xhttp = new XMLHttpRequest()
-        xhttp.open("POST", "../saskia_gehitu.py", false);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("u=" + JSON.stringify(id) + "&s=" + JSON.stringify(this));
-        if (!JSON.parse(xhttp.responseText)[0]) {
-            alert("Pasahitza okerra!")
-            logoff()
-            return null
-        }
-        return JSON.parse(xhttp.responseText)[1]
-    }
+
     save() {
-        setBasket(this)
+        setCookie("saskia", JSON.stringify(this), 365)
     }
-    static from(json){
-        return Object.assign(new Saskia([]), json);
-    }
+
     static retrieve() {
-        if (existsBasket()) {
-            return Saskia.from(getBasket());
+        if (getCookie("saskia") !== null) {
+            return Object.assign(new Saskia([]), getCookie("saskia"));
         } else {
             return new Saskia([])
         }
     }
 
-    addProduktua(produktuId, kantitatea) {
+    addProduktua(produktuId, kantitatea, izena, prezioa, irudia) {
+
+        alert("aaaaa")
         for (let i = 0; i < this.erosketak.length; ++i) {
-            if (this.erosketak[i].produktua == produktuId) {
+            if (this.erosketak[i].produktua.produktuKodea == produktuId) {
                 this.erosketak[i].kantitatea += kantitatea
                 return
             }
         }
-        this.erosketak.push(new Erosketa(produktuId, kantitatea))
+        this.erosketak.push(new Erosketa(new Produktua(produktuId, izena, prezioa, irudia), kantitatea))
     }
 
 }
+
+function addToSaskia(prodid, kant, izena, prezioa, irudia) {
+    alert("aa")
+    let sask = Saskia.retrieve()
+    alert("aaa")
+    sask.addProduktua(prodid, kant, izena, prezioa, irudia)
+    alert(JSON.stringify(sask))
+    sask.save()
+}
+
+
+function saskiaEtaDatuakSortu() {
+    let saskia = new Saskia([])
+    let add = function(produktuId) {
+        saskia.addProduktua(produktuId, 1)
+    }
+    return add
+}
+
+
+
 
 
 class Bezeroa {
@@ -317,4 +289,8 @@ function logeatu(){
     alert("Erabiltzaile okerra!")
     return false
 }
+
+
+
+
 
