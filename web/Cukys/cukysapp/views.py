@@ -72,7 +72,7 @@ def recieve_message(request):
                     'mezua:\n'
                     f'{request.POST["mezua"]}\n\n')
     except:
-        p = Path('/var/www/Cukys/messages.log')
+        p = Path('/var/www/messages/cukys_messages.log')
         with p.open('a') as f:
             f.write(f'Message from {request.POST["izena"]}\n'
                     f'email: {request.POST["emaila"]}\n'
