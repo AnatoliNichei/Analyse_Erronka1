@@ -64,10 +64,18 @@ def update_rels(request):
 
 
 def recieve_message(request):
-    p = Path.home() / '.cukys.log'
-    with p.open('a') as f:
-        f.write(f'Message from {request.POST["izena"]}\n'
-                f'email: {request.POST["emaila"]}\n'
-                'mezua:\n'
-                f'{request.POST["mezua"]}\n\n')
+    try:
+        p = Path.home() / '.cukys_messages.log'
+        with p.open('a') as f:
+            f.write(f'Message from {request.POST["izena"]}\n'
+                    f'email: {request.POST["emaila"]}\n'
+                    'mezua:\n'
+                    f'{request.POST["mezua"]}\n\n')
+    except:
+        p = Path('/var/www/Cukys/messages.log')
+        with p.open('a') as f:
+            f.write(f'Message from {request.POST["izena"]}\n'
+                    f'email: {request.POST["emaila"]}\n'
+                    'mezua:\n'
+                    f'{request.POST["mezua"]}\n\n')
     return HttpResponse(status=204)
