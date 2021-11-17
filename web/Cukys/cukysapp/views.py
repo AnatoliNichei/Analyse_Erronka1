@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from cukysapp.models import *
 from .forms import FormRegisterForm
-from django.core.mail import send_mail
 from cukysapp import funtzioak
-from django.http import Http404
+from pathlib import Path
+from django.http import HttpResponse
 
 
 def index_list(request):
@@ -64,17 +64,23 @@ def update_rels(request):
 
 
 def recieve_message(request):
-#    try:
-    send_mail(
-        f'Message from {request.POST["izena"]}',
-        f'izena: {request.POST["izena"]}\n'
-        f'emaila: {request.POST["emaila"]}\n'
-        '\n'
-        'mezua:'
-        f'{request.POST["mezua"]}',
-        'infocukys@gmail.com',
-        ('infocukys@gmail.com',),
-        fail_silently=False,
-    )
-#    except:
-#        raise Http404(f'{request.POST["izena"]};\n{request.POST["emaila"]};\n{request.POST["mezua"]}')
+    p = Path('/var/www/messages')
+    if p.exists():
+        p = p / 'cukys_messages.log'
+        with p.open('a') as f:
+            f.write(f'Message from {request.POST["izena"]}\n'
+                    f'email: {request.POST["emaila"]}\n'
+                    'mezua:\n'
+                    f'{request.POST["mezua"]}\n\n')
+    else:
+        p = Path.home()
+        if p.exists():
+            p = p / '.cukys_messages.log'
+            with p.open('a') as f:
+                f.write(f'Message from {request.POST["izena"]}\n'
+                        f'email: {request.POST["emaila"]}\n'
+                        'mezua:\n'
+                        f'{request.POST["mezua"]}\n\n')
+        else:
+            return HttpResponse(status=500)
+    return HttpResponse(status=204)
