@@ -45,6 +45,23 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script id="mytemplate" type="text/template">
+        <div id="style-10" class="produktuak-container">
+            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
+                <div class="crop p-2 ">
+                        <img src="{image}" alt="Cookie">
+                    </div>
+                <div class="p-2">
+                    <p class="produktua-title" id="product"><spam id="unitateak" class="unitateak">x2</spam>{name}</p>
+                    <p class="produktu-prezioa">{price}€</p>
+                </div>
+                <div class="ml-auto p-2">
+                    <img class="x-icon" src="../../../../static/images/x.png">
+                </div>
+            </div>
+        </div>
+    </script>
+
 </head>
 
 <body>
@@ -275,20 +292,7 @@
         <img id="btnCloseCart" style="float:right; width: 24px; height: 24px;" src="../../../../static/images/x.png">
         <br>
         <br>
-        <div id="style-10" class="produktuak-container">
-            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
-                <div class="crop p-2 ">
-                        <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie">
-                    </div>
-                <div class="p-2">
-                    <p class="produktua-title"><spam id="unitateak" class="unitateak">x2</spam> Banana</p>
-                    <p class="produktu-prezioa">9,99€</p>
-                </div>
-                <div class="ml-auto p-2">
-                    <img class="x-icon" src="../../../../static/images/x.png">
-                </div>
-            </div>
-        </div>
+        <div id="KarritoZerrenda"></div>
         <br>
         <div id="cartTotal" class="cartTotal">
             <h2 style="float:left;">Total</h2>

@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61f624fe-b25f-4601-8deb-65f1aa99c1b6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/FuntzioakKarritoa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/FuntzioakKatalogoa.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/Cukys/cukysapp/templates/cukys/menu.html/KarritoTemplate.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Cukys/cukysapp/templates/cukys/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/cukysapp/templates/cukys/contact.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/Cukys/cukysapp/templates/cukys/menu.html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/cukysapp/templates/cukys/menu.html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Cukys/static/Funtzioak.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/Funtzioak.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/Funtzioak.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Cukys/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/FuntzioakKarritoa.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/FuntzioakKarritoa.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +16,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -41,6 +38,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -134,6 +132,7 @@
       <workItem from="1636529086050" duration="636000" />
       <workItem from="1636623662377" duration="5946000" />
       <workItem from="1636973293879" duration="4833000" />
+      <workItem from="1637133617109" duration="1189000" />
     </task>
     <servers />
   </component>
@@ -153,7 +152,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Analyse_Erronka1$runserver.coverage" NAME="runserver Coverage Results" MODIFIED="1636973323637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web/Cukys" />
+    <SUITE FILE_PATH="coverage/Analyse_Erronka1$runserver.coverage" NAME="runserver Coverage Results" MODIFIED="1637059695979" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web/Cukys" />
     <SUITE FILE_PATH="coverage/Analyse_Erronka1$migrate.coverage" NAME="migrate Coverage Results" MODIFIED="1636529736990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web/Cukys" />
     <SUITE FILE_PATH="coverage/Analyse_Erronka1$makemigrations.coverage" NAME="makemigrations Coverage Results" MODIFIED="1636529735484" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/web/Cukys" />
   </component>

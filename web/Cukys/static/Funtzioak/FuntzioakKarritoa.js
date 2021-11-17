@@ -39,6 +39,24 @@ class produktua {
 
 var products = new Object();
 
+var repeatingStructure = $('<div id="style-10" className="produktuak-container"> \
+    <div id="produktuaContainer" className="produktua-container d-flex flex-row align-items-center"> \
+        <div className="crop p-2 "> \
+            <img src="../../../../static/images/Cookie/cashewCookie.png" alt="Cookie"> \
+        </div> \
+        <div className="p-2"> \
+            <p className="produktua-title"> \
+                <spam id="unitateak" className="unitateak">x2</spam> \
+                Banana \
+            </p> \
+            <p className="produktu-prezioa">9,99€</p> \
+        </div> \
+        <div className="ml-auto p-2"> \
+            <img className="x-icon" src="../../../../static/images/x.png"> \
+        </div> \
+    </div> \
+</div>')
+
 function addToSaskia(produktu_kodea, kantitatea, izena, prezioa, irudia) {
     if (produktu_kodea in products) {
         products[produktu_kodea].kantitatea += 1
@@ -49,9 +67,18 @@ function addToSaskia(produktu_kodea, kantitatea, izena, prezioa, irudia) {
         products[produktu_kodea] = product
     }
 
-    var precio = document.getElementsByClassName("produktu-prezioa")
-    precio
     // console.log(JSON.stringify(products))
     alert(JSON.stringify(products))
 
+    for (i = 0; i < products.length; i++){
+        $("#KarritoZerrenda").append($('mytemplate').html());
+        var fieldNameElement = document.getElementById('KarritoZerrenda');
+        fieldNameElement.innerHTML = "My new text!";
+        $({image}).replaceWith(product.irudia)
+        $({price}).replaceWith(product.irudia)
+        $({irudia}).replaceWith(product.irudia)
+    }
 }
+
+
+
