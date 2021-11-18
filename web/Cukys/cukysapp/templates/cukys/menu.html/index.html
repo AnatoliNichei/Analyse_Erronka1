@@ -45,22 +45,22 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <script id="mytemplate" type="text/template">
-        <div id="style-10" class="produktuak-container">
-            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">
-                <div class="crop p-2 ">
-                        <img src="{image}" alt="Cookie">
-                    </div>
-                <div class="p-2">
-                    <p class="produktua-title" id="product"><spam id="unitateak" class="unitateak">x2</spam>{name}</p>
-                    <p class="produktu-prezioa">{price}€</p>
-                </div>
-                <div class="ml-auto p-2">
-                    <img class="x-icon" src="../../../../static/images/x.png">
-                </div>
-            </div>
-        </div>
-    </script>
+<!--    <script id="mytemplate" type="text/template">-->
+<!--        <div id="style-10" class="produktuak-container">-->
+<!--            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">-->
+<!--                <div class="crop p-2 ">-->
+<!--                        <img src="{image}" alt="Cookie">-->
+<!--                    </div>-->
+<!--                <div class="p-2">-->
+<!--                    <p class="produktua-title" id="product"><spam id="unitateak" class="unitateak">x2</spam>{name}</p>-->
+<!--                    <p class="produktu-prezioa">{price}€</p>-->
+<!--                </div>-->
+<!--                <div class="ml-auto p-2">-->
+<!--                    <img class="x-icon" src="../../../../static/images/x.png">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </script>-->
 
 </head>
 
@@ -146,7 +146,7 @@
                         <div class="card">
                             <img class="card-img-top" src="{{ product.irudia}}" alt="Card image cap">
                             <div class="card-body align-items-end flex-column">
-                                <h4 class="card-title"><a href="product.html" title="View Product">{{ product.izena }}</a></h4>
+                                <h4 class="card-title">{{ product.izena }}</h4>
                                 <p class="card-text mb-4">{{ product.iruzkina }}</p>
 
                             </div>
@@ -155,7 +155,7 @@
                                         <p class="btn mt-auto prezioaLbl">{{ product.prezioa }}€</p>
                                     </div>
                                     <div class="col align-self-end">
-                                        <a href="#" onclick="addToSaskia('{{ product.produktu_kodea }}', 1, '{{ product.izena }}', '{{ product.prezioa }}', '{{ product.irudia }}')" class="btn mt-auto btnGehituKarritora">Add to cart</a>
+                                        <button href="#" onclick="addToSaskia('{{ product.produktu_kodea }}', 1, '{{ product.izena }}', '{{ product.prezioa }}', '{{ product.irudia }}')" class="btn mt-auto btnGehituKarritora">Add to cart</button>
                                     </div>
                                 </div>
                         </div>
@@ -292,11 +292,13 @@
         <img id="btnCloseCart" style="float:right; width: 24px; height: 24px;" src="../../../../static/images/x.png">
         <br>
         <br>
-        <div id="KarritoZerrenda"></div>
+        <div id="KarritoZerrenda" class="produktuak-container">
+
+        </div>
         <br>
         <div id="cartTotal" class="cartTotal">
             <h2 style="float:left;">Total</h2>
-            <p style="float:right; font-size: 16px;" class="produktu-prezioa">19,98€</p>
+            <p style="float:right; font-size: 16px;" class="produktu-prezioa" id="prezioTotala">0,00€</p>
         </div>
         <br>
         <br>
