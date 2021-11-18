@@ -16,7 +16,6 @@ function setBasket(saski) {
 }
 
 function logoff() {
-    setCookie("username", "", 365)
     setCookie("saskia", "", 365)
 	location.replace("index.html")
 }

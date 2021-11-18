@@ -1,7 +1,9 @@
 const targetDiv = document.getElementById("cartContainer");
 const btn = document.getElementById("karritoa");
 const image = document.getElementById("btnCloseCart");
+const logoffBtn = document.getElementById("logoffBtn");
 image.addEventListener("click", animate, false);
+logoffBtn.addEventListener("click", logoff, false);
 
 $(btn).click(function () {
     var today = new Date();
@@ -21,10 +23,11 @@ $(btn).click(function () {
 
     const image = document.getElementById("btnCloseCart");
     image.addEventListener("click", animate, false);
-});
+    addToSaskia("$NULL$", 0, 0, 0, 0);
+})
 
 function animate() {
-    $(targetDiv).animate({right: '-30%'});
+        $(targetDiv).animate({right: '-30%'});
 }
 
 class produktua {
@@ -41,8 +44,8 @@ var products;
 
 function addToSaskia(produktu_kodea, kantitatea, izena, prezioa, irudia) {
 
-    if (products != null){
-        products = localStorage.getItem("products");
+    if (getCookie("saskia") != null && getCookie("saskia") !== ""){
+        products = getCookie("saskia");
         products = JSON.parse(products);
     } else {
         products = new Object();
@@ -52,8 +55,10 @@ function addToSaskia(produktu_kodea, kantitatea, izena, prezioa, irudia) {
         products[produktu_kodea].kantitatea += 1
         // products[produktu_kodea].prezioa += products[produktu_kodea].prezioa
     } else {
-        var product = new produktua(produktu_kodea, kantitatea, izena, prezioa, irudia)
-        products[produktu_kodea] = product
+        if (produktu_kodea != "$NULL$"){
+            var product = new produktua(produktu_kodea, kantitatea, izena, prezioa, irudia)
+            products[produktu_kodea] = product
+        }
     }
 
     // console.log(JSON.stringify(products))
@@ -112,6 +117,7 @@ function addToSaskia(produktu_kodea, kantitatea, izena, prezioa, irudia) {
 
         localStorage.setItem("products", JSON.stringify(products));
 
+        setBasket(products);
 
         let prezioTotala = document.getElementById("prezioTotala");
         prezioTotala.innerText = prezioGuztira.toFixed(2)+"€";
@@ -136,6 +142,8 @@ function gehituGalleta(){
     let prezioTotala = document.getElementById("prezioTotala");
 
     localStorage.setItem("products", JSON.stringify(products));
+
+    setBasket(products);
 
     prezioTotala.innerText = prezioTotalaGalletak().toFixed(2)+"€";
 
@@ -175,6 +183,8 @@ function kenduGalleta(){
 
     localStorage.setItem("products", JSON.stringify(products));
 
+    setBasket(products);
+
     prezioTotala.innerText = prezioTotalaGalletak().toFixed(2)+"€";
 
 }
@@ -196,6 +206,8 @@ function kenduGalletaGuztiak(){
 
     localStorage.setItem("products", JSON.stringify(products));
 
+    setBasket(products);
+
     prezioTotala.innerText = prezioTotalaGalletak().toFixed(2)+"€";
 
 }
@@ -207,3 +219,39 @@ function removeItem( itemid ) {
 
 
 
+// COOKIES
+
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function setBasket(saski) {
+    setCookie("saskia", JSON.stringify(saski), 1)
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+
+        }
+    }
+    return "";
+}
+
+function getBasket() {
+    return existsBasket() ? JSON.parse(getCookie("saskia")) : {"erosketak": []}
+}
+
+function logoff() {
+    setCookie("saskia", "", 365)
+}
