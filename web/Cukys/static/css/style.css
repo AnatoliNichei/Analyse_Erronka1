@@ -1402,6 +1402,11 @@ blockquote {
 	width:16px;
 }
 
+.arrow-icon{
+	height: 28px;
+	width:28px;
+}
+
 .produktuak-container{
 	height: 70%;
 	overflow-y: auto;
@@ -1445,20 +1450,20 @@ blockquote {
 
 
 
-#style-10::-webkit-scrollbar-track
+#KarritoZerrenda::-webkit-scrollbar-track
 {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
 	border-radius: 10px;
 }
 
-#style-10::-webkit-scrollbar
+#KarritoZerrenda::-webkit-scrollbar
 {
 	width: 10px;
 	background-color: #F5F5F5;
 }
 
-#style-10::-webkit-scrollbar-thumb
+#KarritoZerrenda::-webkit-scrollbar-thumb
 {
 	background-color: #D3A16B;
 	border-radius: 10px;
