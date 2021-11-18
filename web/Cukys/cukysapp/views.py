@@ -4,6 +4,8 @@ from .forms import FormRegisterForm
 from cukysapp import funtzioak
 from pathlib import Path
 from django.http import HttpResponse
+import json
+from datetime import datetime
 
 
 def index_list(request):
@@ -83,4 +85,21 @@ def recieve_message(request):
                         f'{request.POST["mezua"]}\n\n')
         else:
             return HttpResponse(status=500)
+    return HttpResponse(status=204)
+
+
+def recieve_erosi(request):
+    if not request.user.is_authenticated:
+        return HttpResponse(status=503)
+    x = request.COOKIES.get('saskia')
+    date = datetime.strptime(request.POST["datefield"], "%Y-%m-%dT%H:%M")
+    saskia = json.loads(x)
+    new_saskia = Saskia.objects.create(eskaera_data=datetime.now(), entrega_data=date, erabiltzailea=request.user)
+    for pk in saskia:
+        return HttpResponse(repr(saskia[pk]['kantitatea']), status=500)
+        new_eskaera = Eskaera.objects.create(
+            produktu_kodea=Produktua.objects.get(produktu_kodea=pk),
+            kantitatea=int(saskia[pk]['kantitatea']),
+            saski_kodea=new_saskia
+        )
     return HttpResponse(status=204)

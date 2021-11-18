@@ -10,4 +10,5 @@ urlpatterns = [
     url('menu/', views.menu_list, name="Filter"),
     url('update-similarities/', views.update_rels),
     url('recieve-contact-form/', views.recieve_message),
+    url('recieve-erosi-form/', views.recieve_erosi),
 ]

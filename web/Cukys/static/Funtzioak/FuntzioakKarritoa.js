@@ -217,6 +217,27 @@ function removeItem( itemid ) {
   element.parentNode.removeChild(element);
 }
 
+function erosiError(response) {
+    if (response.status == 503) {
+        alert("Logeatu behar zara erosketak egiteko.")
+    } else {
+        alert("Errorea gertatu da. Saiatu berriro geroago.")
+    }
+}
+
+function erosiKarritoa(){
+    setCookie("saskia", "", 365);
+    products = getCookie("saskia");
+}
+
+function checkKarritoa(){
+    if (getCookie("saskia") != null && getCookie("saskia") !== ""){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 
 // COOKIES
