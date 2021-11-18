@@ -159,12 +159,14 @@ function kenduGalleta(){
         if (this.id == "button-kendu-"+key.izena){
             if (key.kantitatea > 1){
                 key.kantitatea = key.kantitatea - 1;
+                let element = document.getElementById("unitateak-"+key.izena);
+                element.innerText = "x" + key.kantitatea;
+                element = document.getElementById("produktu-prezioa-"+key.izena);
+                element.innerText = (key.kantitatea * key.prezioa).toFixed(2) + "€";
+            } else {
+                removeItem("produktuaContainer-"+key.izena);
+                delete products[key.produktu_kodea];
             }
-            let element = document.getElementById("unitateak-"+key.izena);
-            element.innerText = "x" + key.kantitatea;
-            element = document.getElementById("produktu-prezioa-"+key.izena);
-            element.innerText = (key.kantitatea * key.prezioa).toFixed(2) + "€";
-
         }
     });
 

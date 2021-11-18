@@ -70,7 +70,7 @@ class Produktua (models.Model):
 class Eskaera (models.Model):
     produktu_kodea = models.ForeignKey(Produktua, on_delete=models.CASCADE)
     saski_kodea = models.ForeignKey(Saskia, on_delete=models.CASCADE)
-    kantitatea = models.IntegerField
+    kantitatea = models.IntegerField(default=0)
 
     def __str__(self):
         return self.produktu_kodea
