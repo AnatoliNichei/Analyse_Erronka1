@@ -23,16 +23,17 @@ def cosine_similarity(v1: {int: float}, v2: {int: float}) -> float:
 def update_product_similarities() -> None:
     produktuak = m.Produktua.objects.all()
     erabiltzaileak = m.Bezeroa.objects.all()
-    vectors = {e: get_vector(m.Puntuazioa.objects.filter(
+    vectors = {e: get_vector(sum(m.Eskaera.objects.filter(
                 produktu_kodea=p,
-                erabiltzailea=e
-               ).first() for p in produktuak)
+                saski_kodea__in=m.Saskia.objects.filter(erabiltzailea=e)
+               ).values_list('kantitatea', flat=True)) for p in produktuak)
                for e in erabiltzaileak}
     nearest = {key: sorted(
                vectors, key=lambda v: cosine_similarity(
                    val, vectors[v]
                    ), reverse=True
-               )[:5] for key, val in vectors.items()}
+               )[:3] for key, val in vectors.items()}
     for e, rel_es in nearest.items():
+        e.antzeko.clear()
         for rel_e in rel_es:
             e.antzeko.add(rel_e)

@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Bezeroa (models.Model):
-    erabiltzailea = models.OneToOneField(User, on_delete=models.CASCADE)
+    erabiltzailea = models.OneToOneField(User, on_delete=models.CASCADE, related_name="bezeroa")
     #erabiltzailea = models.CharField(max_length=255)
     izena = models.CharField(max_length=255)
     abizena = models.CharField(max_length=255)
@@ -29,7 +29,6 @@ class Bezeroa (models.Model):
 
 
 class Saskia (models.Model):
-    saski_kodea = models.CharField(max_length=255)
     eskaera_data = models.DateTimeField()
     entrega_data = models.DateTimeField()
     erabiltzailea = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -70,7 +69,7 @@ class Produktua (models.Model):
 class Eskaera (models.Model):
     produktu_kodea = models.ForeignKey(Produktua, on_delete=models.CASCADE)
     saski_kodea = models.ForeignKey(Saskia, on_delete=models.CASCADE)
-    kantitatea = models.IntegerField
+    kantitatea = models.IntegerField(default=0)
 
     def __str__(self):
         return self.produktu_kodea
