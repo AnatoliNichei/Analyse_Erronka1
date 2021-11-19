@@ -92,14 +92,16 @@ def recieve_erosi(request):
     if not request.user.is_authenticated:
         return HttpResponse(status=503)
     x = request.COOKIES.get('saskia')
-    date = datetime.strptime(request.POST["datefield"], "%Y-%m-%dT%H:%M")
+    try:
+        date = datetime.strptime(request.POST["datefield"], "%Y-%m-%dT%H:%M")
+    except:
+        return HttpResponse("fechaErronea", status=400)
     saskia = json.loads(x)
     new_saskia = Saskia.objects.create(eskaera_data=datetime.now(), entrega_data=date, erabiltzailea=request.user)
     for pk in saskia:
-        return HttpResponse(repr(saskia[pk]['kantitatea']), status=500)
         new_eskaera = Eskaera.objects.create(
             produktu_kodea=Produktua.objects.get(produktu_kodea=pk),
-            kantitatea=int(saskia[pk]['kantitatea']),
+            kantitatea=saskia[pk]['kantitatea'],
             saski_kodea=new_saskia
         )
     return HttpResponse(status=204)

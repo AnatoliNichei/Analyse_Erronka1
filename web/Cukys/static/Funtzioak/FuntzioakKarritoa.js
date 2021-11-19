@@ -17,13 +17,16 @@ $(btn).click(function () {
         mm = '0' + mm
     }
 
-    today = yyyy + '-' + mm + '-' + dd + 'T00:00';
+    today = yyyy + '-' + mm + '-' + (dd + 1) + 'T00:00';
     document.getElementById("datefield").setAttribute("min", today);
     $(targetDiv).animate({right: '0px'});
 
     const image = document.getElementById("btnCloseCart");
     image.addEventListener("click", animate, false);
     addToSaskia("$NULL$", 0, 0, 0, 0);
+
+    let btnErosi = document.getElementById("btnSendCart");
+    btnErosi.disabled = false;
 })
 
 function animate() {
@@ -220,6 +223,10 @@ function removeItem( itemid ) {
 function erosiError(response) {
     if (response.status == 503) {
         alert("Logeatu behar zara erosketak egiteko.")
+    } else if (response.status == 400 && response.responseText == "fechaErronea") {
+        alert("Data sartu behar duzu.")
+        let btnErosi = document.getElementById("btnSendCart")
+        btnErosi.disabled = false
     } else {
         alert("Errorea gertatu da. Saiatu berriro geroago.")
     }
@@ -228,10 +235,13 @@ function erosiError(response) {
 function erosiKarritoa(){
     setCookie("saskia", "", 365);
     products = getCookie("saskia");
+    animate();
 }
 
 function checkKarritoa(){
     if (getCookie("saskia") != null && getCookie("saskia") !== ""){
+        let btnErosi = document.getElementById("btnSendCart");
+        btnErosi.disabled = true;
         return true;
     } else {
         return false;
