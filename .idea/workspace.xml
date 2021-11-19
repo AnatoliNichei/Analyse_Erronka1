@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="61f624fe-b25f-4601-8deb-65f1aa99c1b6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Cukys/cukysapp/templates/cukys/menu.html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/cukysapp/templates/cukys/menu.html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Cukys/cukysapp/templates/cukys/menu.html/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Cukys/cukysapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/cukysapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/FuntzioakKarritoa.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/FuntzioakKarritoa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/FuntzioakKatalogoa.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/FuntzioakKatalogoa.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +132,7 @@
       <workItem from="1636973293879" duration="4833000" />
       <workItem from="1637133617109" duration="12835000" />
       <workItem from="1637219342671" duration="17066000" />
-      <workItem from="1637309484303" duration="2480000" />
+      <workItem from="1637309484303" duration="4326000" />
     </task>
     <servers />
   </component>

@@ -1523,6 +1523,11 @@ blockquote {
 	display: none;
 }
 
+.btnFilterFocus{
+	background-color: #351F01;
+	border: 2px solid #351F01;
+	color:white;
+}
 
 
 
