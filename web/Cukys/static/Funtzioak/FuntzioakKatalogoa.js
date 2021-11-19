@@ -7,7 +7,8 @@ for (i = 0; i < btns.length; i++){
     btns[i].addEventListener("click", (e) =>{
         e.preventDefault();
         const filter = e.target.dataset.filter;
-        element.classList.add("btnFilterFocus");
+        btns.foreach()
+        element.classList.toggle("btnFilterFocus");
         galletaGuztiak.forEach((product)=>{
             if (product.classList.contains("d-flex")){
                     product.classList.toggle("d-flex")
