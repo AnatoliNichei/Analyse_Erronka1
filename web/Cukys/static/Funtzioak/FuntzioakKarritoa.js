@@ -221,12 +221,14 @@ function removeItem( itemid ) {
 }
 
 function erosiError(response) {
+    let btnErosi = document.getElementById("btnSendCart")
+    btnErosi.disabled = false
     if (response.status == 503) {
         alert("Logeatu behar zara erosketak egiteko.")
     } else if (response.status == 400 && response.responseText == "fechaErronea") {
         alert("Data sartu behar duzu.")
-        let btnErosi = document.getElementById("btnSendCart")
-        btnErosi.disabled = false
+    } else if (response.status == 400 && response.responseText == "fechaPasada") {
+        alert("Data balidoa sartu behar duzu.")
     } else {
         alert("Errorea gertatu da. Saiatu berriro geroago.")
     }
@@ -284,5 +286,5 @@ function getBasket() {
 }
 
 function logoff() {
-    setCookie("saskia", "", 365)
+    setCookie("saskia", "", 0.0001)
 }
