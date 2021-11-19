@@ -5,7 +5,7 @@ from cukysapp import funtzioak
 from pathlib import Path
 from django.http import HttpResponse
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def index_list(request):
@@ -96,6 +96,8 @@ def recieve_erosi(request):
         date = datetime.strptime(request.POST["datefield"], "%Y-%m-%dT%H:%M")
     except:
         return HttpResponse("fechaErronea", status=400)
+    if date <= datetime.today + timedelta(days=1):
+        return HttpResponse("fechaPasada", status=400)
     saskia = json.loads(x)
     new_saskia = Saskia.objects.create(eskaera_data=datetime.now(), entrega_data=date, erabiltzailea=request.user)
     for pk in saskia:
