@@ -23,6 +23,12 @@ def kontaktua_list(request):
     return render(request, 'cukys/contact.html', {"user": user})
 
 
+def payment_list(request):
+    user = request.user if request.user.is_authenticated else None
+    products = Produktua.objects.all()
+    return render(request, 'cukys/payment.html', {"user": user, 'products': products})
+
+
 def menu_list(request):
     user = request.user if request.user.is_authenticated else None
     products = Produktua.objects.all()
@@ -104,4 +110,7 @@ def recieve_erosi(request):
             kantitatea=saskia[pk]['kantitatea'],
             saski_kodea=new_saskia
         )
-    return HttpResponse(status=204)
+    userJson = json.dumps({"izena": request.user.bezeroa.izena, "helbidea": request.user.bezeroa.helbidea})
+    response = HttpResponse(status=204)
+    response.set_cookie('userCookie', userJson)
+    return response

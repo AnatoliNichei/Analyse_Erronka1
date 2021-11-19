@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>Cuky's - Checkout</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="../../../static/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../../static/css/payment.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../static/css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../../../static/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../../../static/css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../../static/css/custom.css">
+
+    <script src="jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/>
+    <script src="jquery.datetimepicker.full.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <!--    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>-->
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--    <script id="mytemplate" type="text/template">-->
+    <!--        <div id="style-10" class="produktuak-container">-->
+    <!--            <div id="produktuaContainer" class="produktua-container d-flex flex-row align-items-center">-->
+    <!--                <div class="crop p-2 ">-->
+    <!--                        <img src="{image}" alt="Cookie">-->
+    <!--                    </div>-->
+    <!--                <div class="p-2">-->
+    <!--                    <p class="produktua-title" id="product"><spam id="unitateak" class="unitateak">x2</spam>{name}</p>-->
+    <!--                    <p class="produktu-prezioa">{price}€</p>-->
+    <!--                </div>-->
+    <!--                <div class="ml-auto p-2">-->
+    <!--                    <img class="x-icon" src="../../../../static/images/x.png">-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </script>-->
+
+</head>
+<body>
+  <main class="page payment-page">
+    <section class="payment-form dark">
+      <div class="container">
+        <div class="block-heading">
+          <h2>Payment</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+        </div>
+        <form>
+          <div class="products">
+            <h3 class="title">Zure galletak</h3>
+            <div id="karritoPayment">
+
+            </div>
+            <div class="total">Total<span class="price" id="price"></span></div>
+          </div>
+          <div class="card-details">
+            <h3 class="title">Helbidea</h3>
+            <div class="row">
+              <div class="form-group col-sm-12">
+                <label for="card-holder">Helbidea</label>
+                <input id="txbHelbidea" type="text" class="form-control" placeholder="Helbidea" aria-label="Helbidea" aria-describedby="basic-addon1">
+              </div>
+            </div>
+          </div>
+          <div class="card-details">
+            <h3 class="title">Kreditu Txartela</h3>
+            <div class="row">
+              <div class="form-group col-sm-7">
+                <label for="card-holder">Izen Abizena</label>
+                <input id="card-holder" type="text" class="form-control" placeholder="Izen Abizena" aria-label="Card Holder" aria-describedby="basic-addon1">
+              </div>
+              <div class="form-group col-sm-5">
+                <label for="">Iraungitze Data</label>
+                <div class="input-group expiration-date">
+                  <input type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1">
+                  <span class="date-separator">/</span>
+                  <input type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1">
+                </div>
+              </div>
+              <div class="form-group col-sm-8">
+                <label for="card-number">Txartel Zenbakia</label>
+                <input id="card-number" type="text" class="form-control" placeholder="Txartel Zenbakia" aria-label="Card Holder" aria-describedby="basic-addon1">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="cvc">CVC</label>
+                <input id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1">
+              </div>
+              <div class="form-group col-sm-12">
+                <button type="button" class="btn btn-primary btn-block">Bukatu Erosketa</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="../../../static/js/bootstrap.min.js"></script>
+<script src="../../../static/Funtzioak/FuntzioakPayment.js"></script>
+</body>
+</html>

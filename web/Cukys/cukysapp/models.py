@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Bezeroa (models.Model):
-    erabiltzailea = models.OneToOneField(User, on_delete=models.CASCADE)
+    erabiltzailea = models.OneToOneField(User, on_delete=models.CASCADE, related_name="bezeroa")
     #erabiltzailea = models.CharField(max_length=255)
     izena = models.CharField(max_length=255)
     abizena = models.CharField(max_length=255)

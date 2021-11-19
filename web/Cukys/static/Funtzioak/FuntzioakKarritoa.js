@@ -43,6 +43,13 @@ class produktua {
     }
 }
 
+class user {
+    constructor(izena, helbidea) {
+        this.izena = izena;
+        this.helbidea = helbidea;
+    }
+}
+
 var products;
 
 function addToSaskia(produktu_kodea, kantitatea, izena, prezioa, irudia) {
@@ -122,7 +129,7 @@ function addToSaskia(produktu_kodea, kantitatea, izena, prezioa, irudia) {
 
         setBasket(products);
 
-        let prezioTotala = document.getElementById("prezioTotala");
+        let prezioTotala = document.getElementById("price");
         prezioTotala.innerText = prezioGuztira.toFixed(2)+"€";
     }
 }
@@ -232,10 +239,9 @@ function erosiError(response) {
     }
 }
 
-function erosiKarritoa(){
-    setCookie("saskia", "", 365);
-    products = getCookie("saskia");
+function erosiKarritoa(response){
     animate();
+    window.location.href = "/checkout/";
 }
 
 function checkKarritoa(){

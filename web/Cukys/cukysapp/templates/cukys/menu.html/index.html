@@ -127,11 +127,11 @@
         <div class="row inner-menu-box">
             <div class="col-3">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link btnFilter" id="menu" href="/menu/" data-filter="all"
-                       aria-controls="v-pills-home" aria-selected="true">Guztiak</a>
+                    <a class="nav-link btnFilter" style="color: black;" id="menu" href="/menu/" data-filter="all"
+                       aria-controls="v-pills-home">Guztiak</a>
 
                     {% for mota in motak %}
-                    <a class="nav-link filtroGalletak btnFilter" id="v-pills-profile-tab" data-filter="{{ mota.izena }}"
+                    <a class="nav-link filtroGalletak btnFilter" style="color: black;" id="v-pills-profile-tab" data-filter="{{ mota.izena }}"
                        aria-controls="v-pills-profile">{{ mota.izena }}</a>
                     {% endfor %}
                 </div>

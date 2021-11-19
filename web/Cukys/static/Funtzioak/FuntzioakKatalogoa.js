@@ -7,7 +7,11 @@ for (i = 0; i < btns.length; i++){
     btns[i].addEventListener("click", (e) =>{
         e.preventDefault();
         const filter = e.target.dataset.filter;
-        btns.foreach()
+        Array.from(btns).forEach(function(btn) {
+          if (btn.classList.contains("btnFilterFocus")){
+            btn.classList.toggle("btnFilterFocus");
+          }
+        });
         element.classList.toggle("btnFilterFocus");
         galletaGuztiak.forEach((product)=>{
             if (product.classList.contains("d-flex")){
