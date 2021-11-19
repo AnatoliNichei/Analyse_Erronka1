@@ -307,12 +307,13 @@
     </div>
     <br>
     <br>
-    <form method="post" action="">
+    <form id="erosiForm" method="post" action="/recieve-erosi-form/">
+        {% csrf_token %}
         <label for="party">Zehaztu ezazu entregatze data:</label>
         <input id="datefield" type="datetime-local" name="datefield" min="2017-06-01T08:30" class="datetimepicker">
         <br>
         <br>
-        <button type="submit" name="btnSendCart" class="btnSendCart">EROSI</button>
+        <button type="submit" name="btnSendCart" id="btnSendCart" class="btnSendCart">EROSI</button>
     </form>
 
 </div>
@@ -379,7 +380,8 @@
 <!-- ALL JS FILES -->
 <script src="../../../../static/Funtzioak/FuntzioakKarritoa.js"></script>
 <script src="../../../../static/Funtzioak/FuntzioakKatalogoa.js"></script>
-<script src="main.js"></script>
+<script src="../../../../static/sfuntzioak.js"></script>
+<script>submitViaAjax(document.querySelector('#erosiForm'), erosiKarritoa, erosiError, checkKarritoa)</script>
 <script> sartuTaula("datuak") </script>
 <script src="../../../../static/js/jquery-3.2.1.min.js"></script>
 <script src="../../../../static/js/popper.min.js"></script>
