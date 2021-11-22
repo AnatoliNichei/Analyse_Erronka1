@@ -60,7 +60,9 @@ window.onload = function ()  {
     let helbidea = usuario.helbidea
 
     let txbHelbidea = document.getElementById("txbHelbidea");
+    let lblIzenaCheckout = document.getElementById("lblIzenaCheckout");
     txbHelbidea.value = helbidea;
+    lblIzenaCheckout.innerText = usuario.izena;
 
 }
 
