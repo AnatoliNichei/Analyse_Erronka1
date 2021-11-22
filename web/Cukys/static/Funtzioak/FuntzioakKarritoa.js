@@ -30,7 +30,13 @@ $(btn).click(function () {
 })
 
 function animate() {
-        $(targetDiv).animate({right: '-30%'});
+        $(targetDiv).animate({
+            right: -Math.min($(targetDiv).parent().width(), 500)
+        }, {
+            complete: () => {
+                $(targetDiv).css('right', 'max(-100%, -500px)')
+            }
+        });
 }
 
 class produktua {

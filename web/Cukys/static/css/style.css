@@ -1388,13 +1388,14 @@ blockquote {
 .karritoa-container{
 	position: fixed;
 	height: 100%;
-	width: 30%;
-	right: -30%;
+	width: min(100%, 500px);
+	right: max(-100%, -500px);
 	background-color: white;
 	border-left: solid #351F01 5px;
 	z-index: 99999;
 	top: 0;
 	padding: 30px;
+    overflow: auto;
 }
 
 .x-icon{
