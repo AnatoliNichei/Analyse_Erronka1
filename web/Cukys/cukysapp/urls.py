@@ -12,4 +12,5 @@ urlpatterns = [
     url('update-similarities/', views.update_rels),
     url('recieve-contact-form/', views.recieve_message),
     url('recieve-erosi-form/', views.recieve_erosi),
+    url('benetan-erosi-form/', views.benetan_erosi),
 ]

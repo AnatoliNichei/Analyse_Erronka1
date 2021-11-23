@@ -70,7 +70,8 @@
           <h2>Ordainketa</h2>
           <p>Kaixo <span id="lblIzenaCheckout"></span>, zure eskaera bukatzeko gutxi falta da.</p>
         </div>
-        <form>
+        <form id="erosiForm" method="post" action="/benetan-erosi-form/">
+            {% csrf_token %}
           <div class="products">
             <h3 class="title">Zure galletak</h3>
             <div id="karritoPayment">
@@ -91,8 +92,8 @@
             <h3 class="title">Kreditu Txartela</h3>
             <div class="row">
               <div class="form-group col-sm-7">
-                <label for="card-holder">Izen Abizena</label>
-                <input id="card-holder" type="text" class="form-control" placeholder="Izen Abizena" aria-label="Card Holder" aria-describedby="basic-addon1">
+                <label for="txtIzenAbizena">Izen Abizena</label>
+                <input id="txtIzenAbizena" type="text" class="form-control" placeholder="Izen Abizena" aria-label="Card Holder" aria-describedby="basic-addon1">
               </div>
               <div class="form-group col-sm-5">
                 <label for="">Iraungitze Data</label>
@@ -111,7 +112,7 @@
                 <input id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1">
               </div>
               <div class="form-group col-sm-12">
-                <button type="button" class="btn btn-primary btn-block">Bukatu Erosketa</button>
+                <button id="bukatuErosketa" type="submit" class="btn btn-primary btn-block">Bukatu Erosketa</button>
               </div>
             </div>
           </div>
@@ -121,6 +122,7 @@
   </main>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="../../../../static/sfuntzioak.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="../../../static/js/bootstrap.min.js"></script>
 <script src="../../../static/Funtzioak/FuntzioakPayment.js"></script>
