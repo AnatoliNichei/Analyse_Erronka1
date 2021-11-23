@@ -1,8 +1,8 @@
 $("#contactForm").validator().on("submit", function (event) {
     if (event.isDefaultPrevented()) {
         // handle the invalid form...
-        formError();
-        submitMSG(false, "Ez duzu formularioa ondo bete");
+        // formError();
+        submitMSG(false, "");
     } else {
         // everything looks good!
         event.preventDefault();
