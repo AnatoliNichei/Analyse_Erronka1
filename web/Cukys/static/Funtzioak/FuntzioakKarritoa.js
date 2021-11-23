@@ -135,8 +135,9 @@ function addToSaskia(produktu_kodea, kantitatea, izena, prezioa, irudia) {
 
         setBasket(products);
 
-        let prezioTotala = document.getElementById("price");
-        prezioTotala.innerText = prezioGuztira.toFixed(2)+"€";
+        let prezioTotala = document.getElementById("prezioTotala");
+         prezioTotala.innerText = prezioTotalaGalletak().toFixed(2)+"€";
+
     }
 }
 

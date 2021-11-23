@@ -102,8 +102,29 @@ def recieve_erosi(request):
         date = datetime.strptime(request.POST["datefield"], "%Y-%m-%dT%H:%M")
     except:
         return HttpResponse("fechaErronea", status=400)
-    if date <= datetime.today + timedelta(days=1):
+    if date <= datetime.today() + timedelta(days=1):
         return HttpResponse("fechaPasada", status=400)
+    saskia = json.loads(x)
+    userJson = json.dumps({
+        "izenosoa": request.user.bezeroa.izena + " " + request.user.bezeroa.abizena,
+        "helbidea": request.user.bezeroa.helbidea,
+    })
+    response = HttpResponse(status=204)
+    response.set_cookie('userCookie', userJson)
+    response.set_cookie('data', request.POST["datefield"])
+    return response
+
+
+def benetan_erosi(request):
+    if not request.user.is_authenticated:
+        return HttpResponse(status=500)
+    x = request.COOKIES.get('saskia')
+    try:
+        date = datetime.strptime(request.COOKIES.get("data"), "%Y-%m-%dT%H:%M")
+    except:
+        return HttpResponse(status=400)
+    if date <= datetime.today() + timedelta(days=1):
+        return HttpResponse(status=404)
     saskia = json.loads(x)
     new_saskia = Saskia.objects.create(eskaera_data=datetime.now(), entrega_data=date, erabiltzailea=request.user)
     for pk in saskia:
@@ -112,7 +133,4 @@ def recieve_erosi(request):
             kantitatea=saskia[pk]['kantitatea'],
             saski_kodea=new_saskia
         )
-    userJson = json.dumps({"izena": request.user.bezeroa.izena, "helbidea": request.user.bezeroa.helbidea})
-    response = HttpResponse(status=204)
-    response.set_cookie('userCookie', userJson)
-    return response
+    return HttpResponse(status=204)

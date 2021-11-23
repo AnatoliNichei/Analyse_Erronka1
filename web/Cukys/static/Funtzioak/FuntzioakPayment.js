@@ -12,7 +12,7 @@ class Produktua {
 
 class User {
     constructor(izena, helbidea) {
-        this.izena = izena;
+        this.izenosoa = izena;
         this.helbidea = helbidea;
     }
 }
@@ -58,15 +58,40 @@ window.onload = function ()  {
     alert(test)
     let usuario = Object.assign(new User(), JSON.parse(getCookie("userCookie")));
     let helbidea = usuario.helbidea
+    let izenosoa = usuario.izenosoa
 
     let txbHelbidea = document.getElementById("txbHelbidea");
+    let txtIzenOsoa = document.getElementById("txtIzenAbizena")
     let lblIzenaCheckout = document.getElementById("lblIzenaCheckout");
     txbHelbidea.value = helbidea;
-    lblIzenaCheckout.innerText = usuario.izena;
+    lblIzenaCheckout.innerText = usuario.izenosoa;
+    txtIzenOsoa.value= izenosoa;
 
 }
 
 
+function bukatuErosketa(){
+    alert("Eskerrik asko gure web orrian erosteagatik, hurrengorarte!")
+    location.replace("/")
+}
+
+function errorErosketa() {
+    alert("Errorea gertatu da, eta ez da erosketa gauzatu.")
+        let btnErosi = document.getElementById("bukatuErosketa");
+        btnErosi.disabled = false;
+}
+
+function checkErosketa(){
+    if (getCookie("saskia") != null && getCookie("saskia") !== ""){
+        let btnErosi = document.getElementById("bukatuErosketa");
+        btnErosi.disabled = true;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+submitViaAjax(document.querySelector('#erosiForm'), bukatuErosketa, errorErosketa, checkErosketa);
 
 
 // COOKIES
