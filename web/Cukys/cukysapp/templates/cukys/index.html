@@ -57,7 +57,8 @@
 						<li class="nav-item"><a class="nav-link" href="{% url 'Filter' %}">Katalogoa</a></li>
 						<li class="nav-item"><a class="nav-link" href="/about/">About Gu</a></li>
 						<li class="nav-item"><a class="nav-link" href="/contact/">Kontaktua</a></li>
-						<a class="nav-link" href="/login/">Hasi Saioa</a></li>
+						<li class="nav-item" {% if user is not None %} style="display:none;" {% endif %} id="loginVisible">
+                            <a class="nav-link" href="/login/">Hasi Saioa</a></li>
                     <!--<li class="nav-item" id="karritoa"><a class="nav-link" href="login.html">Karritoa</a></li>
                     -->
                         <li class="nav-item" {% if user is None %} style="display:none;" {% endif %} id="logoff"><a
@@ -174,7 +175,7 @@
 			<div class="tz-gallery">
 				<div class="row">
 					<div class="col-sm-12 col-md-4 col-lg-4">
-						<a class="lightbox" href="www.j.a.h.com">
+						<a class="lightbox" href="http://www.j.a.h.com">
 							<img class="img-fluid" src="../../../static/images/gallery-img-01.jpg" alt="Gallery Images">
 						</a>
 					</div>
@@ -184,7 +185,7 @@
 						</a>
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-4">
-						<a class="lightbox" href="http://192.168.73.56:8080/Okindegia/">
+						<a class="lightbox" href="http://192.168.73.57:8080/Okindegia/">
 							<img class="img-fluid" src="../../../static/images/gallery-img-03.jpg" alt="Gallery Images">
 						</a>
 					</div>
