@@ -1,13 +1,15 @@
--- MySQL dump 10.19  Distrib 10.3.31-MariaDB, for debian-linux-gnu (x86_64)
+CREATE DATABASE  IF NOT EXISTS `cukysdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `cukysdb`;
+-- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
--- Host: 192.168.73.82    Database: cukysdb
+-- Host: localhost    Database: cukysdb
 -- ------------------------------------------------------
 -- Server version	8.0.26
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +23,7 @@
 
 DROP TABLE IF EXISTS `auth_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_group` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(150) NOT NULL,
@@ -45,7 +47,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `auth_group_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_group_permissions` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `group_id` int NOT NULL,
@@ -73,7 +75,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `auth_permission`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_permission` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -101,7 +103,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `auth_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `password` varchar(128) NOT NULL,
@@ -125,7 +127,7 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$260000$hIJHNpwesVDZTCKlUpdEN4$UBJ8y8AZbhcsHS5yEZJb5IdkqB9x7B/T5lj+N+It2uY=','2021-11-19 09:28:54.804655',1,'alvaro','','','viguera.alvaro@uni.eus',1,1,'2021-10-27 07:56:18.065642'),(2,'pbkdf2_sha256$260000$9cOY8C2tmUDudMclUshFHo$LkSxH6cePekgiNynmYrin/dBlkjwJa0+gbHyRFPxSIM=',NULL,0,'klk','','','as@as.com',0,1,'2021-10-27 08:07:05.752099'),(3,'pbkdf2_sha256$260000$IhwFODWe7EAHJUdElXywDw$BOSqqZnzXEDC1JU526W+CwfWC94ZON8ZrE9k5h5/ejU=','2021-11-09 08:17:01.144838',0,'paco1234','','','paco@gmail.com',0,1,'2021-11-09 08:16:25.098622'),(6,'pbkdf2_sha256$260000$LONoI5ssBlcDHtf7l8jKk2$VmtgQy813puxu0GUCrZy7P9ifGCqYz3x3w5mBNa0X6c=','2021-11-09 08:52:50.442935',0,'mike','','','as@as.com',0,1,'2021-11-09 08:52:37.956434'),(7,'pbkdf2_sha256$260000$SdXca9SCFnvZjsccgWOVLX$DAtQq4eeLEnsop1YtB5ta+NlchjzcoIiK16FBbdad3g=','2021-11-10 11:09:09.561838',0,'jon','','','jon@gmail.com',0,1,'2021-11-10 11:08:49.834084'),(8,'pbkdf2_sha256$260000$Xvmp8FdWJtQCjbStjvo2je$7oYnrAoo7ZsTx5IUonnTJRFko4xw/E9diwqGyKzJZSU=','2021-11-19 09:16:56.685206',0,'Tokpary','','','nichei.anatoli@uni.eus',0,1,'2021-11-19 09:16:51.392050');
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$260000$hIJHNpwesVDZTCKlUpdEN4$UBJ8y8AZbhcsHS5yEZJb5IdkqB9x7B/T5lj+N+It2uY=','2021-11-19 08:33:39.914840',1,'alvaro','','','viguera.alvaro@uni.eus',1,1,'2021-10-27 07:56:18.065642'),(2,'pbkdf2_sha256$260000$9cOY8C2tmUDudMclUshFHo$LkSxH6cePekgiNynmYrin/dBlkjwJa0+gbHyRFPxSIM=',NULL,0,'klk','','','as@as.com',0,1,'2021-10-27 08:07:05.752099'),(3,'pbkdf2_sha256$260000$IhwFODWe7EAHJUdElXywDw$BOSqqZnzXEDC1JU526W+CwfWC94ZON8ZrE9k5h5/ejU=','2021-11-09 08:17:01.144838',0,'paco1234','','','paco@gmail.com',0,1,'2021-11-09 08:16:25.098622'),(6,'pbkdf2_sha256$260000$LONoI5ssBlcDHtf7l8jKk2$VmtgQy813puxu0GUCrZy7P9ifGCqYz3x3w5mBNa0X6c=','2021-11-09 08:52:50.442935',0,'mike','','','as@as.com',0,1,'2021-11-09 08:52:37.956434'),(7,'pbkdf2_sha256$260000$SdXca9SCFnvZjsccgWOVLX$DAtQq4eeLEnsop1YtB5ta+NlchjzcoIiK16FBbdad3g=','2021-11-10 11:09:09.561838',0,'jon','','','jon@gmail.com',0,1,'2021-11-10 11:08:49.834084'),(8,'pbkdf2_sha256$260000$Xvmp8FdWJtQCjbStjvo2je$7oYnrAoo7ZsTx5IUonnTJRFko4xw/E9diwqGyKzJZSU=','2021-11-19 09:16:56.685206',0,'Tokpary','','','nichei.anatoli@uni.eus',0,1,'2021-11-19 09:16:51.392050');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +137,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `auth_user_groups`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_user_groups` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
@@ -163,7 +165,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `auth_user_user_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auth_user_user_permissions` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
@@ -191,7 +193,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cukysapp_bezeroa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cukysapp_bezeroa` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `izena` varchar(255) NOT NULL,
@@ -222,7 +224,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cukysapp_bezeroa_antzeko`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cukysapp_bezeroa_antzeko` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `from_bezeroa_id` bigint NOT NULL,
@@ -250,7 +252,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cukysapp_eskaera`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cukysapp_eskaera` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `produktu_kodea_id` bigint NOT NULL,
@@ -261,7 +263,7 @@ CREATE TABLE `cukysapp_eskaera` (
   KEY `cukysapp_eskaera_saski_kodea_id_f5c3de0a_fk_cukysapp_saskia_id` (`saski_kodea_id`),
   CONSTRAINT `cukysapp_eskaera_produktu_kodea_id_7553a891_fk_cukysapp_` FOREIGN KEY (`produktu_kodea_id`) REFERENCES `cukysapp_produktua` (`id`),
   CONSTRAINT `cukysapp_eskaera_saski_kodea_id_f5c3de0a_fk_cukysapp_saskia_id` FOREIGN KEY (`saski_kodea_id`) REFERENCES `cukysapp_saskia` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,7 +272,7 @@ CREATE TABLE `cukysapp_eskaera` (
 
 LOCK TABLES `cukysapp_eskaera` WRITE;
 /*!40000 ALTER TABLE `cukysapp_eskaera` DISABLE KEYS */;
-INSERT INTO `cukysapp_eskaera` VALUES (1,1,16,4),(2,2,16,5),(3,7,16,3),(4,1,17,4),(5,2,17,5),(6,7,17,4),(7,4,17,3),(8,5,17,1),(9,1,18,1),(10,2,18,1),(11,3,18,3),(12,5,18,1),(13,1,19,2),(14,3,19,2),(15,2,19,2),(16,4,19,1),(17,1,20,1),(18,2,20,4),(19,3,20,1),(20,1,21,1),(21,2,21,3),(22,3,21,2),(23,5,21,2),(24,5,22,1),(25,6,22,3),(26,4,22,2),(27,5,23,1),(28,6,23,3),(29,4,23,2),(30,5,24,1),(31,6,24,3),(32,5,25,2),(33,6,25,3),(34,7,25,2),(35,4,26,1),(36,5,26,2),(37,6,26,1),(38,14,26,1),(39,15,26,1),(40,11,27,1),(41,12,27,2),(42,13,27,1),(43,10,28,1),(44,11,28,1),(45,13,28,1),(46,5,29,1),(47,6,29,2),(48,8,29,5),(49,2,31,1),(50,3,31,2),(51,5,31,2),(52,1,32,1),(53,2,32,1),(54,3,32,1);
+INSERT INTO `cukysapp_eskaera` VALUES (1,1,16,4),(2,2,16,5),(3,7,16,3),(4,1,17,4),(5,2,17,5),(6,7,17,4),(7,4,17,3),(8,5,17,1),(9,1,18,1),(10,2,18,1),(11,3,18,3),(12,5,18,1),(13,1,19,2),(14,3,19,2),(15,2,19,2),(16,4,19,1),(17,1,20,1),(18,2,20,4),(19,3,20,1),(20,1,21,1),(21,2,21,3),(22,3,21,2),(23,5,21,2),(24,5,22,1),(25,6,22,3),(26,4,22,2),(27,5,23,1),(28,6,23,3),(29,4,23,2),(30,5,24,1),(31,6,24,3),(32,5,25,2),(33,6,25,3),(34,7,25,2),(35,4,26,1),(36,5,26,2),(37,6,26,1),(38,14,26,1),(39,15,26,1),(40,11,27,1),(41,12,27,2),(42,13,27,1),(43,10,28,1),(44,11,28,1),(45,13,28,1),(46,5,29,1),(47,6,29,2),(48,8,29,5),(49,2,31,1),(50,3,31,2),(51,5,31,2);
 /*!40000 ALTER TABLE `cukysapp_eskaera` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -280,7 +282,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cukysapp_mota`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cukysapp_mota` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `mota_kodea` int NOT NULL,
@@ -305,7 +307,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cukysapp_produktua`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cukysapp_produktua` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `produktu_kodea` varchar(255) NOT NULL,
@@ -333,7 +335,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cukysapp_produktua_mota`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cukysapp_produktua_mota` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `produktua_id` bigint NOT NULL,
@@ -362,7 +364,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cukysapp_puntuazioa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cukysapp_puntuazioa` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `erabiltzailea_id` bigint NOT NULL,
@@ -390,7 +392,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cukysapp_saskia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cukysapp_saskia` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `eskaera_data` datetime(6) NOT NULL,
@@ -399,7 +401,7 @@ CREATE TABLE `cukysapp_saskia` (
   PRIMARY KEY (`id`),
   KEY `cukysapp_saskia_erabiltzailea_id_ca43588e_fk_auth_user_id` (`erabiltzailea_id`),
   CONSTRAINT `cukysapp_saskia_erabiltzailea_id_ca43588e_fk_auth_user_id` FOREIGN KEY (`erabiltzailea_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -408,7 +410,7 @@ CREATE TABLE `cukysapp_saskia` (
 
 LOCK TABLES `cukysapp_saskia` WRITE;
 /*!40000 ALTER TABLE `cukysapp_saskia` DISABLE KEYS */;
-INSERT INTO `cukysapp_saskia` VALUES (1,'2021-11-18 13:08:16.715105','2021-11-22 13:08:00.000000',1),(2,'2021-11-18 13:09:36.465761','2021-11-22 13:08:00.000000',1),(3,'2021-11-18 13:10:59.740917','2021-11-22 13:08:00.000000',1),(4,'2021-11-18 13:15:14.209610','2021-11-22 13:08:00.000000',1),(5,'2021-11-18 13:17:01.135861','2021-11-22 13:08:00.000000',1),(6,'2021-11-18 13:18:01.373087','2021-11-22 13:08:00.000000',1),(7,'2021-11-18 13:18:28.892358','2021-11-22 13:08:00.000000',1),(8,'2021-11-18 13:19:37.311974','2021-11-22 13:08:00.000000',1),(9,'2021-11-18 13:25:42.477534','2021-11-22 13:08:00.000000',1),(10,'2021-11-19 08:18:18.391151','2021-11-27 08:22:00.000000',1),(11,'2021-11-19 08:18:30.545495','2021-11-27 08:22:00.000000',1),(12,'2021-11-19 08:18:54.722695','2021-11-27 08:22:00.000000',1),(13,'2021-11-19 08:19:10.071726','2021-11-27 08:22:00.000000',1),(14,'2021-11-19 08:19:44.921974','2021-11-27 12:19:00.000000',1),(15,'2021-11-19 08:23:23.925298','2021-11-24 08:23:00.000000',1),(16,'2021-11-19 08:28:57.580627','2021-11-24 08:23:00.000000',1),(17,'2021-11-19 08:30:34.846183','2021-11-24 08:23:00.000000',1),(18,'2021-11-19 08:32:43.021901','2021-11-24 08:23:00.000000',1),(19,'2021-11-19 08:33:50.117735','2021-12-02 11:33:00.000000',1),(20,'2021-11-19 08:34:24.654422','2021-11-20 11:34:00.000000',1),(21,'2021-11-19 08:35:34.398746','2021-11-24 08:40:00.000000',1),(22,'2021-11-19 08:36:07.342553','2021-11-24 08:40:00.000000',1),(23,'2021-11-19 08:36:07.485543','2021-11-24 08:40:00.000000',1),(24,'2021-11-19 08:39:43.561699','2021-11-27 08:43:00.000000',1),(25,'2021-11-19 08:43:53.012036','2021-11-28 08:47:00.000000',1),(26,'2021-11-19 08:44:06.985935','2021-11-28 08:47:00.000000',1),(27,'2021-11-19 08:44:25.456964','2021-12-04 08:48:00.000000',1),(28,'2021-11-19 08:50:47.783162','2021-11-26 11:50:00.000000',1),(29,'2021-11-19 08:51:30.022121','2021-11-19 08:55:00.000000',1),(30,'2021-11-19 08:54:35.361149','2021-11-10 08:53:00.000000',1),(31,'2021-11-19 09:15:22.153296','2021-11-20 09:18:00.000000',1),(32,'2021-11-19 09:29:05.416804','2021-11-20 12:32:00.000000',1);
+INSERT INTO `cukysapp_saskia` VALUES (1,'2021-11-18 13:08:16.715105','2021-11-22 13:08:00.000000',1),(2,'2021-11-18 13:09:36.465761','2021-11-22 13:08:00.000000',1),(3,'2021-11-18 13:10:59.740917','2021-11-22 13:08:00.000000',1),(4,'2021-11-18 13:15:14.209610','2021-11-22 13:08:00.000000',1),(5,'2021-11-18 13:17:01.135861','2021-11-22 13:08:00.000000',1),(6,'2021-11-18 13:18:01.373087','2021-11-22 13:08:00.000000',1),(7,'2021-11-18 13:18:28.892358','2021-11-22 13:08:00.000000',1),(8,'2021-11-18 13:19:37.311974','2021-11-22 13:08:00.000000',1),(9,'2021-11-18 13:25:42.477534','2021-11-22 13:08:00.000000',1),(10,'2021-11-19 08:18:18.391151','2021-11-27 08:22:00.000000',1),(11,'2021-11-19 08:18:30.545495','2021-11-27 08:22:00.000000',1),(12,'2021-11-19 08:18:54.722695','2021-11-27 08:22:00.000000',1),(13,'2021-11-19 08:19:10.071726','2021-11-27 08:22:00.000000',1),(14,'2021-11-19 08:19:44.921974','2021-11-27 12:19:00.000000',1),(15,'2021-11-19 08:23:23.925298','2021-11-24 08:23:00.000000',1),(16,'2021-11-19 08:28:57.580627','2021-11-24 08:23:00.000000',1),(17,'2021-11-19 08:30:34.846183','2021-11-24 08:23:00.000000',1),(18,'2021-11-19 08:32:43.021901','2021-11-24 08:23:00.000000',1),(19,'2021-11-19 08:33:50.117735','2021-12-02 11:33:00.000000',1),(20,'2021-11-19 08:34:24.654422','2021-11-20 11:34:00.000000',1),(21,'2021-11-19 08:35:34.398746','2021-11-24 08:40:00.000000',1),(22,'2021-11-19 08:36:07.342553','2021-11-24 08:40:00.000000',1),(23,'2021-11-19 08:36:07.485543','2021-11-24 08:40:00.000000',1),(24,'2021-11-19 08:39:43.561699','2021-11-27 08:43:00.000000',1),(25,'2021-11-19 08:43:53.012036','2021-11-28 08:47:00.000000',1),(26,'2021-11-19 08:44:06.985935','2021-11-28 08:47:00.000000',1),(27,'2021-11-19 08:44:25.456964','2021-12-04 08:48:00.000000',1),(28,'2021-11-19 08:50:47.783162','2021-11-26 11:50:00.000000',1),(29,'2021-11-19 08:51:30.022121','2021-11-19 08:55:00.000000',1),(30,'2021-11-19 08:54:35.361149','2021-11-10 08:53:00.000000',1),(31,'2021-11-19 09:15:22.153296','2021-11-20 09:18:00.000000',1);
 /*!40000 ALTER TABLE `cukysapp_saskia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -418,7 +420,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `django_admin_log`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_admin_log` (
   `id` int NOT NULL AUTO_INCREMENT,
   `action_time` datetime(6) NOT NULL,
@@ -453,7 +455,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `django_content_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_content_type` (
   `id` int NOT NULL AUTO_INCREMENT,
   `app_label` varchar(100) NOT NULL,
@@ -479,7 +481,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `django_migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_migrations` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `app` varchar(255) NOT NULL,
@@ -505,7 +507,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `django_session`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `django_session` (
   `session_key` varchar(40) NOT NULL,
   `session_data` longtext NOT NULL,
@@ -521,7 +523,7 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('8qzujoer6d6aipahagsvdi8281e38typ','.eJxVjE0OwiAYBe_C2pACFahL9z0D-X5AqgaS0q6Md1eSLnT7Zua9RIB9y2FvcQ0Li4vw4vS7IdAjlg74DuVWJdWyrQvKrsiDNjlXjs_r4f4dZGi516MfRk0GDJEHZV1M1iOm5A0kjdYphZrdZDQbYhe1MonOE38ThzxY8f4A-Sc4Yg:1mo00u:Z93yQeeddXUzLcGXpWywel8YzIAcEVa2JQFLSKkN9Mg','2021-12-03 09:16:56.784689'),('brobas5h154wjed3vncm27upqoondwjc','.eJxVjMsOwiAQRf-FtSHQoTxcuvcbyDCMUjWQlHZl_HdD0oVu7znnvkXEfStx77zGJYuz0OL0uyWkJ9cB8gPrvUlqdVuXJIciD9rltWV-XQ7376BgL6NWWQVtARB0sMwaMDi6gZ8NsiaGlIxyFihk8nlm48GwAWeSogDTJD5f15s3bQ:1mo0CU:N8VcD7Py2M8dXe83MhBY-qWFiENF01D92vPGwqp6D8s','2021-12-03 09:28:54.876878');
+INSERT INTO `django_session` VALUES ('8qzujoer6d6aipahagsvdi8281e38typ','.eJxVjE0OwiAYBe_C2pACFahL9z0D-X5AqgaS0q6Md1eSLnT7Zua9RIB9y2FvcQ0Li4vw4vS7IdAjlg74DuVWJdWyrQvKrsiDNjlXjs_r4f4dZGi516MfRk0GDJEHZV1M1iOm5A0kjdYphZrdZDQbYhe1MonOE38ThzxY8f4A-Sc4Yg:1mo00u:Z93yQeeddXUzLcGXpWywel8YzIAcEVa2JQFLSKkN9Mg','2021-12-03 09:16:56.784689');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -534,4 +536,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-19 10:34:10
+-- Dump completed on 2021-11-19 10:25:38
