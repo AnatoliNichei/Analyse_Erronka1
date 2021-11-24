@@ -115,7 +115,7 @@ def recieve_erosi(request):
 
 def benetan_erosi(request):
     if not request.user.is_authenticated:
-        return HttpResponse(status=500)
+        return HttpResponse(status=503)
     x = request.COOKIES.get('saskia')
     try:
         asked_date = datetime.strptime(request.COOKIES.get("data"), "%Y-%m-%dT%H:%M")
