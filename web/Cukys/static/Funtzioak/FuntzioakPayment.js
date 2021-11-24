@@ -55,7 +55,6 @@ window.onload = function ()  {
         prezioTotala.innerText = prezioGuztira.toFixed(2)+"€";
     }
     let test = getCookie("userCookie")
-    alert(test)
     let usuario = Object.assign(new User(), JSON.parse(getCookie("userCookie")));
     let helbidea = usuario.helbidea
     let izenosoa = usuario.izenosoa

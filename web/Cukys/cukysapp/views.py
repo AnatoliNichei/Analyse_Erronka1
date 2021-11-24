@@ -117,10 +117,10 @@ def benetan_erosi(request):
     if not request.user.is_authenticated:
         return HttpResponse(status=503)
     x = request.COOKIES.get('saskia')
-    try:
-        asked_date = datetime.strptime(request.COOKIES.get("data"), "%Y-%m-%dT%H:%M")
-    except:
-        return HttpResponse(str(asked_date), status=400)
+#    try:
+    asked_date = datetime.strptime(request.COOKIES.get("data")[:10], "%Y-%m-%d").date()
+#    except:
+#        return HttpResponse(request.COOKIES.get("data")[:10], status=400)
     if asked_date <= date.today() + timedelta(days=1):
         return HttpResponse(status=404)
     saskia = json.loads(x)
