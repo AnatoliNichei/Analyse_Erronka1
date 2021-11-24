@@ -117,7 +117,6 @@ class Saskia {
 
     addProduktua(produktuId, kantitatea, izena, prezioa, irudia) {
 
-        alert("aaaaa")
         for (let i = 0; i < this.erosketak.length; ++i) {
             if (this.erosketak[i].produktua.produktuKodea == produktuId) {
                 this.erosketak[i].kantitatea += kantitatea
@@ -130,11 +129,8 @@ class Saskia {
 }
 
 function addToSaskia(prodid, kant, izena, prezioa, irudia) {
-    alert("aa")
     let sask = Saskia.retrieve()
-    alert("aaa")
     sask.addProduktua(prodid, kant, izena, prezioa, irudia)
-    alert(JSON.stringify(sask))
     sask.save()
 }
 

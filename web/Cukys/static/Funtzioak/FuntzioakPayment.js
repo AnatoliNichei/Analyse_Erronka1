@@ -71,6 +71,7 @@ window.onload = function ()  {
 
 function bukatuErosketa(){
     alert("Eskerrik asko gure web orrian erosteagatik, hurrengorarte!")
+    setCookie("saskia", "", 1)
     location.replace("/")
 }
 
@@ -81,6 +82,50 @@ function errorErosketa() {
 }
 
 function checkErosketa(){
+    let txartelaInput = document.getElementById("card-number");
+    let cvcInput = document.getElementById("cvc");
+    let MMInput = document.getElementById("MM");
+    let YYInput = document.getElementById("YY");
+    let x = document.forms["erosiForm"]["txartelZenbakia"].value;
+    let y = document.forms["erosiForm"]["cvc"].value;
+    let MM = document.forms["erosiForm"]["MM"].value;
+    let YY = document.forms["erosiForm"]["YY"].value;
+
+    if (!/^\d{16}$/.test(x)/*!x.matches("[0-9]+") || x.length() != 16*/) {
+        alert("Txartel Zenbakia txarto sartu duzu");
+        txartelaInput.style.borderColor = "#FF0000";
+        return false;
+    } else {
+        txartelaInput.style.borderColor = "";
+    }
+
+    if (!/^\d{3}$/.test(y)/*!x.matches("[0-9]+") || x.length() != 16*/) {
+        alert("CVC txarto sartu duzu");
+        cvcInput.style.borderColor = "#FF0000";
+        return false;
+    } else {
+        cvcInput.style.borderColor = "";
+    }
+
+    if (!/^(0[1-9]|1[012])$/.test(MM)/*!x.matches("[0-9]+") || x.length() != 16*/) {
+        alert("Hilabetea txarto sartu duzu");
+        MMInput.style.borderColor = "#FF0000";
+        return false;
+    } else {
+        MMInput.style.borderColor = "";
+    }
+
+    var date = new Date().getFullYear();
+    date = date % 100;
+
+    if (!/^\d{2}$/.test(YY) || date >= YY/*!x.matches("[0-9]+") || x.length() != 16*/) {
+        alert("Urtea txarto sartu duzu");
+        YYInput.style.borderColor = "#FF0000";
+        return false;
+    } else {
+        YYInput.style.borderColor = "";
+    }
+
     if (getCookie("saskia") != null && getCookie("saskia") !== ""){
         let btnErosi = document.getElementById("bukatuErosketa");
         btnErosi.disabled = true;
@@ -129,6 +174,7 @@ function getCookie(cname) {
     }
     return "";
 }
+
 
 function getBasket() {
     return existsBasket() ? JSON.parse(getCookie("saskia")) : {"erosketak": []}
