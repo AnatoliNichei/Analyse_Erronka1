@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="61f624fe-b25f-4601-8deb-65f1aa99c1b6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Cukys/cukysapp/templates/cukys/payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/cukysapp/templates/cukys/payment.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/FuntzioakPayment.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/Cukys/static/Funtzioak/FuntzioakPayment.js" afterDir="false" />
-    </list>
+    <list default="true" id="61f624fe-b25f-4601-8deb-65f1aa99c1b6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +135,7 @@
       <workItem from="1637133617109" duration="12835000" />
       <workItem from="1637219342671" duration="17066000" />
       <workItem from="1637309484303" duration="16991000" />
-      <workItem from="1637565080892" duration="555000" />
+      <workItem from="1637565080892" duration="1162000" />
     </task>
     <servers />
   </component>
