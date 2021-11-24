@@ -151,3 +151,6 @@ EMAIL_USE_TLS = False
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Stop Timezone Use
+USE_TZ = False
