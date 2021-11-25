@@ -121,7 +121,7 @@ def benetan_erosi(request):
     asked_date = datetime.strptime(request.COOKIES.get("data")[:10], "%Y-%m-%d").date()
 #    except:
 #        return HttpResponse(request.COOKIES.get("data")[:10], status=400)
-    if asked_date <= date.today() + timedelta(days=1):
+    if asked_date <= date.today():
         return HttpResponse(status=404)
     saskia = json.loads(x)
     new_saskia = Saskia.objects.create(eskaera_data=datetime.now(), entrega_data=asked_date, erabiltzailea=request.user)
